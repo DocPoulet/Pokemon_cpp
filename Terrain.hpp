@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Workshop_POO_pt3.cpp"
 
 enum class Champ {
     Aucun,
@@ -22,3 +23,4 @@ enum class Meteo {
 
 std::string ChampString(Champ s);
 std::string MeteoString(Meteo s);
+void effetTerrain(Combat& combat);

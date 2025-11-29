@@ -11,3 +11,4 @@ extern Attaque aiguisage;
 extern Attaque psyko;
 extern Attaque acupression;
 extern Attaque zenith;
+extern Attaque dansepluie;

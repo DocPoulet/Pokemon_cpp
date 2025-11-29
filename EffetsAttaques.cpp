@@ -48,11 +48,13 @@ void appliquerSoleil(Combat& combat, Creature& attaquant){
 
     combat.meteoAct=Meteo::Soleil;
     std::cout<<"Le soleil s'installe"<<std::endl;
-    Creature *act=(combat.getActiveP1()==&attaquant) ? &attaquant : combat.getActiveP2();
-    if(act->getObjet()->getNom()=="Roche Chaude")
-    combat.dureeMeteo=8;
-    else combat.dureeMeteo=5;
-    std::cout<<"Le soleil s'installe"<<std::endl;
+    Creature *act = (combat.getActiveP1() == &attaquant) ? &attaquant : combat.getActiveP2();
+    Objet* obj = act ? act->getObjet() : nullptr;
+    if (obj && obj->getNom() == "Roche Chaude") {
+        combat.dureeMeteo = 8;
+    } else {
+        combat.dureeMeteo = 5;
+    }
 }
 
 void appliquerPluie(Combat& combat, Creature& attaquant){

@@ -22,3 +22,4 @@ Attaque psyko("Psyko", PSY, 90, 2, 100, 0, 10, 16, {
 });
 Attaque acupression("Acupression", PSY, 0, 0, -1, 0, 30, 48);
 Attaque zenith("Zenith", FEU, 0, 0, -1, 0, 5, 8);
+Attaque dansepluie("Danse-Pluie", EAU, 0, 0, -1, 0, 5, 8);

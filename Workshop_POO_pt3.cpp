@@ -143,7 +143,7 @@ bool precision(const Attaque& atk, Creature& attaquant, Creature& defenseur, Com
     return ((std::rand() % 100) < chance);
 }
 
-int calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
+double calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
                    Attaque& atk, Combat& combat)
 {
     double eff = getEfficacite(atk.getType(), defenseur.getTypes());
@@ -173,12 +173,12 @@ int calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
     }
     else { // Special
         if(aP1) {
-            combat.getStatMultiplierP1(ATKSP); 
-            combat.getStatMultiplierP2(DEFSP);
+            atkMod=combat.getStatMultiplierP1(ATKSP); 
+            defMod=combat.getStatMultiplierP2(DEFSP);
             }
         else{
-            combat.getStatMultiplierP2(ATKSP); 
-            combat.getStatMultiplierP1(DEFSP);
+            atkMod=combat.getStatMultiplierP2(ATKSP); 
+            defMod=combat.getStatMultiplierP1(DEFSP);
         }
         atkstat=attaquant.calculStat(ATKSP);
         defstat=defenseur.calculStat(DEFSP);
@@ -188,9 +188,7 @@ int calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
 
     if (defstat < 1) defstat = 1;
 
-    int Mod1=1;
-    int Mod2=1;
-    int Mod3=1;
+    double Mod1=1, Mod2=1, Mod3=1;
 
     double stab = 1.0;
     for (auto t : attaquant.getTypes())
@@ -204,15 +202,10 @@ int calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
         if(atk.getType()==TypeEnum::EAU) Mod1*=1.5;
         else if(atk.getType()==TypeEnum::FEU) Mod1*=0.5;
     }
-
-    int base1 =std::floor(attaquant.getLVL() * 0.4)+2;
-    int base2 = base1*atk.getPuissance()*atkstat;
-    int base3 = std::floor(base2/ defstat);
-    int base4 = std::floor(base3/50);
-    int base5 = std::floor(base4*Mod1+2);
-    int base = base5*Mod2*Mod3;
-
-    int degats = std::floor(base * stab * eff);
+    double degats =(((((((attaquant.getLVL() * 0.4)+2)
+            *atk.getPuissance()*atkstat)
+            / defstat)/50)*Mod1)+2)
+            *Mod2*Mod3*stab*eff;
 
     return degats;
 }
@@ -240,7 +233,8 @@ int calculerDegats(int degatsPur,const Creature& defenseur,
     }
     atk.utiliserPP();
     if(atk.getCategorie()==0) return 0;
-    return std::max(1, degatsPur * random * crit/100);
+    int degats=degatsPur * crit * (random/100.0);
+    return std::max(1, degats);
 }
 
 int priorite(Combat& combat) {
@@ -387,6 +381,8 @@ void resoudreTour(Combat& combat)
     }
     tour++;
 
+    effetTerrain(combat)
+
     if (combat.dureeMeteo > 0) {
         combat.dureeMeteo--;
         if (combat.dureeMeteo == 0) {
@@ -472,7 +468,7 @@ int switchBot(Combat& combat){
         {
             if (!a) continue;
             if (a->getPP_act() <= 0) continue;
-            int dmg = calculerDegatsPur(candidate, *ennemi, *a, combat);
+            double dmg = calculerDegatsPur(candidate, *ennemi, *a, combat);
             if (dmg > bestDamageThisPokemon)
                 bestDamageThisPokemon = dmg;
         }
@@ -527,20 +523,20 @@ int initSwitchBot(Combat& combat){
             opponents++;
 
             // Meilleure attaque de l'adversaire contre cand
-            int bestIncoming = 0;
+            double bestIncoming = 0;
             for (Attaque* a : opp.getSlots()) {
                 if (!a || a->getPP_act() <= 0) continue;
-                int d = calculerDegatsPur(opp, cand, *a, combat);
+                double d = calculerDegatsPur(opp, cand, *a, combat);
                 bestIncoming = std::max(bestIncoming, d);
             }
             if (bestIncoming <= 0) bestIncoming = 1; // éviter div / 0 et trop faibles valeurs
             sumBestIncoming += bestIncoming;
 
             // Meilleure attaque du candidat contre cet adversaire
-            int bestOutgoing = 0;
+            double bestOutgoing = 0;
             for (Attaque* a : cand.getSlots()) {
                 if (!a || a->getPP_act() <= 0) continue;
-                int d = calculerDegatsPur(cand, opp, *a, combat);
+                double d = calculerDegatsPur(cand, opp, *a, combat);
                 bestOutgoing = std::max(bestOutgoing, d);
             }
             sumBestOutgoing += bestOutgoing;

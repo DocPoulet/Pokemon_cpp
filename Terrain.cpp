@@ -24,3 +24,18 @@ std::string MeteoString(Meteo s) {
     }
     return "Inconnu";
 }
+
+void effetSable(Combat& combat){
+    
+    for (auto t : c1.getTypes())
+        if (t != enumType::ROCHE || t != enumType::SOL || t != enumType::ACIER)
+}
+
+void effetTerrain(Combat& combat){
+    switch (combat.meteo)
+        case Meteo::TempeteDeSable:
+            effetSable();
+        
+        case Meteo::TempeteDeNeige;
+            effetNeige();
+}
