@@ -34,9 +34,41 @@ void atkPsyko(Creature& defenseur, Combat& combat)
     std::cout << defenseur.getNom() << " voit sa Défense Spéciale diminuer !" << std::endl;
 }
 
+bool verifMeteo(Combat& combat){
+    if(combat.meteoAct==Meteo::PluieBattante || 
+       combat.meteoAct==Meteo::VentMysterieux ||
+       combat.meteoAct==Meteo::SoleilIntense) return 1;
+    return 0;
+}
+
+void appliquerSoleil(Combat& combat, Creature& attaquant){
+    if(verifMeteo(combat)){
+        std::cout<<"Vous ne pouvez pas installer le Soleil"<<std::endl;
+        return;}
+
+    combat.meteoAct=Meteo::Soleil;
+    std::cout<<"Le soleil s'installe"<<std::endl;
+    Creature *act=(combat.getActiveP1()==&attaquant) ? &attaquant : combat.getActiveP2();
+    if(act->getObjet()->getNom()=="Roche Chaude")
+    combat.dureeMeteo=8;
+    else combat.dureeMeteo=5;
+    std::cout<<"Le soleil s'installe"<<std::endl;
+}
+
+void appliquerPluie(Combat& combat, Creature& attaquant){
+    if(verifMeteo(combat)) {
+        std::cout<<"Vous ne pouvez pas installer la Pluie"<<std::endl;
+        return;}
+
+    combat.meteoAct=Meteo::Pluie;
+    Creature *act=(combat.getActiveP1()==&attaquant) ? &attaquant : combat.getActiveP2();
+    if(act->getObjet()->getNom()=="Roche Humide")
+    combat.dureeMeteo=8;
+    else combat.dureeMeteo=5;
+}
+
 void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseur, Combat& combat)
 {
-    if(atk.getEffets().empty()) return;
     for (auto& e : atk.getEffets())
     {
         if(e.proba >= 100) continue;
@@ -45,7 +77,6 @@ void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseu
             return;
     }
     
-    // Cas spécial Acupression → ne change PAS
     if (atk.getNom() == "Acupression") {
         atkAcupression(attaquant, combat);
         return;
@@ -60,21 +91,24 @@ void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseu
         return;
     }
     
-    if (atk.nom == "Danse-Pluie") {
-        meteoActuelle = Meteo::Pluie;
-        dureeMeteo = 5;
+    if (atk.getNom() == "Danse-Pluie") {
+        combat.meteoAct = Meteo::Pluie;
+        combat.dureeMeteo = 5;
+        return;
     }
 
-    if (atk.nom == "Zénith") {
-        meteoActuelle = Meteo::Soleil;
-        dureeMeteo = 5;
+    if (atk.getNom() == "Zenith") {
+        appliquerSoleil(combat, attaquant);
+        return;
     }
 
-    if (atk.nom == "Champ Herbu") {
-        terrainActuel = Terrain::Herbu;
-        dureeTerrain = 5;
+    if (atk.getNom() == "Champ Herbu") {
+        combat.champAct = Champ::Herbu;
+        combat.dureeChamp = 5;
+        return;
     }
 
+    if(atk.getEffets().empty()) return;
     // Effets généraux
     for (auto& e : atk.getEffets())
     {

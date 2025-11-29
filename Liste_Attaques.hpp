@@ -10,3 +10,4 @@ extern Attaque close_combat;
 extern Attaque aiguisage;
 extern Attaque psyko;
 extern Attaque acupression;
+extern Attaque zenith;

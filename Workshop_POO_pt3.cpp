@@ -7,6 +7,7 @@
 #include "Pokedex_1g.hpp"
 #include "Liste_Attaques.hpp"
 
+int tour=1 ;
 const int MAX_EQUIPE = 6;
 const int MIN_MOD = -6;
 const int MAX_MOD = 6;
@@ -27,10 +28,6 @@ std::string normString(const std::string& raw) {
     }
     return s;
 }
-
-class Objet {
-    std::string nom;
-};
 
 std::string toString(StatIndex s) {
     switch(s) {
@@ -192,26 +189,26 @@ int calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
     if (defstat < 1) defstat = 1;
 
     int Mod1=1;
-    int Mod2;
-    int Mod3;
+    int Mod2=1;
+    int Mod3=1;
 
     double stab = 1.0;
     for (auto t : attaquant.getTypes())
         if (t == atk.getType()) {stab = 1.5; break;}
 
     if(combat.meteoAct==Meteo::Soleil){
-        if(atk.type == Type::FEU || atk.getNom()="Hydrovapeur") Mod1*=1.5;
-        else if(atk.type == Type::EAU) Mod1*=0.5;
+        if(atk.getType() == TypeEnum::FEU || atk.getNom()=="Hydrovapeur") Mod1*=1.5;
+        else if(atk.getType() == TypeEnum::EAU) Mod1*=0.5;
     }
     if(combat.meteoAct==Meteo::Pluie){
-        if(atk.type==Type::EAU) Mod1*=1.5;
-        else if(atk.type==Type::FEU) Mod1*=0.5;
+        if(atk.getType()==TypeEnum::EAU) Mod1*=1.5;
+        else if(atk.getType()==TypeEnum::FEU) Mod1*=0.5;
     }
 
     int base1 =std::floor(attaquant.getLVL() * 0.4)+2;
     int base2 = base1*atk.getPuissance()*atkstat;
     int base3 = std::floor(base2/ defstat);
-    int base4 = std::floor(base3/50)
+    int base4 = std::floor(base3/50);
     int base5 = std::floor(base4*Mod1+2);
     int base = base5*Mod2*Mod3;
 
@@ -281,7 +278,7 @@ Attaque& attaqueAleatoire(Creature& attaquant, const Creature& DEFur, Combat& co
 
     int totalWeight = 0.0;
     std::vector<int> weights;
-    for (const Attaque* a : valids) {
+    for (Attaque* a : valids) {
         double poids=calculerDegatsPur(attaquant, DEFur, *a, combat);
         weights.push_back(poids);
         totalWeight += poids;
@@ -354,9 +351,9 @@ void effectuerAttaque(Creature& attaquant, Creature& defenseur,
 
     int degats = calculerDegats(calculerDegatsPur(attaquant, defenseur, atk, combat), defenseur, atk, combat);
     defenseur.setPV(defenseur.getPV() - degats);
-
+    Joueur* jr=(combat.getActiveP1()==&attaquant) ? &combat.getP2() : &combat.getP1();
     if(degats>0)
-        std::cout << defenseur.getNom() << " perd " << degats << " PV\n";
+        std::cout <<"Le "<< defenseur.getNom() <<" de "<<*jr<< " perd " << degats << " PV\n";
     appliquerEffets(atk, attaquant, defenseur, combat);
     if(atk.getContrecoup()){
         int recul = std::max(1, degats/3);
@@ -387,6 +384,23 @@ void resoudreTour(Combat& combat)
         if (!combat.getActiveP1()->estKO()) {
             effectuerAttaque(*combat.getActiveP1(), *combat.getActiveP2(), atkP1, combat);
         }
+    }
+    tour++;
+
+    if (combat.dureeMeteo > 0) {
+        combat.dureeMeteo--;
+        if (combat.dureeMeteo == 0) {
+            std::string det= (combat.meteoAct==Meteo::Soleil || combat.meteoAct==Meteo::VentMysterieux || combat.meteoAct==Meteo::SoleilIntense)
+            ? "Le " : "La ";
+            std::cout<<det<<MeteoString(combat.meteoAct)<<" se dissipe!"<<std::endl;
+            combat.meteoAct = Meteo::Aucune;}
+    }
+
+    if (combat.dureeChamp > 0) {
+        combat.dureeChamp--;
+        if (combat.dureeChamp == 0) {
+            std::cout<<"Le champ "<<ChampString(combat.champAct)<<" se dissipe!"<<std::endl;
+            combat.champAct = Champ::Aucun;}
     }
 }
 
@@ -571,10 +585,8 @@ void menuCombat(Combat& combat){
     combat.setActiveP2(initSwitchBot(combat));
     int n;
     bool menu=true;
-    static int tour=0 ;
     while(menu){
         finCombat(combat);
-        tour++;
 
         
         if(combat.getActiveP1()->estKO()) switchCombat(combat);
@@ -631,9 +643,6 @@ int main() {
     Creature salameche2(&salameche, 5, "Timide");
     Creature carapuce2(&carapuce, 5, "Assuré");
 
-//Attaque("Nom", TYPE, puissance,  status0/physique1/special2, precision%, critique bonus, pp, pp max, effets, contrecoup)
-// effets = {Stat(0=base stat, 1=Precision), stat, variation(+/-), cible(0=attaquant/1=defenseur)}
-
     salameche.ajouterAttaque(flammeche);
     salameche.ajouterAttaque(griffe);
     salameche.ajouterAttaque(pistolet_a_O);
@@ -642,14 +651,16 @@ int main() {
     salameche.ajouterAttaque(aiguisage);
     salameche.ajouterAttaque(psyko);
     salameche.ajouterAttaque(acupression);
+    salameche.ajouterAttaque(zenith);
+
 
     carapuce.ajouterAttaque(pistolet_a_O);
     carapuce.ajouterAttaque(fouet_lianes);
     carapuce.ajouterAttaque(acupression);
     
 
-    salameche1.assignerSlot(7,0);
-    salameche1.assignerSlot(6,1);
+    salameche1.assignerSlot(8,0);
+    salameche1.assignerSlot(0,1);
     salameche1.assignerSlot(5,2);
     salameche1.assignerSlot(3,3);
     salameche1.assignerSlot(4,3);

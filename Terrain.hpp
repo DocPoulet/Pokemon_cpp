@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 enum class Champ {
     Aucun,
@@ -14,8 +15,10 @@ enum class Meteo {
     Pluie,
     TempeteDeSable,
     TempeteDeNeige,
-    Brouillard,
     PluieBattante,
     VentMysterieux,
     SoleilIntense
 };
+
+std::string ChampString(Champ s);
+std::string MeteoString(Meteo s);

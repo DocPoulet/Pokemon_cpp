@@ -56,6 +56,15 @@ struct EffetStat {
 
 // ==== Classes complètes (implémentations inline pour éviter définitions multiples) ====
 
+class Objet {
+    std::string nom;
+
+public:
+    Objet(std::string nom):nom(nom){}
+    std::string getNom(){return nom;}
+};
+
+
 // Nature
 class Nature {
     std::string name;
@@ -183,6 +192,8 @@ public:
     const std::vector<TypeEnum>& getTypes() const { return types; }
     const std::vector<Attaque>& getAttaques() const { return attaques; }
     std::vector<Attaque>& getAttaques() { return attaques; }
+    int getID(){return compteurID;}
+
 
     void ajouterAttaque(const Attaque& a) { attaques.push_back(a); }
 };
@@ -202,11 +213,13 @@ class Creature {
 
     Nature nature;
 
+    Objet* objet;
+
     void forceEV(StatIndex stat, int ev) { EV[stat] = ev; }
 
 public:
-    Creature(CreatureBase* b = nullptr, int lvl = 1, std::string nat = "Hardi")
-        : base(b), LVL(lvl), nature(NATURES.at(nat)), slots(4, nullptr) {
+    Creature(CreatureBase* b = nullptr, int lvl = 1, std::string nat = "Hardi", Objet* o=nullptr)
+        : base(b), LVL(lvl), nature(NATURES.at(nat)), slots(4, nullptr), objet(o) {
         IV.fill(0);
         EV.fill(0);
         PV_act = calculStat(PV);
@@ -219,6 +232,7 @@ public:
     const std::vector<TypeEnum>& getTypes() const { return base->getTypes(); }
     const std::vector<Attaque>& getAttaques() const { return base->getAttaques(); }
     std::vector<Attaque>& getAttaques() { return base->getAttaques(); }
+    int getID(){return base->getID();}
 
     // getters joueur
     int getPV() const { return PV_act; }
@@ -230,6 +244,7 @@ public:
 
     const Nature& getNature() const { return nature; }
     void setNature(const Nature& nat) { nature = nat; }
+    Objet* getObjet(){return objet;}
 
     int totalEV() const {
         int sum = 0;
@@ -383,7 +398,7 @@ public:
     Combat(Joueur& j1, Joueur& j2)
         : player1(j1), player2(j2), activeIndex1(0), activeIndex2(0),
         meteoAct(Meteo::Aucune), dureeMeteo(0), 
-        terrainActuel(Terrain::Aucun), dureeTerrain(0) {}
+        champAct(Champ::Aucun), dureeChamp(0) {}
 
     Joueur& getP1() const { return const_cast<Joueur&>(player1); }
     Joueur& getP2() const { return const_cast<Joueur&>(player2); }
