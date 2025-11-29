@@ -59,6 +59,21 @@ void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseu
         atkPsyko(defenseur, combat);
         return;
     }
+    
+    if (atk.nom == "Danse-Pluie") {
+        meteoActuelle = Meteo::Pluie;
+        dureeMeteo = 5;
+    }
+
+    if (atk.nom == "Zénith") {
+        meteoActuelle = Meteo::Soleil;
+        dureeMeteo = 5;
+    }
+
+    if (atk.nom == "Champ Herbu") {
+        terrainActuel = Terrain::Herbu;
+        dureeTerrain = 5;
+    }
 
     // Effets généraux
     for (auto& e : atk.getEffets())

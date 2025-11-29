@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Terrain.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -374,8 +374,16 @@ private:
     Stages mod2;   // Modificateurs du Pokémon actif du joueur 2
 
 public:
+    Meteo meteoAct;
+    int dureeMeteo;
+
+    Champ champAct;
+    int dureeChamp;
+
     Combat(Joueur& j1, Joueur& j2)
-        : player1(j1), player2(j2), activeIndex1(0), activeIndex2(0) {}
+        : player1(j1), player2(j2), activeIndex1(0), activeIndex2(0),
+        meteoAct(Meteo::Aucune), dureeMeteo(0), 
+        terrainActuel(Terrain::Aucun), dureeTerrain(0) {}
 
     Joueur& getP1() const { return const_cast<Joueur&>(player1); }
     Joueur& getP2() const { return const_cast<Joueur&>(player2); }

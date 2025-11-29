@@ -147,7 +147,7 @@ bool precision(const Attaque& atk, Creature& attaquant, Creature& defenseur, Com
 }
 
 int calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
-                   const Attaque& atk, Combat& combat)
+                   Attaque& atk, Combat& combat)
 {
     double eff = getEfficacite(atk.getType(), defenseur.getTypes());
     if(eff==0) return 0;
@@ -191,15 +191,29 @@ int calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
 
     if (defstat < 1) defstat = 1;
 
+    int Mod1=1;
+    int Mod2;
+    int Mod3;
+
     double stab = 1.0;
     for (auto t : attaquant.getTypes())
         if (t == atk.getType()) {stab = 1.5; break;}
 
-    
+    if(combat.meteoAct==Meteo::Soleil){
+        if(atk.type == Type::FEU || atk.getNom()="Hydrovapeur") Mod1*=1.5;
+        else if(atk.type == Type::EAU) Mod1*=0.5;
+    }
+    if(combat.meteoAct==Meteo::Pluie){
+        if(atk.type==Type::EAU) Mod1*=1.5;
+        else if(atk.type==Type::FEU) Mod1*=0.5;
+    }
+
     int base1 =std::floor(attaquant.getLVL() * 0.4)+2;
-    int base2 = std::floor(base1*atk.getPuissance()*atkstat);
+    int base2 = base1*atk.getPuissance()*atkstat;
     int base3 = std::floor(base2/ defstat);
-    int base = std::floor(base3/50)+2;
+    int base4 = std::floor(base3/50)
+    int base5 = std::floor(base4*Mod1+2);
+    int base = base5*Mod2*Mod3;
 
     int degats = std::floor(base * stab * eff);
 
