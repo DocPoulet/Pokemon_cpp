@@ -129,83 +129,84 @@ bool critique(int bonus = 0) {
     return (std::rand() % prob) == 0;
 }
 
-bool precision(const Attaque& atk, Creature& attaquant, Creature& defenseur, Combat& combat) {
-    bool aP1 = (&attaquant == combat.getActiveP1());
+bool precision(const Attaque& atk, Creature& attaquant, Creature& defenseur, Combat& combat) 
+{
+    int attaquantIdx = combat.getJoueurIndex(&attaquant);
+    int defenseurIdx = 1 - attaquantIdx; // L'autre joueur
+    
+    if (attaquantIdx < 0) return true;
 
-    double preMult = aP1 ? combat.getPREP1(PRE) : combat.getPREP2(PRE);
-
-    double evaMult = aP1 ? combat.getPREP2(AVD) : combat.getPREP1(AVD);
+    double preMult = combat.getPRE(attaquantIdx, PRE);
+    double evaMult = combat.getPRE(defenseurIdx, AVD);
 
     if (atk.getPrecision() == -1) return true;
 
     double chance = atk.getPrecision() * (preMult / evaMult);
-
     return ((std::rand() % 100) < chance);
 }
 
-double calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
-                   Attaque& atk, Combat& combat)
+double calculerDegatsPur(const Creature& attaquant, const Creature& defenseur,
+                         Attaque& atk, Combat& combat)
 {
     double eff = getEfficacite(atk.getType(), defenseur.getTypes());
-    if(eff==0) return 0;
+    if(eff == 0) return 0;
     if (atk.getCategorie() == 0 || atk.getPuissance() <= 0)
         return 0;
 
-    // Détection : attaquant = joueur 1 ?
-    bool aP1 = (&attaquant == combat.getActiveP1());
+    // Déterminer l'index du joueur attaquant
+    int attaquantIdx = combat.getJoueurIndex(&attaquant);
+    int defenseurIdx = 1 - attaquantIdx;
+    
+    if (attaquantIdx < 0) return 0;
 
     // Multiplicateurs de stats
     double atkMod = 1.0;
     double defMod = 1.0;
     int atkstat;
     int defstat;
+    
     if (atk.getCategorie() == 1) { // Physique
-        if(aP1) {
-            atkMod=combat.getStatMultiplierP1(ATK); 
-            defMod=combat.getStatMultiplierP2(DEF);
-            }
-        else{
-            atkMod=combat.getStatMultiplierP2(ATK); 
-            defMod=combat.getStatMultiplierP1(DEF);
-        }
-        atkstat=attaquant.calculStat(ATK);
-        defstat=defenseur.calculStat(DEF);
+        atkMod = combat.getStatMultiplier(attaquantIdx, ATK);
+        defMod = combat.getStatMultiplier(defenseurIdx, DEF);
+        atkstat = attaquant.calculStat(ATK);
+        defstat = defenseur.calculStat(DEF);
     }
     else { // Special
-        if(aP1) {
-            atkMod=combat.getStatMultiplierP1(ATKSP); 
-            defMod=combat.getStatMultiplierP2(DEFSP);
-            }
-        else{
-            atkMod=combat.getStatMultiplierP2(ATKSP); 
-            defMod=combat.getStatMultiplierP1(DEFSP);
-        }
-        atkstat=attaquant.calculStat(ATKSP);
-        defstat=defenseur.calculStat(DEFSP);
+        atkMod = combat.getStatMultiplier(attaquantIdx, ATKSP);
+        defMod = combat.getStatMultiplier(defenseurIdx, DEFSP);
+        atkstat = attaquant.calculStat(ATKSP);
+        defstat = defenseur.calculStat(DEFSP);
     }
+    
     atkstat *= atkMod;
     defstat *= defMod;
 
     if (defstat < 1) defstat = 1;
 
-    double Mod1=1, Mod2=1, Mod3=1;
+    double Mod1 = 1, Mod2 = 1, Mod3 = 1;
 
     double stab = 1.0;
     for (auto t : attaquant.getTypes())
-        if (t == atk.getType()) {stab = 1.5; break;}
+        if (t == atk.getType()) { stab = 1.5; break; }
 
-    if(combat.meteoAct==Meteo::Soleil){
-        if(atk.getType() == TypeEnum::FEU || atk.getNom()=="Hydrovapeur") Mod1*=1.5;
-        else if(atk.getType() == TypeEnum::EAU) Mod1*=0.5;
+    // Effets météo
+    if(combat.meteoAct == Meteo::Soleil) {
+        if(atk.getType() == TypeEnum::FEU || atk.getNom() == "Hydrovapeur") 
+            Mod1 *= 1.5;
+        else if(atk.getType() == TypeEnum::EAU) 
+            Mod1 *= 0.5;
     }
-    if(combat.meteoAct==Meteo::Pluie){
-        if(atk.getType()==TypeEnum::EAU) Mod1*=1.5;
-        else if(atk.getType()==TypeEnum::FEU) Mod1*=0.5;
+    if(combat.meteoAct == Meteo::Pluie) {
+        if(atk.getType() == TypeEnum::EAU) 
+            Mod1 *= 1.5;
+        else if(atk.getType() == TypeEnum::FEU) 
+            Mod1 *= 0.5;
     }
-    double degats =(((((((attaquant.getLVL() * 0.4)+2)
-            *atk.getPuissance()*atkstat)
-            / defstat)/50)*Mod1)+2)
-            *Mod2*Mod3*stab*eff;
+    
+    double degats = (((((((attaquant.getLVL() * 0.4) + 2)
+            * atk.getPuissance() * atkstat)
+            / defstat) / 50) * Mod1) + 2)
+            * Mod2 * Mod3 * stab * eff;
 
     return degats;
 }
@@ -238,20 +239,19 @@ int calculerDegats(int degatsPur,const Creature& defenseur,
 }
 
 int priorite(Combat& combat) {
-    Joueur& j1=combat.getP1();
-    Joueur& j2=combat.getP2();
-
-    Creature& c1=j1.getEquipe()[j1.getIndex()];
-    Creature& c2=j2.getEquipe()[j2.getIndex()];
-
-    int v1=c1.calculStat(VIT);
-    int v2=c2.calculStat(VIT);
+    Creature* c1 = combat.getActive(0);
+    Creature* c2 = combat.getActive(1);
     
-    if(v1==v2) {
-        int r=rand()%2;
-        return (r==0) ? 1:2;
-    } else if(v1>v2) return 1;
-    else return 2;
+    if (!c1 || !c2) return 1;
+
+    int v1 = c1->calculStat(VIT);
+    int v2 = c2->calculStat(VIT);
+    
+    if(v1 == v2) {
+        int r = rand() % 2;
+        return (r == 0) ? 0 : 1;  // Retourne l'index du joueur
+    } 
+    return (v1 > v2) ? 0 : 1;
 }
 
 Attaque& attaqueAleatoire(Creature& attaquant, const Creature& DEFur, Combat& combat) {
@@ -343,16 +343,25 @@ void effectuerAttaque(Creature& attaquant, Creature& defenseur,
 {
     std::cout << attaquant.getNom() << " utilise " << atk.getNom() << std::endl;
 
-    int degats = calculerDegats(calculerDegatsPur(attaquant, defenseur, atk, combat), defenseur, atk, combat);
+    int degats = calculerDegats(calculerDegatsPur(attaquant, defenseur, atk, combat), 
+                                defenseur, atk, combat);
     defenseur.setPV(defenseur.getPV() - degats);
-    Joueur* jr=(combat.getActiveP1()==&attaquant) ? &combat.getP2() : &combat.getP1();
-    if(degats>0)
-        std::cout <<"Le "<< defenseur.getNom() <<" de "<<*jr<< " perd " << degats << " PV\n";
+    
+    // Déterminer le joueur défenseur
+    int defenseurIdx = combat.getJoueurIndex(&defenseur);
+    if (defenseurIdx >= 0 && degats > 0) {
+        Joueur& jr = combat.getJoueur(defenseurIdx);
+        std::cout << "Le " << defenseur.getNom() << " de " << jr 
+                  << " perd " << degats << " PV\n";
+    }
+    
     appliquerEffets(atk, attaquant, defenseur, combat);
-    if(atk.getContrecoup()){
-        int recul = std::max(1, degats/3);
+    
+    if(atk.getContrecoup()) {
+        int recul = std::max(1, degats / 3);
         attaquant.setPV(attaquant.getPV() - recul);
     }
+    
     if (defenseur.estKO()) {
         std::cout << defenseur.getNom() << " est KO!\n";
     }
@@ -363,60 +372,50 @@ void resoudreTour(Combat& combat)
     Attaque& atkP1 = choixAttaque(*combat.getActiveP1());
     Attaque& atkP2 = attaqueAleatoire(*combat.getActiveP2(), *combat.getActiveP1(), combat);
     
-    int prio = priorite(combat);
+    int premierIdx = priorite(combat);
+    int secondIdx = 1 - premierIdx;
 
-    if (prio == 1) {
-        effectuerAttaque(*combat.getActiveP1(), *combat.getActiveP2(), atkP1, combat);
+    // Premier attaquant
+    effectuerAttaque(*combat.getActive(premierIdx), 
+                     *combat.getActive(secondIdx), 
+                     (premierIdx == 0) ? atkP1 : atkP2, 
+                     combat);
 
-        if (!combat.getActiveP2()->estKO()) {
-            effectuerAttaque(*combat.getActiveP2(), *combat.getActiveP1(), atkP2, combat);
-        }
-    } 
-    else {
-        effectuerAttaque(*combat.getActiveP2(), *combat.getActiveP1(), atkP2, combat);
-
-        if (!combat.getActiveP1()->estKO()) {
-            effectuerAttaque(*combat.getActiveP1(), *combat.getActiveP2(), atkP1, combat);
-        }
+    // Second attaquant (si pas KO)
+    if (!combat.getActive(secondIdx)->estKO()) {
+        effectuerAttaque(*combat.getActive(secondIdx), 
+                         *combat.getActive(premierIdx), 
+                         (secondIdx == 0) ? atkP1 : atkP2, 
+                         combat);
     }
+    
     tour++;
 
-    effetTerrain(combat)
+    // Effets de terrain (ligne manquante corrigée)
+    // effetTerrain(combat);
 
+    // Gestion météo
     if (combat.dureeMeteo > 0) {
         combat.dureeMeteo--;
         if (combat.dureeMeteo == 0) {
-            std::string det= (combat.meteoAct==Meteo::Soleil || combat.meteoAct==Meteo::VentMysterieux || combat.meteoAct==Meteo::SoleilIntense)
-            ? "Le " : "La ";
-            std::cout<<det<<MeteoString(combat.meteoAct)<<" se dissipe!"<<std::endl;
-            combat.meteoAct = Meteo::Aucune;}
+            std::string det = (combat.meteoAct == Meteo::Soleil || 
+                              combat.meteoAct == Meteo::VentMysterieux || 
+                              combat.meteoAct == Meteo::SoleilIntense)
+                ? "Le " : "La ";
+            std::cout << det << MeteoString(combat.meteoAct) 
+                      << " se dissipe!" << std::endl;
+            combat.meteoAct = Meteo::Aucune;
+        }
     }
 
+    // Gestion champ
     if (combat.dureeChamp > 0) {
         combat.dureeChamp--;
         if (combat.dureeChamp == 0) {
-            std::cout<<"Le champ "<<ChampString(combat.champAct)<<" se dissipe!"<<std::endl;
-            combat.champAct = Champ::Aucun;}
-    }
-}
-
-void afficherMenuCombat()
-{
-    std::cout << "=== Combat ===\n"
-              << "1. Combat\n"
-              << "2. Equipe\n"
-              << "3. Sac\n"
-              << "4. Fuite\n"
-              << "> ";
-}
-
-void finCombat(Combat& combat){
-    if(combat.getP1().toutesCreaturesKO()){
-        std::cout<<combat.getP2().getNom()<<" a gagné le combat !"<<std::endl;
-        exit(-1);
-    } else if(combat.getP2().toutesCreaturesKO()){
-        std::cout<<combat.getP1().getNom()<<" a gagné le combat !"<<std::endl;
-        exit(-1);
+            std::cout << "Le champ " << ChampString(combat.champAct) 
+                      << " se dissipe!" << std::endl;
+            combat.champAct = Champ::Aucun;
+        }
     }
 }
 
@@ -575,6 +574,17 @@ int initSwitchBot(Combat& combat){
     if (bestIndex >= 0)
         std::cout << "Bot choisit " << equipe[bestIndex].getNom() << std::endl;
     return bestIndex;
+}
+
+void finCombat(Combat& combat) {
+    if(combat.getP1().toutesCreaturesKO()) {
+        std::cout << combat.getP2().getNom() << " a gagné le combat !" << std::endl;
+        exit(-1);
+    } 
+    else if(combat.getP2().toutesCreaturesKO()) {
+        std::cout << combat.getP1().getNom() << " a gagné le combat !" << std::endl;
+        exit(-1);
+    }
 }
 
 void menuCombat(Combat& combat){

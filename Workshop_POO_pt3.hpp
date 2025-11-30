@@ -380,13 +380,9 @@ struct Stages {
 
 // Combat
 class Combat {
-private:
-    Joueur& player1;
-    Joueur& player2;
-    int activeIndex1;
-    int activeIndex2;
-    Stages mod1;   // Modificateurs du Pokémon actif du joueur 1
-    Stages mod2;   // Modificateurs du Pokémon actif du joueur 2
+    std::array<Joueur*, 2> joueurs;      // [0] = P1, [1] = P2
+    std::array<int, 2> activeIndex;      // Index des créatures actives
+    std::array<Stages, 2> mods;          // Modificateurs de stats
 
 public:
     Meteo meteoAct;
@@ -396,60 +392,75 @@ public:
     int dureeChamp;
 
     Combat(Joueur& j1, Joueur& j2)
-        : player1(j1), player2(j2), activeIndex1(0), activeIndex2(0),
+        : joueurs{&j1, &j2}, activeIndex{0, 0},
         meteoAct(Meteo::Aucune), dureeMeteo(0), 
         champAct(Champ::Aucun), dureeChamp(0) {}
 
-    Joueur& getP1() const { return const_cast<Joueur&>(player1); }
-    Joueur& getP2() const { return const_cast<Joueur&>(player2); }
-
-    void setActiveP1(int i) {
-        if (i < 0 || i >= static_cast<int>(player1.getEquipe().size())) return;
-        if (player1.getEquipe()[i].estKO()) return;
-        activeIndex1 = i;
+    Joueur& getJoueur(int index) const { 
+        return *joueurs[index]; 
     }
 
-    void setActiveP2(int i) {
-        if (i < 0 || i >= static_cast<int>(player2.getEquipe().size())) return;
-        if (player2.getEquipe()[i].estKO()) return;
-        activeIndex2 = i;
+    Joueur& getP1() const { return *joueurs[0]; }
+    Joueur& getP2() const { return *joueurs[1]; }
+
+    void setActive(int joueurIndex, int creatureIndex) {
+        if (creatureIndex < 0 || creatureIndex >= static_cast<int>(joueurs[joueurIndex]->getEquipe().size())) 
+            return;
+        if (joueurs[joueurIndex]->getEquipe()[creatureIndex].estKO()) 
+            return;
+        activeIndex[joueurIndex] = creatureIndex;
     }
 
-    Creature* getActiveP1() {
-        if (activeIndex1 < 0 || activeIndex1 >= static_cast<int>(player1.getEquipe().size())) return nullptr;
-        return &player1.getEquipe()[activeIndex1];
-    }
+    void setActiveP1(int i) { setActive(0, i); }
+    void setActiveP2(int i) { setActive(1, i); }
 
-    Creature* getActiveP2() {
-        if (activeIndex2 < 0 || activeIndex2 >= static_cast<int>(player2.getEquipe().size())) return nullptr;
-        return &player2.getEquipe()[activeIndex2];
-    }
+    Creature* getActiveP1() { return getActive(0); }
+    Creature* getActiveP2() { return getActive(1); }
+
+    int getJoueurIndex(const Creature* crea) const {
+        if (getActive(0) == crea) return 0;
+        if (getActive(1) == crea) return 1;
+        return -1;
 
     // ---- RESET ----
-    void resetStagesP1() { mod1 = Stages(); }
-    void resetStagesP2() { mod2 = Stages(); }
+    void resetStages(int joueurIndex) { 
+        mods[joueurIndex] = Stages(); 
+    }
+
+    void resetStagesP1() { resetStages(0); }
+    void resetStagesP2() { resetStages(1); }
 
     // ---- MODIFICATION ----
-    void changeStageP1(StatIndex stat, int var) {
-        mod1.stats[stat] = std::clamp(mod1.stats[stat] + var, MIN_MOD, MAX_MOD);
+    void changeStage(int joueurIndex, StatIndex stat, int var) {
+        mods[joueurIndex].stats[stat] = std::clamp(
+            mods[joueurIndex].stats[stat] + var, MIN_MOD, MAX_MOD);
     }
+    
+    void changeStageP1(StatIndex stat, int var) { changeStage(0, stat, var); }
+    void changeStageP2(StatIndex stat, int var) { changeStage(1, stat, var); }
 
-    void changeStageP2(StatIndex stat, int var) {
-        mod2.stats[stat] = std::clamp(mod2.stats[stat] + var, MIN_MOD, MAX_MOD);
+    void changePrecision(int joueurIndex, StatPrecision stat, int var) {
+        mods[joueurIndex].precisionEva[stat] = std::clamp(
+            mods[joueurIndex].precisionEva[stat] + var, MIN_MOD, MAX_MOD);
     }
-
-    void changePrecisionP1(StatPrecision stat, int var) {
-        mod1.precisionEva[stat] = std::clamp(mod1.precisionEva[stat] + var, MIN_MOD, MAX_MOD);
-    }
-    void changePrecisionP2(StatPrecision stat, int var) {
-        mod2.precisionEva[stat] = std::clamp(mod2.precisionEva[stat] + var, MIN_MOD, MAX_MOD);
-    }
+    
+    void changePrecisionP1(StatPrecision stat, int var) { changePrecision(0, stat, var); }
+    void changePrecisionP2(StatPrecision stat, int var) { changePrecision(1, stat, var); }
 
     // ---- GETTERS ----
-    int getStageP1(StatIndex stat) const { return mod1.stats[stat]; }
-    int getStageP2(StatIndex stat) const { return mod2.stats[stat]; }
-    int getPrecisionStageP1(StatPrecision stat) const { return mod1.precisionEva[stat]; }
-    int getPrecisionStageP2(StatPrecision stat) const { return mod2.precisionEva[stat]; }
+    int getStage(int joueurIndex, StatIndex stat) const { 
+        return mods[joueurIndex].stats[stat]; 
+    }
+    
+    int getStageP1(StatIndex stat) const { return getStage(0, stat); }
+    int getStageP2(StatIndex stat) const { return getStage(1, stat); }
+    
+    int getPrecisionStage(int joueurIndex, StatPrecision stat) const { 
+        return mods[joueurIndex].precisionEva[stat]; 
+    }
+    
+    int getPrecisionStageP1(StatPrecision stat) const { return getPrecisionStage(0, stat); }
+    int getPrecisionStageP2(StatPrecision stat) const { return getPrecisionStage(1, stat); }
 
     // ---- CONVERSION EN MULTIPLICATEURS ----
     static double stageMultiplier(int stage) {
@@ -464,11 +475,19 @@ public:
         return 1.0;
     }
 
-    double getStatMultiplierP1(StatIndex s) const { return stageMultiplier(mod1.stats[s]); }
-    double getStatMultiplierP2(StatIndex s) const { return stageMultiplier(mod2.stats[s]); }
+    double getStatMultiplier(int joueurIndex, StatIndex s) const { 
+        return stageMultiplier(mods[joueurIndex].stats[s]); 
+    }
+    
+    double getStatMultiplierP1(StatIndex s) const { return getStatMultiplier(0, s); }
+    double getStatMultiplierP2(StatIndex s) const { return getStatMultiplier(1, s); }
 
-    double getPREP1(StatPrecision stat) const { return stageMultiplierPrecision(mod1.precisionEva[stat]); }
-    double getPREP2(StatPrecision stat) const { return stageMultiplierPrecision(mod2.precisionEva[stat]); }
+    double getPRE(int joueurIndex, StatPrecision stat) const { 
+        return stageMultiplierPrecision(mods[joueurIndex].precisionEva[stat]); 
+    }
+    
+    double getPREP1(StatPrecision stat) const { return getPRE(0, stat); }
+    double getPREP2(StatPrecision stat) const { return getPRE(1, stat); }
 };
 
 // Fonction gérant les effets (définie dans le .cpp)
