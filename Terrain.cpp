@@ -1,4 +1,5 @@
 #include "Terrain.hpp"
+#include "Workshop_POO_pt3.hpp"
 
 std::string ChampString(Champ s) {
     switch(s) {
@@ -26,16 +27,33 @@ std::string MeteoString(Meteo s) {
 }
 
 void effetSable(Combat& combat){
-    
-    for (auto t : c1.getTypes())
-        if (t != enumType::ROCHE || t != enumType::SOL || t != enumType::ACIER)
+    for(int i=0; i<2; i++){
+        Creature* c= combat.getActive(i);
+        Objet* obj = c ? c->getObjet() : nullptr;
+        if (obj && obj->getNom() == "Lunettes Filtre")
+            continue;
+        int t1=0;
+        for (auto t : c->getTypes()){
+            if (t != TypeEnum::ROCHE && t != TypeEnum::SOL && t != TypeEnum::ACIER)
+                t1+=1;
+            }
+        if(t1==c->getTypes().size())
+            c->setPV(c->getPV() - c->calculStat(PV)/16);
+    }
+}
+
+void effetNeige(Combat& combat){
+
 }
 
 void effetTerrain(Combat& combat){
-    switch (combat.meteo)
+    switch (combat.meteoAct){
         case Meteo::TempeteDeSable:
-            effetSable();
+            effetSable(combat);
+            break;
         
-        case Meteo::TempeteDeNeige;
-            effetNeige();
+        case Meteo::TempeteDeNeige:
+            effetNeige(combat);
+            break;
+    }
 }

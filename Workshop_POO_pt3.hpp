@@ -294,14 +294,16 @@ public:
         std::cout << "Vitesse: " << calculStat(VIT) << "\n";
     }
 
-    bool assignerSlot(int indexAttaque, int slot) {
-        if (!base) return false;
-        if (slot < 0 || slot >= 4) return false;
-        auto& attaques = base->getAttaques();
-        if (indexAttaque < 0 || indexAttaque >= static_cast<int>(attaques.size())) return false;
-        slots[slot] = &attaques[indexAttaque];
-        return true;
-    }
+    bool assignerSlot(Attaque& atk, int slot) {
+    if (!base) return false;
+    // Vérifie si le slot est valide (entre 0 et 3)
+    if (slot < 0 || slot >= 4) return false;
+
+    // Assigner le pointeur vers l'objet Attaque directement au slot
+    // L'adresse de l'objet est prise avec l'opérateur &
+    slots[slot] = &atk;
+    return true;
+}
 
     void effacerSlot(int slot) {
         if (slot >= 0 && slot < 4) slots[slot] = nullptr;
@@ -414,14 +416,22 @@ public:
     void setActiveP1(int i) { setActive(0, i); }
     void setActiveP2(int i) { setActive(1, i); }
 
+    Creature* getActive(int joueurIndex) {
+        int idx = activeIndex[joueurIndex];
+        auto& equipe = joueurs[joueurIndex]->getEquipe();
+        if (idx < 0 || idx >= static_cast<int>(equipe.size())) 
+            return nullptr;
+        return &equipe[idx];
+    }
+
     Creature* getActiveP1() { return getActive(0); }
     Creature* getActiveP2() { return getActive(1); }
 
-    int getJoueurIndex(const Creature* crea) const {
+    int getJoueurIndex(const Creature* crea) {
         if (getActive(0) == crea) return 0;
         if (getActive(1) == crea) return 1;
         return -1;
-
+    }
     // ---- RESET ----
     void resetStages(int joueurIndex) { 
         mods[joueurIndex] = Stages(); 

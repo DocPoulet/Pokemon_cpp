@@ -1,6 +1,8 @@
 #pragma once
+
 #include <string>
-#include "Workshop_POO_pt3.cpp"
+
+class Combat;
 
 enum class Champ {
     Aucun,

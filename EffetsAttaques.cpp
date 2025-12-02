@@ -61,10 +61,14 @@ void appliquerPluie(Combat& combat, Creature& attaquant){
         return;}
 
     combat.meteoAct=Meteo::Pluie;
+    std::cout<<"Il commence à pleuvoir"<<std::endl;
     Creature *act=(combat.getActiveP1()==&attaquant) ? &attaquant : combat.getActiveP2();
-    if(act->getObjet()->getNom()=="Roche Humide")
-    combat.dureeMeteo=8;
-    else combat.dureeMeteo=5;
+     Objet* obj = act ? act->getObjet() : nullptr;
+    if (obj && obj->getNom() == "Roche Humide") {
+        combat.dureeMeteo = 8;
+    } else {
+        combat.dureeMeteo = 5;
+    }
 }
 
 void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseur, Combat& combat)
@@ -92,8 +96,7 @@ void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseu
         return;
     }
     if (atk.getNom() == "Danse-Pluie") {
-        combat.meteoAct = Meteo::Pluie;
-        combat.dureeMeteo = 5;
+        appliquerSoleil(combat, attaquant);
         return;
     }
     if (atk.getNom() == "Zenith") {
