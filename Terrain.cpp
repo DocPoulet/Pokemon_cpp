@@ -14,8 +14,8 @@ std::string ChampString(Champ s) {
 
 std::string MeteoString(Meteo s) {
     switch(s) {
-        case Meteo::Aucune:   return "Aucune";
-        case Meteo::Soleil:   return "Soleil";
+        case Meteo::Aucune: return "Aucune";
+        case Meteo::Soleil: return "Soleil";
         case Meteo::Pluie: return "Pluie";
         case Meteo::TempeteDeSable: return "Tempete de Sable";
         case Meteo::TempeteDeNeige:   return "Tempete de Neige";
@@ -29,16 +29,22 @@ std::string MeteoString(Meteo s) {
 void effetSable(Combat& combat){
     for(int i=0; i<2; i++){
         Creature* c= combat.getActive(i);
+        if (!c || c->estKO()) 
+            continue;
         Objet* obj = c ? c->getObjet() : nullptr;
         if (obj && obj->getNom() == "Lunettes Filtre")
             continue;
-        int t1=0;
+        bool immune = false;
         for (auto t : c->getTypes()){
-            if (t != TypeEnum::ROCHE && t != TypeEnum::SOL && t != TypeEnum::ACIER)
-                t1+=1;
+            if (t == TypeEnum::ROCHE || t == TypeEnum::SOL || t == TypeEnum::ACIER){
+                immune = true;
+                break;
             }
-        if(t1==c->getTypes().size())
-            c->setPV(c->getPV() - c->calculStat(PV)/16);
+        }
+        if (!immune){
+            c->setPV(c->getPV() - std::max(1, c->calculStat(PV)/16));
+            std::cout << c->getNom() << " est endommagé par la tempête de sable !\n";
+        }
     }
 }
 
@@ -54,6 +60,9 @@ void effetTerrain(Combat& combat){
         
         case Meteo::TempeteDeNeige:
             effetNeige(combat);
+            break;
+
+        default:
             break;
     }
 }

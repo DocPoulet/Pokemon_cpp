@@ -36,8 +36,9 @@ std::string toString(StatIndex s) {
         case ATKSP: return "Attaque Spéciale";
         case DEFSP: return "Défense Spéciale";
         case VIT:   return "Vitesse";
+        
+        default: return "Inconnu";
     }
-    return "Inconnu";
 }
 
 
@@ -83,7 +84,7 @@ const std::vector<std::string> nomsTypes = {
     "Acier", "Combat", "Dragon", "Eau", "Electrique", "Fée",
     "Feu", "Glace", "Insecte", "Normal", "Plante", "Poison",
     "Psy", "Roche", "Sol", "Spectre", "Ténèbres", "Vol",
-    "Normal"
+    "Neutre"
 };
 
 const double chart[18][18] = {
@@ -108,12 +109,16 @@ const double chart[18][18] = {
     {1.0, 0.5, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 1.0, 2.0, 0.0, 1.0, 1.0, 1.0}};
 
 // efficacité d'une attaque de type 'attaque' contre les types en 'DEFurs'
-double getEfficacite(TypeEnum attaque, const std::vector<TypeEnum>& DEFurs, Combat& combat) {
-    if (attaque < 0 || attaque >= 18) return 1.0;
+double getEfficacite(TypeEnum attaque, const std::vector<TypeEnum>& DEFurs, const Combat& combat) {
+    const int atkType = static_cast<int>(attaque);
+    if (atkType < 0 || atkType >= 18) return 1.0;
 
     double total = 1.0;
     for (TypeEnum def : DEFurs) {;
-        double mult= chart[static_cast<int>(def)][static_cast<int>(attaque)];
+        const int defType = static_cast<int>(def);
+        if (defType < 0 || defType >= 18) continue;
+
+        double mult = chart[defType][atkType];
         if (combat.meteoAct==Meteo::VentMysterieux && def == VOL) {
             double facteur=1;
             if (mult > 1.0) { 
@@ -138,7 +143,7 @@ bool critique(int bonus = 0) {
     return (std::rand() % prob) == 0;
 }
 
-bool precision(const Attaque& atk, Creature& attaquant, Creature& defenseur, Combat& combat) 
+bool precision(const Attaque& atk, Creature& attaquant, Combat& combat) 
 {
     int attaquantIdx = combat.getJoueurIndex(&attaquant);
     int defenseurIdx = 1 - attaquantIdx; // L'autre joueur
@@ -150,7 +155,7 @@ bool precision(const Attaque& atk, Creature& attaquant, Creature& defenseur, Com
 
     if (atk.getPrecision() == -1) return true;
 
-    double chance = atk.getPrecision() * (preMult / evaMult);
+    const double chance = std::clamp(atk.getPrecision() * (preMult / evaMult), 0.0, 100.0);
     return ((std::rand() % 100) < chance);
 }
 
@@ -237,13 +242,18 @@ double calculerDegatsPur(const Creature& attaquant,const Creature& defenseur,
 
 int calculerDegats(int degatsPur,const Creature& defenseur,
                    Attaque& atk, Combat& combat) {
+    if(atk.getPP_act() <= 0) {
+        std::cout << atk.getNom() << ": n'a plus de PP !\n";
+        return 0;
+    }
+    
     if(atk.getCategorie()==0) {
         atk.utiliserPP();
         return 0;}
     
     int random = std::rand() % 16 + 85;
-    int crit = critique() ? 1.5 : 1;
-    if (crit==1.5) std::cout<<"Coup critique !\n"<<std::endl;
+    const double crit = critique(atk.getCrit()) ? 1.5 : 1.0;
+    if (crit>1.0) std::cout<<"Coup critique !\n"<<std::endl;
     double mult=getEfficacite(atk.getType(), defenseur.getTypes(), combat);
     if (mult==0) {
         std::cout<<defenseur.getNom()<<" est immunisé contre l'attaque !\n"<<std::endl;
@@ -258,7 +268,7 @@ int calculerDegats(int degatsPur,const Creature& defenseur,
     }
     atk.utiliserPP();
     if(atk.getCategorie()==0) return 0;
-    int degats=degatsPur * crit * (random/100.0);
+    int degats = static_cast<int>(degatsPur * crit * (random / 100.0));
     return std::max(1, degats);
 }
 
@@ -294,12 +304,17 @@ Attaque& attaqueAleatoire(Creature& attaquant, const Creature& DEFur, Combat& co
         attaquant.assignerSlot(lutte, size);
         return lutte;}
 
-    int totalWeight = 0.0;
+    int totalWeight = 0;
     std::vector<int> weights;
     for (Attaque* a : valids) {
+        if (a && a->getPP_act() <= 0) {
+            weights.push_back(0);
+            continue;
+        }
         double poids=calculerDegatsPur(attaquant, DEFur, *a, combat);
-        weights.push_back(poids);
-        totalWeight += poids;
+        int poidsEntier = std::max(0, static_cast<int>(poids));
+        weights.push_back(poidsEntier);
+        totalWeight += poidsEntier;
     }
     
     /*
@@ -307,6 +322,13 @@ Attaque& attaqueAleatoire(Creature& attaquant, const Creature& DEFur, Combat& co
     std::cout<<"weights: ";
     for(auto w:weights) std::cout<<w<<" ";
     */
+
+    if (totalWeight <= 0) {
+        for (Attaque* a : valids)
+            if (a && a->getPP_act() > 0)
+                return *a;
+        return lutte;
+    }
    
     int r = rand() % totalWeight;
     for (size_t i = 0; i < valids.size(); ++i) {
@@ -363,10 +385,17 @@ Attaque& choixAttaque(Creature& c) {
 }
 
 void effectuerAttaque(Creature& attaquant, Creature& defenseur, 
-                      Attaque& atk, Combat& combat)
-{
-    std::cout << attaquant.getNom() << " utilise " << atk.getNom() << std::endl;
+                      Attaque& atk, Combat& combat) {
 
+    if (attaquant.estKO() || defenseur.estKO()) return;
+
+    std::cout << attaquant.getNom() << " utilise " << atk.getNom() << std::endl;
+    if (atk.getPP_act() <= 0) {
+        std::cout << "Mais " << atk.getNom() << " n'a plus de PP !\n";
+        return;
+    }
+
+    const int pvAvant = defenseur.getPV();
     int degats = calculerDegats(calculerDegatsPur(attaquant, defenseur, atk, combat), defenseur, atk, combat);
     defenseur.setPV(defenseur.getPV() - degats);
 
@@ -376,19 +405,24 @@ void effectuerAttaque(Creature& attaquant, Creature& defenseur,
         std::cout << "Le " << defenseur.getNom() << " de " << jr 
                   << " perd " << degats << " PV\n";
     }
-    appliquerEffets(atk, attaquant, defenseur, combat);
+    if (degats > 0 || atk.getCategorie() == 0)
+        appliquerEffets(atk, attaquant, defenseur, combat);
 
     if(atk.getContrecoup()){
         int recul = std::max(1, degats/3);
         attaquant.setPV(attaquant.getPV() - recul);
     }
-    if (defenseur.estKO()) {
+    if (pvAvant > 0 && defenseur.estKO()) {
         std::cout << defenseur.getNom() << " est KO!\n";
     }
 }
 
 void resoudreTour(Combat& combat)
 {
+    if (!combat.getActiveP1() || !combat.getActiveP2()) 
+        combat.getActiveP1() ? switchCombat(combat) : switchBot(combat);
+
+
     Attaque& atkP1 = choixAttaque(*combat.getActiveP1());
     Attaque& atkP2 = attaqueAleatoire(*combat.getActiveP2(), *combat.getActiveP1(), combat);
     
@@ -401,7 +435,9 @@ void resoudreTour(Combat& combat)
                      (premierIdx == 0) ? atkP1 : atkP2, 
                      combat);
 
-    if (!combat.getActive(secondIdx)->estKO()) {
+    if (combat.getActive(secondIdx) && !combat.getActive(secondIdx)->estKO() 
+        && combat.getActive(premierIdx) && !combat.getActive(premierIdx)->estKO()) {
+
         effectuerAttaque(*combat.getActive(secondIdx), 
                          *combat.getActive(premierIdx), 
                          (secondIdx == 0) ? atkP1 : atkP2, 
@@ -450,10 +486,10 @@ void afficherMenuCombat()
 void finCombat(Combat& combat){
     if(combat.getP1().toutesCreaturesKO()){
         std::cout<<combat.getP2().getNom()<<" a gagné le combat !"<<std::endl;
-        exit(-1);
+        return;
     } else if(combat.getP2().toutesCreaturesKO()){
         std::cout<<combat.getP1().getNom()<<" a gagné le combat !"<<std::endl;
-        exit(-1);
+        return;
     }
 }
 
@@ -487,11 +523,18 @@ void switchCombat(Combat& combat){
     }
 }
 
-int switchBot(Combat& combat){
+void switchBot(Combat& combat, int index = -1){
+
+    if(index>=0 && index<(int)combat.getP2().getEquipe().size()){
+        combat.setActiveP1(index);
+        std::cout << combat.getP2().getNom() << " a choisi : " 
+                  << combat.getActiveP1()->getNom() << "\n";
+        return;
+    }
     Joueur& bot = combat.getP2();
 
     Creature* ennemi = combat.getActiveP1();
-    if (!ennemi) return -1;
+    if (!ennemi) return;
 
     int bestIndex = -1;
     int bestScore = -1;
@@ -516,8 +559,8 @@ int switchBot(Combat& combat){
             bestIndex = i;
         }
     }
-
-    return bestIndex;
+    std::cout << bot.getNom() << " choisit " << bot.getEquipe()[bestIndex].getNom() << std::endl;
+    combat.setActiveP1(bestIndex);
 }
 
 int initSwitchBot(Combat& combat){
@@ -615,7 +658,7 @@ int initSwitchBot(Combat& combat){
 }
 
 void menuCombat(Combat& combat){
-    combat.setActiveP2(initSwitchBot(combat));
+    switchBot(combat, initSwitchBot(combat));
     int n;
     bool menu=true;
     while(menu){
@@ -623,12 +666,7 @@ void menuCombat(Combat& combat){
 
         
         if(combat.getActiveP1()->estKO()) switchCombat(combat);
-        if(combat.getActiveP2()->estKO()) {
-            int index = switchBot(combat);
-            combat.setActiveP2(index);
-            std::cout<<combat.getP2()<<" a choisi "<<*combat.getActiveP2()<<std::endl;
-            
-        }
+        if(combat.getActiveP2()->estKO()) switchBot(combat);
         std::cout<<"\n=========================="<<std::endl;
         std::cout<<"\n=== Tour "<<tour<<" ===\n"<<std::endl;
         std::cout<<*combat.getActiveP1()<<"//"<<*combat.getActiveP2()<<std::endl;

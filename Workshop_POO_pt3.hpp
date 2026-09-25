@@ -39,7 +39,7 @@ extern const int MAX_MOD;
 
 // prototypes de fonctions et externs définis dans le .cpp principal
 std::string toString(StatIndex s);
-double getEfficacite(TypeEnum attaque, const std::vector<TypeEnum>& DEFurs);
+double getEfficacite(TypeEnum attaque, const std::vector<TypeEnum>& DEFurs, const Combat& combat);
 
 // forward pour variables définies dans le .cpp (déclaration externe)
 extern const std::map<std::string, class Nature> NATURES;
@@ -61,7 +61,7 @@ class Objet {
 
 public:
     Objet(std::string nom):nom(nom){}
-    std::string getNom(){return nom;}
+    const std::string& getNom() const { return nom; }
 };
 
 
@@ -133,7 +133,11 @@ public:
         pp_act = v;
         if (pp_act < 0) pp_act = 0;
     }
-    void setPP_max(int v) { pp_max = v; }
+    void setPP_max(int v) { 
+        pp_max = std::max(0, v);
+        pp = std::min(pp, pp_max);
+        pp_act = std::min(pp_act, pp_max);
+    }
     void setNom(std::string n) { nom = std::move(n); }
     void setType(TypeEnum n) { type = n; }
     void setPuissance(int p) { puissance = p; }
@@ -192,7 +196,7 @@ public:
     const std::vector<TypeEnum>& getTypes() const { return types; }
     const std::vector<Attaque>& getAttaques() const { return attaques; }
     std::vector<Attaque>& getAttaques() { return attaques; }
-    int getID(){return compteurID;}
+    int getID() const { return idEspece; }
 
 
     void ajouterAttaque(const Attaque& a) { attaques.push_back(a); }
@@ -219,7 +223,7 @@ class Creature {
 
 public:
     Creature(CreatureBase* b = nullptr, int lvl = 1, std::string nat = "Hardi", Objet* o=nullptr)
-        : base(b), LVL(lvl), nature(NATURES.at(nat)), slots(4, nullptr), objet(o) {
+        : base(b), LVL(lvl), slots(4, nullptr), nature(NATURES.at(nat)), objet(o) {
         IV.fill(0);
         EV.fill(0);
         PV_act = calculStat(PV);
@@ -232,7 +236,7 @@ public:
     const std::vector<TypeEnum>& getTypes() const { return base->getTypes(); }
     const std::vector<Attaque>& getAttaques() const { return base->getAttaques(); }
     std::vector<Attaque>& getAttaques() { return base->getAttaques(); }
-    int getID(){return base->getID();}
+    int getID(){return base ?  base->getID() : -1;}
 
     // getters joueur
     int getPV() const { return PV_act; }
@@ -245,6 +249,7 @@ public:
     const Nature& getNature() const { return nature; }
     void setNature(const Nature& nat) { nature = nat; }
     Objet* getObjet(){return objet;}
+    const Objet* getObjet() const { return objet; }
 
     int totalEV() const {
         int sum = 0;
@@ -253,8 +258,7 @@ public:
     }
 
     void setIV(StatIndex stat, int iv) {
-        if (iv >= 31) IV[stat] = 31;
-        else IV[stat] = iv;
+        IV[stat] = std::clamp(iv, 0, 31);
     }
 
     bool setEV(StatIndex stat, int newValue) {
@@ -417,12 +421,12 @@ public:
     void setActiveP2(int i) { setActive(1, i); }
 
     Creature* getActive(int joueurIndex) {
-        int idx = activeIndex[joueurIndex];
-        auto& equipe = joueurs[joueurIndex]->getEquipe();
-        if (idx < 0 || idx >= static_cast<int>(equipe.size())) 
-            return nullptr;
-        return &equipe[idx];
-    }
+    if (joueurIndex == 0)
+        return &getP1().getEquipe()[getP1().getIndex()];
+    if (joueurIndex == 1)
+        return &getP2().getEquipe()[getP2().getIndex()];
+    return nullptr;
+}
 
     Creature* getActiveP1() { return getActive(0); }
     Creature* getActiveP2() { return getActive(1); }
@@ -499,6 +503,9 @@ public:
     double getPREP1(StatPrecision stat) const { return getPRE(0, stat); }
     double getPREP2(StatPrecision stat) const { return getPRE(1, stat); }
 };
+
+void switchCombat(Combat& combat);
+void switchBot(Combat& combat, int index = -1);
 
 // Fonction gérant les effets (définie dans le .cpp)
 void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseur, Combat& combat);

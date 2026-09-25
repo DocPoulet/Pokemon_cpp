@@ -79,7 +79,7 @@ void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseu
         if(e.proba >= 100) continue;
         int roll = std::rand() % 100;
         if (roll >= e.proba)
-            return;
+            continue;
     }
     
     // Attaques spéciales (inchangées)
@@ -96,7 +96,7 @@ void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseu
         return;
     }
     if (atk.getNom() == "Danse-Pluie") {
-        appliquerSoleil(combat, attaquant);
+        appliquerPluie(combat, attaquant);
         return;
     }
     if (atk.getNom() == "Zenith") {
