@@ -1,148 +1,121 @@
 #include "EffetsAttaques.hpp"
 
-// Comme EffetStat est défini dans le .cpp principal, on l’inclut après Workshop_POO_pt3.hpp
-// Toutes les autres fonctions/méthodes sont appelées dynamiquement via leurs déclarations
+#include <cmath>
+#include <iostream>
 
-void atkAcupression(Creature& attaquant, Combat& combat)
-{
-    StatIndex r = (StatIndex)(rand() % 5 + 1); // ATK -> VIT
+namespace {
+void atkAcupression(Creature& attaquant, Combat& combat) {
+    const auto stat = static_cast<StatIndex>(randomInt(ATK, VIT));
 
-    int joueurIdx = combat.getJoueurIndex(&attaquant);
+    const int joueurIdx = combat.getJoueurIndex(&attaquant);
     if (joueurIdx >= 0) {
-        combat.changeStage(joueurIdx, r, +2);
+        combat.changeStage(joueurIdx, stat, +2);
     }
 
     std::cout << attaquant.getNom() << " voit son "
-              << toString(r) << " fortement augmenter !" << std::endl;
+              << toString(stat) << " fortement augmenter !\n";
 }
 
-void atkLutte(Creature& attaquant)
-{
-    attaquant.setPV(attaquant.getPV() - attaquant.calculStat(PV) / 4);
-    std::cout << attaquant.getNom() << " est blessé par le contrecoup !";
+void atkLutte(Creature& attaquant) {
+    const int recul = std::max(1, attaquant.calculStat(PV) / 4);
+    attaquant.setPV(attaquant.getPV() - recul);
+
+    std::cout << attaquant.getNom()
+              << " est blesse par le contrecoup de Lutte !\n";
 }
 
-void atkPsyko(Creature& defenseur, Combat& combat)
-{
-    int joueurIdx = combat.getJoueurIndex(&defenseur);
-    if (joueurIdx >= 0) {
-        combat.changeStage(joueurIdx, DEFSP, -1);
+bool verifMeteoBloquante(const Combat& combat) {
+    return combat.meteoAct == Meteo::PluieBattante ||
+           combat.meteoAct == Meteo::VentMysterieux ||
+           combat.meteoAct == Meteo::SoleilIntense;
+}
+
+void appliquerSoleil(Combat& combat, Creature& attaquant) {
+    if (verifMeteoBloquante(combat)) {
+        std::cout << "Le Soleil ne peut pas remplacer cette meteo.\n";
+        return;
     }
 
-    std::cout << defenseur.getNom() << " voit sa Défense Spéciale diminuer !" << std::endl;
+    combat.meteoAct = Meteo::Soleil;
+    combat.dureeMeteo =
+        attaquant.getObjet() && attaquant.getObjet()->getNom() == "Roche Chaude"
+            ? 8
+            : 5;
+
+    std::cout << "Le soleil s'installe.\n";
 }
 
-bool verifMeteo(Combat& combat){
-    if(combat.meteoAct==Meteo::PluieBattante || 
-       combat.meteoAct==Meteo::VentMysterieux ||
-       combat.meteoAct==Meteo::SoleilIntense) return 1;
-    return 0;
-}
-
-void appliquerSoleil(Combat& combat, Creature& attaquant){
-    if(verifMeteo(combat)){
-        std::cout<<"Vous ne pouvez pas installer le Soleil"<<std::endl;
-        return;}
-
-    combat.meteoAct=Meteo::Soleil;
-    std::cout<<"Le soleil s'installe"<<std::endl;
-    Creature *act = (combat.getActiveP1() == &attaquant) ? &attaquant : combat.getActiveP2();
-    Objet* obj = act ? act->getObjet() : nullptr;
-    if (obj && obj->getNom() == "Roche Chaude") {
-        combat.dureeMeteo = 8;
-    } else {
-        combat.dureeMeteo = 5;
+void appliquerPluie(Combat& combat, Creature& attaquant) {
+    if (verifMeteoBloquante(combat)) {
+        std::cout << "La Pluie ne peut pas remplacer cette meteo.\n";
+        return;
     }
+
+    combat.meteoAct = Meteo::Pluie;
+    combat.dureeMeteo =
+        attaquant.getObjet() && attaquant.getObjet()->getNom() == "Roche Humide"
+            ? 8
+            : 5;
+
+    std::cout << "Il commence a pleuvoir.\n";
+}
 }
 
-void appliquerPluie(Combat& combat, Creature& attaquant){
-    if(verifMeteo(combat)) {
-        std::cout<<"Vous ne pouvez pas installer la Pluie"<<std::endl;
-        return;}
-
-    combat.meteoAct=Meteo::Pluie;
-    std::cout<<"Il commence à pleuvoir"<<std::endl;
-    Creature *act=(combat.getActiveP1()==&attaquant) ? &attaquant : combat.getActiveP2();
-     Objet* obj = act ? act->getObjet() : nullptr;
-    if (obj && obj->getNom() == "Roche Humide") {
-        combat.dureeMeteo = 8;
-    } else {
-        combat.dureeMeteo = 5;
-    }
-}
-
-void appliquerEffets(const Attaque& atk, Creature& attaquant, Creature& defenseur, Combat& combat)
-{
-    // Vérification de probabilité
-    for (auto& e : atk.getEffets())
-    {
-        if(e.proba >= 100) continue;
-        int roll = std::rand() % 100;
-        if (roll >= e.proba)
-            continue;
-    }
-    
-    // Attaques spéciales (inchangées)
+void appliquerEffets(const Attaque& atk, Creature& attaquant,
+                     Creature& defenseur, Combat& combat) {
     if (atk.getNom() == "Acupression") {
         atkAcupression(attaquant, combat);
         return;
     }
+
     if (atk.getNom() == "Lutte") {
         atkLutte(attaquant);
         return;
     }
-    if(atk.getNom()=="Psyko") {
-        atkPsyko(defenseur, combat);
-        return;
-    }
+
     if (atk.getNom() == "Danse-Pluie") {
         appliquerPluie(combat, attaquant);
         return;
     }
+
     if (atk.getNom() == "Zenith") {
         appliquerSoleil(combat, attaquant);
         return;
     }
+
     if (atk.getNom() == "Champ Herbu") {
         combat.champAct = Champ::Herbu;
         combat.dureeChamp = 5;
+        std::cout << "Le Champ Herbu s'installe.\n";
         return;
     }
 
-    if(atk.getEffets().empty()) return;
-    
-    // Effets généraux - VERSION REFACTORISÉE
-    for (auto& e : atk.getEffets())
-    {
-        Creature* cible = e.cible ? &defenseur : &attaquant;
-        int joueurIdx = combat.getJoueurIndex(cible);
-        
+    for (const auto& effet : atk.getEffets()) {
+        if (effet.proba < 100 && randomInt(1, 100) > effet.proba) {
+            continue;
+        }
+
+        Creature* cible = effet.cible ? &defenseur : &attaquant;
+        const int joueurIdx = combat.getJoueurIndex(cible);
         if (joueurIdx < 0) continue;
 
-        if (e.estPrecision == 0)
-        {
-            // Effet sur stat normale
-            StatIndex s = static_cast<StatIndex>(e.stat);
-            combat.changeStage(joueurIdx, s, e.stages);
-            
-            std::string det = (s == ATK || s == ATKSP) ? "l" : "la ";
-            std::cout << det << toString(s) << " de " << cible->getNom()
-                      << (e.stages > 0 ? " augmente" : " diminue")
-                      << (std::abs(e.stages) > 2 ? " énormément" : 
-                         (std::abs(e.stages) > 1 ? " beaucoup" : "")) 
-                      << std::endl;
-        }
-        else
-        {
-            // Effet sur précision / esquive
-            StatPrecision sp = static_cast<StatPrecision>(e.stat);
-            combat.changePrecision(joueurIdx, sp, e.stages);
-            
-            std::cout << "L'attaque de " << cible->getNom()
-                      << (e.stages > 0 ? " augmente" : " diminue")
-                      << (std::abs(e.stages) > 2 ? " énormément" : 
-                         (std::abs(e.stages) > 1 ? " beaucoup" : "")) 
-                      << std::endl;
+        if (effet.estPrecision == 0) {
+            const auto stat = static_cast<StatIndex>(effet.stat);
+            combat.changeStage(joueurIdx, stat, effet.stages);
+
+            std::cout << toString(stat) << " de " << cible->getNom()
+                      << (effet.stages > 0 ? " augmente" : " diminue");
+
+            if (std::abs(effet.stages) >= 2) std::cout << " beaucoup";
+            std::cout << ".\n";
+        } else {
+            const auto stat = static_cast<StatPrecision>(effet.stat);
+            combat.changePrecision(joueurIdx, stat, effet.stages);
+
+            const char* nomStat = stat == PRE ? "Precision" : "Esquive";
+            std::cout << nomStat << " de " << cible->getNom()
+                      << (effet.stages > 0 ? " augmente" : " diminue")
+                      << ".\n";
         }
     }
 }
