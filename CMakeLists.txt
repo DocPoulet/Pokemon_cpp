@@ -1,20 +1,25 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Pokemon_cpp VERSION 0.2.0 LANGUAGES CXX)
+project(Pokemon_cpp VERSION 0.3.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(pokemon_engine
-    Workshop_POO_pt3.cpp
-    EffetsAttaques.cpp
-    Liste_Attaques.cpp
-    Pokedex_1g.cpp
-    Terrain.cpp
+    src/Types.cpp
+    src/Nature.cpp
+    src/Move.cpp
+    src/PokemonSpecies.cpp
+    src/Pokemon.cpp
+    src/Trainer.cpp
+    src/DamageCalculator.cpp
+    src/Battle.cpp
+    src/AI.cpp
+    src/GameData.cpp
 )
 
-target_include_directories(pokemon_engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(pokemon_engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 if(MSVC)
     target_compile_options(pokemon_engine PRIVATE /W4 /permissive-)
@@ -28,11 +33,13 @@ else()
     )
 endif()
 
-add_executable(pokemon_cpp main.cpp)
+add_executable(pokemon_cpp
+    src/main.cpp
+    src/ConsoleUI.cpp
+)
 target_link_libraries(pokemon_cpp PRIVATE pokemon_engine)
 
 enable_testing()
-
-add_executable(pokemon_tests tests/test_v02.cpp)
+add_executable(pokemon_tests tests/test_v03.cpp)
 target_link_libraries(pokemon_tests PRIVATE pokemon_engine)
-add_test(NAME pokemon_v02_tests COMMAND pokemon_tests)
+add_test(NAME pokemon_v03_tests COMMAND pokemon_tests)
