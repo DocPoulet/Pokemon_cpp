@@ -46,6 +46,15 @@ MoveEffect randomBoost(int stages) {
     effect.stages = stages;
     return effect;
 }
+
+MoveEffect statusEffect(Target target, StatusCondition status, int chance = 100) {
+    MoveEffect effect;
+    effect.kind = EffectKind::ApplyStatus;
+    effect.target = target;
+    effect.status = status;
+    effect.chancePercent = chance;
+    return effect;
+}
 }
 
 GameData::GameData() {
@@ -80,6 +89,34 @@ GameData::GameData() {
     moves_.emplace("Champ Herbu", MoveData{
         "Champ Herbu", Type::Grass, 0, MoveCategory::Status, -1, 0, 10, false, false,
         {terrainEffect(Terrain::Grassy)}});
+
+    moves_.emplace("Vive-Attaque", MoveData{
+        "Vive-Attaque", Type::Normal, 40, MoveCategory::Physical, 100, 0, 30, false, false, {},
+        1});
+    moves_.emplace("Mega-Sangsue", MoveData{
+        "Mega-Sangsue", Type::Grass, 40, MoveCategory::Special, 100, 0, 15, false, false, {},
+        0, 0, 50});
+    moves_.emplace("Belier", MoveData{
+        "Belier", Type::Normal, 90, MoveCategory::Physical, 85, 0, 20, false, false, {},
+        0, 25});
+    moves_.emplace("Combo-Griffe", MoveData{
+        "Combo-Griffe", Type::Normal, 18, MoveCategory::Physical, 80, 0, 15, false, false, {},
+        0, 0, 0, 2, 5});
+    moves_.emplace("Feu Follet", MoveData{
+        "Feu Follet", Type::Fire, 0, MoveCategory::Status, 85, 0, 15, false, false,
+        {statusEffect(Target::Opponent, StatusCondition::Burn)}});
+    moves_.emplace("Toxik", MoveData{
+        "Toxik", Type::Poison, 0, MoveCategory::Status, 90, 0, 10, false, false,
+        {statusEffect(Target::Opponent, StatusCondition::Poison)}});
+    moves_.emplace("Cage-Eclair", MoveData{
+        "Cage-Eclair", Type::Electric, 0, MoveCategory::Status, 90, 0, 20, false, false,
+        {statusEffect(Target::Opponent, StatusCondition::Paralysis)}});
+    moves_.emplace("Poudre Dodo", MoveData{
+        "Poudre Dodo", Type::Grass, 0, MoveCategory::Status, 75, 0, 15, false, false,
+        {statusEffect(Target::Opponent, StatusCondition::Sleep)}});
+    moves_.emplace("Laser Glace", MoveData{
+        "Laser Glace", Type::Ice, 90, MoveCategory::Special, 100, 0, 10, false, false,
+        {statusEffect(Target::Opponent, StatusCondition::Freeze, 10)}});
 
     species_.emplace("Bulbizarre", PokemonSpecies{
         "Bulbizarre", {45,49,49,65,65,45}, {Type::Grass, Type::Poison}});

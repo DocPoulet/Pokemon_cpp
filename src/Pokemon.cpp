@@ -115,4 +115,36 @@ bool Pokemon::hasUsableMove() const {
     return false;
 }
 
+StatusCondition Pokemon::status() const { return status_; }
+
+bool Pokemon::setStatus(StatusCondition statusValue, int turns) {
+    if (statusValue == StatusCondition::None) {
+        cureStatus();
+        return true;
+    }
+    if (status_ != StatusCondition::None) return false;
+    status_ = statusValue;
+    statusTurns_ = std::max(0, turns);
+    return true;
+}
+
+void Pokemon::cureStatus() {
+    status_ = StatusCondition::None;
+    statusTurns_ = 0;
+}
+
+int Pokemon::statusTurns() const { return statusTurns_; }
+
+void Pokemon::setStatusTurns(int turns) {
+    statusTurns_ = std::max(0, turns);
+}
+
+HeldItem Pokemon::heldItem() const { return heldItem_; }
+
+void Pokemon::setHeldItem(HeldItem item) { heldItem_ = item; }
+
+Ability Pokemon::ability() const { return ability_; }
+
+void Pokemon::setAbility(Ability abilityValue) { ability_ = abilityValue; }
+
 } // namespace pokemon

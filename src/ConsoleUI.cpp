@@ -25,6 +25,9 @@ void ConsoleUI::printTeam(const Trainer& trainer) const {
         output_ << (i + 1) << ". " << pokemon.name()
                 << " - " << pokemon.currentHP() << "/" << pokemon.maxHP() << " PV";
         if (pokemon.fainted()) output_ << " [KO]";
+        else if (pokemon.status() != StatusCondition::None) {
+            output_ << " [" << toString(pokemon.status()) << "]";
+        }
         output_ << '\n';
     }
 }
@@ -95,9 +98,12 @@ BattleAction ConsoleUI::chooseHumanAction(Battle& battle) {
         const Pokemon* opponent = battle.active(1);
         output_ << "\n==========================\n";
         if (player && opponent) {
-            output_ << player->name() << " " << player->currentHP() << "/" << player->maxHP()
-                    << " PV  //  " << opponent->name() << " "
-                    << opponent->currentHP() << "/" << opponent->maxHP() << " PV\n";
+            output_ << player->name() << " " << player->currentHP() << "/" << player->maxHP() << " PV";
+            if (player->status() != StatusCondition::None) output_ << " [" << toString(player->status()) << "]";
+            output_ << "  //  " << opponent->name() << " " << opponent->currentHP() << "/"
+                    << opponent->maxHP() << " PV";
+            if (opponent->status() != StatusCondition::None) output_ << " [" << toString(opponent->status()) << "]";
+            output_ << '\n';
         }
         output_ << "1. Attaquer\n2. Equipe\n3. Sac\n4. Fuite\n> ";
         const int choice = readInt();

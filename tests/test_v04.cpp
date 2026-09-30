@@ -1,3 +1,12 @@
+/**
+ * @file test_v04.cpp
+ * @brief Tests de non-regression de la release v0.4 Documentation.
+ *
+ * La v0.4 ne doit pas modifier les mecanismes valides de la v0.3. Ces tests
+ * verrouillent notamment les PP independants, les switches, IV/EV, types,
+ * evenements, meteo et la baseline d IA.
+ */
+
 #include "pokemon/AI.hpp"
 #include "pokemon/Battle.hpp"
 #include "pokemon/DamageCalculator.hpp"
@@ -137,6 +146,6 @@ int main() {
     testWeatherEffect();
     testGreedyAI();
 
-    std::cout << "Tous les tests v0.3 sont passes.\n";
+    std::cout << "Tous les tests v0.4 sont passes.\n";
     return 0;
 }

@@ -27,19 +27,26 @@ int main() {
     salameche1.setMove(0, &data.move("Zenith"));
     salameche1.setMove(1, &data.move("Flammeche"));
     salameche1.setMove(2, &data.move("Aiguisage"));
-    salameche1.setMove(3, &data.move("Close Combat"));
+    salameche1.setMove(3, &data.move("Vive-Attaque"));
+    salameche1.setAbility(Ability::Blaze);
+    salameche1.setHeldItem(HeldItem::LifeOrb);
 
     carapuce2.setMove(0, &data.move("Fouet Lianes"));
     carapuce2.setMove(1, &data.move("Pistolet a O"));
-    carapuce2.setMove(2, &data.move("Champ Herbu"));
+    carapuce2.setMove(2, &data.move("Cage-Eclair"));
+    carapuce2.setAbility(Ability::Torrent);
+    carapuce2.setHeldItem(HeldItem::Leftovers);
 
     salameche2.setMove(0, &data.move("Flammeche"));
     salameche2.setMove(1, &data.move("Griffe"));
-    salameche2.setMove(2, &data.move("Fouet Lianes"));
+    salameche2.setMove(2, &data.move("Feu Follet"));
+    salameche2.setAbility(Ability::Blaze);
 
     carapuce1.setMove(0, &data.move("Fouet Lianes"));
     carapuce1.setMove(1, &data.move("Pistolet a O"));
-    carapuce1.setMove(2, &data.move("Psyko"));
+    carapuce1.setMove(2, &data.move("Laser Glace"));
+    carapuce1.setAbility(Ability::Torrent);
+    carapuce1.setHeldItem(HeldItem::Leftovers);
 
     docPoulet.addPokemon(salameche1);
     docPoulet.addPokemon(carapuce2);

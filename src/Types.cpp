@@ -57,6 +57,9 @@ std::string_view toString(Weather weather) {
         case Weather::Rain: return "Pluie";
         case Weather::Sandstorm: return "Tempete de sable";
         case Weather::Snow: return "Neige";
+        case Weather::ExtremelyHarshSunlight: return "Soleil Intense";
+        case Weather::HeavyRain: return "Pluie Battante";
+        case Weather::StrongWinds: return "Vent Mysterieux";
     }
     return "Inconnue";
 }

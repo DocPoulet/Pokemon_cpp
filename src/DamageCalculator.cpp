@@ -33,6 +33,17 @@ bool hasType(const Pokemon& pokemon, Type type) {
     }
     return false;
 }
+
+bool lowHealth(const Pokemon& pokemon) {
+    return pokemon.currentHP() * 3 <= pokemon.maxHP();
+}
+
+bool abilityBoostsMove(const Pokemon& pokemon, Type moveType) {
+    if (!lowHealth(pokemon)) return false;
+    return (pokemon.ability() == Ability::Blaze && moveType == Type::Fire) ||
+           (pokemon.ability() == Ability::Torrent && moveType == Type::Water) ||
+           (pokemon.ability() == Ability::Overgrow && moveType == Type::Grass);
+}
 }
 
 double DamageCalculator::effectiveness(Type attackType,
@@ -57,6 +68,7 @@ double DamageCalculator::rawDamage(const Pokemon& attacker,
                                    int attackerPlayer,
                                    int defenderPlayer) {
     if (move.category == MoveCategory::Status || move.power <= 0) return 0.0;
+    if (defender.ability() == Ability::Levitate && move.type == Type::Ground) return 0.0;
 
     const double eff = effectiveness(move.type, defender.species(), battle.weather());
     if (eff == 0.0) return 0.0;
@@ -66,10 +78,18 @@ double DamageCalculator::rawDamage(const Pokemon& attacker,
     const Stat defenseStat = move.category == MoveCategory::Physical
         ? Stat::Defense : Stat::SpecialDefense;
 
-    const double attack = std::max(1.0,
+    double attack = std::max(1.0,
         attacker.stat(attackStat) * battle.statMultiplier(attackerPlayer, attackStat));
     const double defense = std::max(1.0,
         defender.stat(defenseStat) * battle.statMultiplier(defenderPlayer, defenseStat));
+
+    if (move.category == MoveCategory::Physical) {
+        if (attacker.ability() == Ability::Guts && attacker.status() != StatusCondition::None) {
+            attack *= 1.5;
+        } else if (attacker.status() == StatusCondition::Burn) {
+            attack *= 0.5;
+        }
+    }
 
     double weather = 1.0;
     if (battle.weather() == Weather::Sun) {
@@ -81,8 +101,11 @@ double DamageCalculator::rawDamage(const Pokemon& attacker,
     }
 
     const double stab = hasType(attacker, move.type) ? 1.5 : 1.0;
+    const double ability = abilityBoostsMove(attacker, move.type) ? 1.5 : 1.0;
+    const double item = attacker.heldItem() == HeldItem::LifeOrb ? 1.3 : 1.0;
+
     return (((((attacker.level() * 0.4) + 2.0) * move.power * attack) / defense) / 50.0 + 2.0)
-        * weather * stab * eff;
+        * weather * stab * eff * ability * item;
 }
 
 DamageResult DamageCalculator::calculate(Pokemon& attacker,
@@ -93,6 +116,9 @@ DamageResult DamageCalculator::calculate(Pokemon& attacker,
                                          int defenderPlayer) {
     DamageResult result;
     result.effectiveness = effectiveness(move.type, defender.species(), battle.weather());
+    if (defender.ability() == Ability::Levitate && move.type == Type::Ground) {
+        result.effectiveness = 0.0;
+    }
 
     if (move.accuracy >= 0) {
         const double accuracy = battle.accuracyMultiplier(attackerPlayer, AccuracyStat::Accuracy);
