@@ -36,6 +36,8 @@ std::string_view toString(Ability ability) {
         case Ability::PrimordialSea: return "Mer Primaire";
         case Ability::DesolateLand: return "Terre Finale";
         case Ability::DeltaStream: return "Souffle Delta";
+        case Ability::Static: return "Statik";
+        case Ability::Adaptability: return "Adaptabilite";
     }
     return "Inconnu";
 }

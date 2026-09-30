@@ -1,55 +1,31 @@
-# Pokemon_cpp — v0.5 Mechanics
+# Pokemon_cpp — v0.7.1 Data-driven Pokemon
 
-`Pokemon_cpp` est un moteur de combat Pokémon en C++17. La v0.5 enrichit le **Battle Engine** sans remettre en cause l'architecture introduite en v0.3 et documentée en v0.4.
+`Pokemon_cpp` est un moteur de combat Pokémon en C++17. La v0.7 déplace les données globales des espèces et les Pokémon prêts au combat hors du code C++.
 
-## Nouveautés de la v0.5
+## Nouveautés v0.7
 
-- statuts persistants : brûlure, poison, paralysie, sommeil et gel ;
-- ordre d'action basé sur la priorité puis la Vitesse ;
-- attaques à recul générique ;
-- attaques drainantes ;
-- attaques multi-coups ;
-- objets tenus : Restes et Orbe Vie ;
-- talents : Brasier, Torrent, Engrais, Lévitation et Cran ;
-- immunités de statut élémentaires ;
-- dégâts de fin de tour pour brûlure et poison ;
-- affichage console des statuts ;
-- nouveaux événements de combat liés aux statuts ;
-- nouveaux tests de non-régression et de mécanique.
+- `data/pokemon_species.json` : espèces, stats de base, types, movepools et talents possibles ;
+- `data/battle_pokemon.json` : Pokémon individuels prêts au combat ;
+- surnom optionnel avec fallback automatique vers le nom de l'espèce ;
+- champ `form` préparé pour les futures formes alternatives, Méga, Dynamax, etc. ;
+- attaques uniques et limitées au movepool de l'espèce ;
+- talent obligatoire et limité aux talents possibles de l'espèce ;
+- `BattlePokemonData` pour charger et construire les presets ;
+- sauvegardes d'équipe `POKEMON_TEAM_V2` conservant surnom et forme ;
+- compatibilité de lecture avec `POKEMON_TEAM_V1` ;
+- parseur JSON interne léger : aucune bibliothèque externe à installer.
 
-## Structure
+## Organisation des données
 
 ```text
-Pokemon_cpp/
-├── CMakeLists.txt
-├── Doxyfile
-├── README.md
-├── docs/
-│   ├── ARCHITECTURE.md
-│   ├── DOCUMENTATION_GUIDE.md
-│   └── ROADMAP.md
-├── include/pokemon/
-│   ├── AI.hpp
-│   ├── Battle.hpp
-│   ├── ConsoleUI.hpp
-│   ├── DamageCalculator.hpp
-│   ├── GameData.hpp
-│   ├── Mechanics.hpp
-│   ├── Move.hpp
-│   ├── Nature.hpp
-│   ├── Pokemon.hpp
-│   ├── PokemonSpecies.hpp
-│   ├── Trainer.hpp
-│   └── Types.hpp
-├── src/
-│   └── ... implementations ...
-└── tests/
-    └── test_v05.cpp
+data/
+  pokemon_species.json   données globales des espèces
+  battle_pokemon.json    Pokémon individuels prêts au combat
 ```
 
-## Architecture en une phrase
+Les attaques restent encore définies dans `GameData.cpp` en v0.7. Leur migration vers JSON pourra être faite séparément.
 
-`ConsoleUI` et les IA produisent des `BattleAction`, `Battle` applique les règles et renvoie des `BattleEvent`, tandis que `DamageCalculator` isole la formule de dégâts et que `Mechanics.hpp` regroupe les statuts, objets et talents.
+Voir `docs/DATA_FORMAT.md` pour le schéma détaillé et les règles de validation.
 
 ## Compiler
 
@@ -60,16 +36,8 @@ cmake --build build
 
 ## Lancer
 
-Sous Linux, WSL ou macOS :
-
 ```bash
 ./build/pokemon_cpp
-```
-
-Sous Windows avec un générateur Visual Studio :
-
-```powershell
-.\build\Debug\pokemon_cpp.exe
 ```
 
 ## Tests
@@ -78,35 +46,10 @@ Sous Windows avec un générateur Visual Studio :
 ctest --test-dir build --output-on-failure
 ```
 
-## Documentation
+La v0.7 conserve les tests v0.5 et v0.6 et ajoute une suite dédiée au chargement JSON et aux nouvelles contraintes de configuration.
 
-La convention de documentation lisible de la v0.4 reste obligatoire : chaque nouvelle API explique son but, ses entrées, sa sortie et ses effets importants.
+## Fallback MissingNo.
 
-Si Doxygen est installé :
+`MissingNo.` est défini directement dans le code et ne dépend d'aucun JSON. Si une espèce, un preset ou une configuration de Pokémon est introuvable ou invalide, le jeu construit ce fallback au lieu d'arrêter le programme. Il est niveau 100, de types Vol/Normal, possède les stats de base `33 / 136 / 0 / 1 / 1 / 29`, aucun talent, aucun objet et quatre attaques distinctes tirées aléatoirement dans le catalogue disponible. Les erreurs de données restent affichées sur `stderr`.
 
-```bash
-cmake --build build --target docs
-```
-
-La documentation générée se trouve dans `docs/generated/html/index.html`.
-
-## Attaques de démonstration ajoutées
-
-- `Vive-Attaque` : priorité +1 ;
-- `Mega-Sangsue` : soigne 50 % des dégâts infligés ;
-- `Belier` : inflige du recul ;
-- `Combo-Griffe` : frappe de 2 à 5 fois ;
-- `Feu Follet` : brûlure ;
-- `Toxik` : poison simple dans cette version ;
-- `Cage-Eclair` : paralysie ;
-- `Poudre Dodo` : sommeil ;
-- `Laser Glace` : 10 % de gel.
-
-## Roadmap
-
-- `v0.2` — Stabilisation
-- `v0.3` — Battle Engine
-- `v0.4` — Documentation
-- **`v0.5` — Mechanics** ← version actuelle
-- `v0.6` — Game
-- `v1.0` — Pokemon Battle Simulator
+Lorsque le catalogue JSON fonctionne, MissingNo. est caché de la liste normale du Team Builder. Si aucun catalogue d'espèces n'est disponible, il devient l'unique espèce proposée.

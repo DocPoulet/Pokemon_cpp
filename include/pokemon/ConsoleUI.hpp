@@ -47,6 +47,18 @@ public:
      */
     void run(Battle& battle, BattleController& opponentAI);
 
+    /**
+     * Lance un combat en choisissant indépendamment le contrôleur de chaque joueur.
+     *
+     * Entrées:
+     *   battle (Battle&): Combat à piloter.
+     *   player1Controller / player2Controller: Contrôleur IA, ou nullptr pour un joueur humain.
+     *
+     * Sortie:
+     *   Aucune.
+     */
+    void run(Battle& battle, BattleController* player1Controller, BattleController* player2Controller);
+
 private:
     std::istream& input_; ///< Flux de saisie utilisateur.
     std::ostream& output_; ///< Flux d'affichage.
@@ -60,7 +72,7 @@ private:
      * Sortie:
      *   BattleAction: Action valide choisie par l'utilisateur.
      */
-    BattleAction chooseHumanAction(Battle& battle);
+    BattleAction chooseHumanAction(Battle& battle, int player);
 
     /**
      * Demande au joueur de sélectionner une attaque utilisable.
@@ -71,7 +83,7 @@ private:
      * Sortie:
      *   BattleAction: Action de type Move contenant le slot choisi.
      */
-    BattleAction chooseMove(Battle& battle);
+    BattleAction chooseMove(Battle& battle, int player);
 
     /**
      * Demande au joueur de sélectionner un Pokémon de remplacement.
@@ -82,7 +94,7 @@ private:
      * Sortie:
      *   BattleAction: Action de type Switch contenant l'index choisi.
      */
-    BattleAction chooseSwitch(Battle& battle);
+    BattleAction chooseSwitch(Battle& battle, int player);
 
     /**
      * Affiche le contenu d'une équipe et l'état de ses Pokémon.

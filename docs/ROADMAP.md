@@ -24,7 +24,19 @@ Ajouté :
 - tests dédiés aux nouvelles règles.
 
 ## v0.6 — Game
-Prévu : Team Builder, sauvegardes, chargement de données, modes de jeu, catalogue enrichi et IA plus riche.
+Version actuelle.
+
+Ajouté :
+
+- Team Builder ;
+- sauvegarde et chargement d'équipes ;
+- modes Joueur vs IA, Joueur vs Joueur et IA vs IA ;
+- catalogue enrichi ;
+- TacticalAI avec décisions de switch ;
+- intégration des météos primordiales commencées en v0.5.
 
 ## v1.0 — Pokemon Battle Simulator
 Release publique stabilisée, catalogue plus large, documentation et distribution propres.
+
+## v0.7 — Data-driven Pokemon
+Espèces globales et presets prêts au combat migrés vers JSON, avec movepools, talents, surnoms et champ de forme préparé.

@@ -34,9 +34,9 @@ enum class StatusCondition {
 enum class HeldItem {
     None,       ///< Aucun objet.
     Leftovers,  ///< Restes : soigne 1/16 des PV max en fin de tour.
-    LifeOrb,     ///< Orbe Vie : augmente les dégâts de 30 % et inflige un recul après une attaque offensive.
-    RedOrb,    ///< Orbe Rouge : déclenche la forme Primal Groudon.
-    BlueOrb,   ///< Orbe Bleue : déclenche la forme Primal Kyogre.
+    LifeOrb,    ///< Orbe Vie : augmente les dégâts de 30 % et inflige un recul après une attaque offensive.
+    RedOrb,     ///< Orbe Rouge : objet réservé aux mécaniques de Primo-Groudon.
+    BlueOrb     ///< Orbe Bleue : objet réservé aux mécaniques de Primo-Kyogre.
 };
 
 /**
@@ -54,10 +54,12 @@ enum class Ability {
     Torrent,   ///< Torrent : renforce le type Eau sous un tiers des PV.
     Overgrow,  ///< Engrais : renforce le type Plante sous un tiers des PV.
     Levitate,  ///< Lévitation : immunise contre les attaques Sol.
-    Guts,       ///< Cran : augmente l'Attaque physique lorsqu'un statut est présent et ignore le malus de brûlure.
-    PrimordialSea, ///< Mer Primaire : empêche les attaques de type Feu de fonctionner.
-    DesolateLand, ///< Terre Finale : empêche les attaques de type Eau de fonctionner.
-    DeltaStream ///< Souffle Delta : annule les faiblesses des types Vol.
+    Guts,          ///< Cran : augmente l'Attaque physique lorsqu'un statut est présent et ignore le malus de brûlure.
+    PrimordialSea, ///< Mer Primaire : talent de météo primordiale.
+    DesolateLand,  ///< Terre Finale : talent de météo primordiale.
+    DeltaStream,   ///< Souffle Delta : talent de vents mystérieux.
+    Static,        ///< Statik : talent possible de Pikachu ; effet de contact non implémenté.
+    Adaptability   ///< Adaptabilité : talent possible d'Évoli ; effet mécanique non implémenté.
 };
 
 /**

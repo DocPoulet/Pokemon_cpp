@@ -7,8 +7,11 @@
 
 namespace pokemon {
 
-Pokemon::Pokemon(const PokemonSpecies* species, int level, Nature nature)
-    : species_(species), level_(std::clamp(level, 1, 100)), nature_(std::move(nature)) {
+Pokemon::Pokemon(const PokemonSpecies* species, int level, Nature nature,
+                 std::string nickname, std::string form)
+    : species_(species), nickname_(std::move(nickname)),
+      form_(form.empty() ? "Base" : std::move(form)),
+      level_(std::clamp(level, 1, 100)), nature_(std::move(nature)) {
     if (!species_) throw std::invalid_argument("PokemonSpecies ne peut pas etre null");
     ivs_.fill(0);
     evs_.fill(0);
@@ -16,7 +19,11 @@ Pokemon::Pokemon(const PokemonSpecies* species, int level, Nature nature)
 }
 
 const PokemonSpecies& Pokemon::species() const { return *species_; }
-const std::string& Pokemon::name() const { return species_->name(); }
+const std::string& Pokemon::name() const { return nickname_.empty() ? species_->name() : nickname_; }
+const std::string& Pokemon::nickname() const { return nickname_; }
+void Pokemon::setNickname(std::string nickname) { nickname_ = std::move(nickname); }
+const std::string& Pokemon::form() const { return form_; }
+void Pokemon::setForm(std::string form) { form_ = form.empty() ? "Base" : std::move(form); }
 int Pokemon::level() const { return level_; }
 int Pokemon::currentHP() const { return currentHP_; }
 int Pokemon::maxHP() const { return stat(Stat::HP); }
@@ -43,7 +50,7 @@ int Pokemon::stat(Stat statValue) const {
     const int ev = evs_[i];
 
     if (statValue == Stat::HP) {
-        if (name() == "Munja") return 1;
+        if (species().name() == "Munja") return 1;
         return (((2 * base + iv + ev / 4) * level_) / 100) + level_ + 10;
     }
 

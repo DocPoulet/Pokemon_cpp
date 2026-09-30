@@ -5,62 +5,57 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 namespace pokemon {
 
 /**
- * Centralise les données statiques connues du prototype.
+ * Centralise les données globales connues du jeu.
  *
  * Entrées:
- *   Aucune donnée externe : le constructeur charge actuellement le catalogue intégré au code.
+ *   Les définitions d'attaques restent intégrées au moteur en v0.7.
+ *   Les espèces sont chargées depuis data/pokemon_species.json.
  *
  * Sortie:
- *   GameData : registre permettant de retrouver une attaque ou une espèce par son nom.
+ *   GameData: catalogue permettant de retrouver attaques et espèces par leur nom.
  */
 class GameData {
 public:
     /**
-     * Construit et remplit le catalogue de données du jeu.
+     * Charge le catalogue standard du projet.
      *
      * Entrées:
      *   Aucune.
      *
      * Sortie:
-     *   GameData: Catalogue prêt à être interrogé avec move() et species().
+     *   GameData: attaques intégrées et espèces chargées depuis le fichier JSON standard.
      */
     GameData();
 
     /**
-     * Recherche une attaque dans le catalogue par son nom.
+     * Charge le catalogue avec un fichier d'espèces explicite.
      *
      * Entrées:
-     *   name (const std::string&): Nom exact utilisé comme clé dans le catalogue.
+     *   speciesFile (const std::string&): Chemin vers un pokemon_species.json compatible.
      *
      * Sortie:
-     *   const MoveData&: Référence vers la définition de l'attaque trouvée.
-     *
-     * Erreurs:
-     *   Lance std::out_of_range si aucun nom correspondant n'existe.
+     *   GameData: catalogue construit avec les données du fichier fourni.
      */
-    const MoveData& move(const std::string& name) const;
+    explicit GameData(const std::string& speciesFile);
 
-    /**
-     * Recherche une espèce dans le catalogue par son nom.
-     *
-     * Entrées:
-     *   name (const std::string&): Nom exact utilisé comme clé dans le catalogue.
-     *
-     * Sortie:
-     *   const PokemonSpecies&: Référence vers la définition de l'espèce trouvée.
-     *
-     * Erreurs:
-     *   Lance std::out_of_range si aucun nom correspondant n'existe.
-     */
+    const MoveData& move(const std::string& name) const;
     const PokemonSpecies& species(const std::string& name) const;
+    std::vector<std::string> moveNames() const;
+    std::vector<std::string> speciesNames() const;
+    bool hasMove(const std::string& name) const;
+    bool hasSpecies(const std::string& name) const;
 
 private:
-    std::map<std::string, MoveData> moves_; ///< Attaques indexées par leur nom.
-    std::map<std::string, PokemonSpecies> species_; ///< Espèces indexées par leur nom.
+    std::map<std::string, MoveData> moves_;
+    std::map<std::string, PokemonSpecies> species_;
+
+    void loadMoves();
+    void loadSpeciesJson(const std::string& path);
 };
 
 } // namespace pokemon

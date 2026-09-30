@@ -48,15 +48,21 @@ bool abilityBoostsMove(const Pokemon& pokemon, Type moveType) {
 
 double DamageCalculator::effectiveness(Type attackType,
                                        const PokemonSpecies& defender,
-                                       Weather /*weather*/) {
+                                       Weather weather) {
     const auto attackIndex = static_cast<std::size_t>(attackType);
     if (attackIndex >= 18) return 1.0;
 
     double total = 1.0;
+    bool flying = false;
     for (const auto defenderType : defender.types()) {
+        if (defenderType == Type::Flying) flying = true;
         const auto defenderIndex = static_cast<std::size_t>(defenderType);
         if (defenderIndex >= 18) continue;
         total *= chart[defenderIndex][attackIndex];
+    }
+    if (weather == Weather::StrongWinds && flying &&
+        (attackType == Type::Electric || attackType == Type::Ice || attackType == Type::Rock)) {
+        total *= 0.5;
     }
     return total;
 }
@@ -68,6 +74,8 @@ double DamageCalculator::rawDamage(const Pokemon& attacker,
                                    int attackerPlayer,
                                    int defenderPlayer) {
     if (move.category == MoveCategory::Status || move.power <= 0) return 0.0;
+    if (battle.weather() == Weather::HeavyRain && move.type == Type::Fire) return 0.0;
+    if (battle.weather() == Weather::ExtremelyHarshSunlight && move.type == Type::Water) return 0.0;
     if (defender.ability() == Ability::Levitate && move.type == Type::Ground) return 0.0;
 
     const double eff = effectiveness(move.type, defender.species(), battle.weather());
@@ -98,6 +106,10 @@ double DamageCalculator::rawDamage(const Pokemon& attacker,
     } else if (battle.weather() == Weather::Rain) {
         if (move.type == Type::Water) weather *= 1.5;
         if (move.type == Type::Fire) weather *= 0.5;
+    } else if (battle.weather() == Weather::HeavyRain) {
+        if (move.type == Type::Water) weather *= 1.5;
+    } else if (battle.weather() == Weather::ExtremelyHarshSunlight) {
+        if (move.type == Type::Fire) weather *= 1.5;
     }
 
     const double stab = hasType(attacker, move.type) ? 1.5 : 1.0;
@@ -116,6 +128,10 @@ DamageResult DamageCalculator::calculate(Pokemon& attacker,
                                          int defenderPlayer) {
     DamageResult result;
     result.effectiveness = effectiveness(move.type, defender.species(), battle.weather());
+    if ((battle.weather() == Weather::HeavyRain && move.type == Type::Fire) ||
+        (battle.weather() == Weather::ExtremelyHarshSunlight && move.type == Type::Water)) {
+        result.effectiveness = 0.0;
+    }
     if (defender.ability() == Ability::Levitate && move.type == Type::Ground) {
         result.effectiveness = 0.0;
     }

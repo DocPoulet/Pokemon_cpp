@@ -85,10 +85,10 @@ enum class Weather {
     Sun,       ///< Soleil.
     Rain,      ///< Pluie.
     Sandstorm, ///< Tempête de sable.
-    Snow,       ///< Neige.
+    Snow,      ///< Neige.
     ExtremelyHarshSunlight, ///< Soleil Intense.
-    HeavyRain, ///< Pluie Battante.
-    StrongWinds  ///< Vent Mysterieux.
+    HeavyRain,              ///< Pluie Battante.
+    StrongWinds             ///< Vent Mysterieux.
 };
 
 /**

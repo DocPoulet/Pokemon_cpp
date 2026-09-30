@@ -38,7 +38,9 @@ public:
      */
     Pokemon(const PokemonSpecies* species,
             int level = 50,
-            Nature nature = Nature{});
+            Nature nature = Nature{},
+            std::string nickname = "",
+            std::string form = "Base");
 
     /**
      * Retourne l'espèce du Pokémon.
@@ -52,15 +54,63 @@ public:
     const PokemonSpecies& species() const;
 
     /**
-     * Retourne le nom du Pokémon, actuellement celui de son espèce.
+     * Retourne le nom visible du Pokémon.
      *
      * Entrées:
      *   Aucune.
      *
      * Sortie:
-     *   const std::string&: Nom de l'espèce.
+     *   const std::string&: Surnom s'il est défini, sinon nom de l'espèce.
      */
     const std::string& name() const;
+
+
+    /**
+     * Retourne le surnom explicite du Pokémon.
+     *
+     * Entrées:
+     *   Aucune.
+     *
+     * Sortie:
+     *   const std::string&: Surnom stocké ; chaîne vide si le nom d'espèce doit être utilisé.
+     */
+    const std::string& nickname() const;
+
+    /**
+     * Modifie le surnom.
+     *
+     * Entrées:
+     *   nickname (std::string): Nouveau surnom ; une chaîne vide rétablit le nom d'espèce à l'affichage.
+     *
+     * Sortie:
+     *   Aucune.
+     */
+    void setNickname(std::string nickname);
+
+    /**
+     * Retourne l'identifiant de forme préparé pour les futures formes alternatives.
+     *
+     * Entrées:
+     *   Aucune.
+     *
+     * Sortie:
+     *   const std::string&: Identifiant de forme, actuellement informatif uniquement.
+     */
+    const std::string& form() const;
+
+    /**
+     * Modifie l'identifiant de forme sans changer les mécaniques de combat.
+     *
+     * Entrées:
+     *   form (std::string): Identifiant non vide, par exemple "Base".
+     *
+     * Sortie:
+     *   Aucune.
+     *
+     * Effets:
+     *   Le champ est uniquement persistant en v0.7 ; il ne modifie ni stats, ni types, ni talent.
+     */
+    void setForm(std::string form);
 
     /**
      * Retourne le niveau actuel du Pokémon.
@@ -411,7 +461,9 @@ public:
     void setAbility(Ability ability);
 
 private:
-    const PokemonSpecies* species_ = nullptr; ///< Espèce de référence.
+    const PokemonSpecies* species_ = nullptr;
+    std::string nickname_; ///< Surnom optionnel ; vide signifie utiliser le nom de l'espèce.
+    std::string form_ = "Base"; ///< Forme persistée mais sans effet mécanique en v0.7. ///< Espèce de référence.
     int level_ = 1; ///< Niveau actuel.
     int currentHP_ = 0; ///< PV actuellement disponibles.
     std::array<int, static_cast<std::size_t>(Stat::Count)> ivs_{}; ///< IV par statistique.

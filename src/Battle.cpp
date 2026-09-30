@@ -35,10 +35,31 @@ bool immuneToStatus(const Pokemon& pokemon, StatusCondition status) {
     }
     return false;
 }
+
+bool isPrimalWeather(Weather weather) {
+    return weather == Weather::ExtremelyHarshSunlight ||
+           weather == Weather::HeavyRain ||
+           weather == Weather::StrongWinds;
+}
+
+Weather abilityWeather(const Pokemon* pokemon) {
+    if (!pokemon || pokemon->fainted()) return Weather::None;
+    switch (pokemon->ability()) {
+        case Ability::PrimordialSea: return Weather::HeavyRain;
+        case Ability::DesolateLand: return Weather::ExtremelyHarshSunlight;
+        case Ability::DeltaStream: return Weather::StrongWinds;
+        default: return Weather::None;
+    }
+}
 }
 
 Battle::Battle(Trainer& player1, Trainer& player2, unsigned int seed)
-    : trainers_{&player1, &player2}, rng_(seed) {}
+    : trainers_{&player1, &player2}, rng_(seed) {
+    const Weather first = abilityWeather(active(0));
+    const Weather second = abilityWeather(active(1));
+    weather_ = second != Weather::None ? second : first;
+    weatherTurns_ = 0;
+}
 
 Trainer& Battle::trainer(int player) {
     return *trainers_.at(static_cast<std::size_t>(player));
@@ -75,6 +96,26 @@ bool Battle::switchPokemon(int player, std::size_t index, std::vector<BattleEven
 
     activeIndex_.at(static_cast<std::size_t>(player)) = index;
     resetStages(player);
+
+    const Weather switchedWeather = abilityWeather(&team[index]);
+    if (switchedWeather != Weather::None) {
+        weather_ = switchedWeather;
+        weatherTurns_ = 0;
+        if (events) events->push_back({EventType::WeatherChanged,
+            "Meteo primordiale : " + std::string(toString(switchedWeather)) + ".", player, 0});
+    } else if (isPrimalWeather(weather_)) {
+        const int other = 1 - player;
+        const Weather remaining = abilityWeather(active(other));
+        if (remaining != Weather::None) {
+            weather_ = remaining;
+            weatherTurns_ = 0;
+        } else {
+            weather_ = Weather::None;
+            weatherTurns_ = 0;
+            if (events) events->push_back({EventType::WeatherChanged,
+                "La meteo primordiale se dissipe.", -1, 0});
+        }
+    }
     if (events) {
         events->push_back({EventType::Switched,
             trainer(player).name() + " envoie " + team[index].name() + " !", player, 0});
@@ -158,6 +199,10 @@ void Battle::resetStages(int player) {
 }
 
 void Battle::setWeather(Weather weatherValue, int turns, std::vector<BattleEvent>& events) {
+    if (isPrimalWeather(weather_) && !isPrimalWeather(weatherValue)) {
+        events.push_back({EventType::Text, "La meteo primordiale ne peut pas etre remplacee.", -1, 0});
+        return;
+    }
     weather_ = weatherValue;
     weatherTurns_ = std::max(0, turns);
     events.push_back({EventType::WeatherChanged,

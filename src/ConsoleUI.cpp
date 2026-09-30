@@ -38,8 +38,8 @@ void ConsoleUI::printEvents(const std::vector<BattleEvent>& events) const {
     }
 }
 
-BattleAction ConsoleUI::chooseMove(Battle& battle) {
-    Pokemon* pokemon = battle.active(0);
+BattleAction ConsoleUI::chooseMove(Battle& battle, int playerIndex) {
+    Pokemon* pokemon = battle.active(playerIndex);
     if (!pokemon) return {ActionType::Move, 0};
 
     if (!pokemon->hasUsableMove()) {
@@ -74,17 +74,17 @@ BattleAction ConsoleUI::chooseMove(Battle& battle) {
     }
 }
 
-BattleAction ConsoleUI::chooseSwitch(Battle& battle) {
+BattleAction ConsoleUI::chooseSwitch(Battle& battle, int playerIndex) {
     while (true) {
-        printTeam(battle.trainer(0));
+        printTeam(battle.trainer(playerIndex));
         output_ << "Choisissez un Pokemon: ";
         const int choice = readInt();
-        if (choice < 1 || choice > static_cast<int>(battle.trainer(0).team().size())) {
+        if (choice < 1 || choice > static_cast<int>(battle.trainer(playerIndex).team().size())) {
             output_ << "Choix invalide.\n";
             continue;
         }
         const std::size_t index = static_cast<std::size_t>(choice - 1);
-        if (battle.trainer(0).team()[index].fainted() || index == battle.activeIndex(0)) {
+        if (battle.trainer(playerIndex).team()[index].fainted() || index == battle.activeIndex(playerIndex)) {
             output_ << "Ce changement est impossible.\n";
             continue;
         }
@@ -92,10 +92,10 @@ BattleAction ConsoleUI::chooseSwitch(Battle& battle) {
     }
 }
 
-BattleAction ConsoleUI::chooseHumanAction(Battle& battle) {
+BattleAction ConsoleUI::chooseHumanAction(Battle& battle, int playerIndex) {
     while (true) {
-        const Pokemon* player = battle.active(0);
-        const Pokemon* opponent = battle.active(1);
+        const Pokemon* player = battle.active(playerIndex);
+        const Pokemon* opponent = battle.active(1 - playerIndex);
         output_ << "\n==========================\n";
         if (player && opponent) {
             output_ << player->name() << " " << player->currentHP() << "/" << player->maxHP() << " PV";
@@ -108,8 +108,8 @@ BattleAction ConsoleUI::chooseHumanAction(Battle& battle) {
         output_ << "1. Attaquer\n2. Equipe\n3. Sac\n4. Fuite\n> ";
         const int choice = readInt();
         switch (choice) {
-            case 1: return chooseMove(battle);
-            case 2: return chooseSwitch(battle);
+            case 1: return chooseMove(battle, playerIndex);
+            case 2: return chooseSwitch(battle, playerIndex);
             case 3:
                 output_ << "Le sac n'est pas encore implemente.\n";
                 break;
@@ -122,47 +122,52 @@ BattleAction ConsoleUI::chooseHumanAction(Battle& battle) {
 }
 
 void ConsoleUI::run(Battle& battle, BattleController& opponentAI) {
+    run(battle, nullptr, &opponentAI);
+}
+
+void ConsoleUI::run(Battle& battle, BattleController* player1Controller,
+                    BattleController* player2Controller) {
     printTeam(battle.trainer(0));
+    output_ << '\n';
+    printTeam(battle.trainer(1));
     output_ << '\n';
 
     bool escaped = false;
-    while (!battle.finished() && !escaped) {
-        if (battle.active(0) && battle.active(0)->fainted()) {
-            const auto action = chooseSwitch(battle);
-            std::vector<BattleEvent> events;
-            battle.switchPokemon(0, action.index, &events);
-            printEvents(events);
-        }
+    std::array<BattleController*, 2> controllers{player1Controller, player2Controller};
 
-        if (battle.active(1) && battle.active(1)->fainted()) {
-            const BattleAction action = opponentAI.chooseAction(battle, 1);
-            if (action.type == ActionType::Switch) {
+    while (!battle.finished() && !escaped) {
+        for (int player = 0; player < 2; ++player) {
+            if (!battle.active(player) || !battle.active(player)->fainted()) continue;
+            BattleAction forced = controllers[static_cast<std::size_t>(player)]
+                ? controllers[static_cast<std::size_t>(player)]->chooseAction(battle, player)
+                : chooseSwitch(battle, player);
+            if (forced.type == ActionType::Switch) {
                 std::vector<BattleEvent> events;
-                battle.switchPokemon(1, action.index, &events);
+                battle.switchPokemon(player, forced.index, &events);
                 printEvents(events);
             }
         }
 
         if (battle.finished()) break;
 
-        const BattleAction human = chooseHumanAction(battle);
-        if (human.type == ActionType::Run) {
-            output_ << "Vous prenez la fuite.\n";
-            escaped = true;
-            break;
+        std::array<BattleAction, 2> actions{};
+        for (int player = 0; player < 2; ++player) {
+            auto* controller = controllers[static_cast<std::size_t>(player)];
+            actions[static_cast<std::size_t>(player)] = controller
+                ? controller->chooseAction(battle, player)
+                : chooseHumanAction(battle, player);
+            if (actions[static_cast<std::size_t>(player)].type == ActionType::Run) {
+                output_ << battle.trainer(player).name() << " prend la fuite.\n";
+                escaped = true;
+                break;
+            }
         }
+        if (escaped) break;
 
-        const BattleAction ai = opponentAI.chooseAction(battle, 1);
-        const auto events = battle.resolveTurn(human, ai);
+        const auto events = battle.resolveTurn(actions[0], actions[1]);
         printEvents(events);
     }
 
-    if (!escaped && battle.finished()) {
-        const int winner = battle.winner();
-        if (winner >= 0) {
-            output_ << battle.trainer(winner).name() << " a gagne le combat !\n";
-        }
-    }
 }
 
 } // namespace pokemon

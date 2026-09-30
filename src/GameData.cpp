@@ -1,5 +1,11 @@
 #include "pokemon/GameData.hpp"
 
+#include "pokemon/DataCodec.hpp"
+#include "pokemon/JsonLite.hpp"
+
+#include <fstream>
+#include <iostream>
+#include <set>
 #include <stdexcept>
 
 namespace pokemon {
@@ -57,7 +63,27 @@ MoveEffect statusEffect(Target target, StatusCondition status, int chance = 100)
 }
 }
 
-GameData::GameData() {
+
+#ifndef POKEMON_DATA_DIR
+#define POKEMON_DATA_DIR "data"
+#endif
+
+GameData::GameData() : GameData(std::string(POKEMON_DATA_DIR) + "/pokemon_species.json") {}
+
+GameData::GameData(const std::string& speciesFile) {
+    loadMoves();
+
+    // MissingNo. est le filet de securite du catalogue. Il existe toujours, meme
+    // si le JSON est absent ou invalide. Ses statistiques reprennent les valeurs
+    // demandees pour le projet : 33 / 136 / 0 / 1 / 1 / 29.
+    std::array<int, static_cast<std::size_t>(Stat::Count)> missingStats{33, 136, 0, 1, 1, 29};
+    species_.emplace("MissingNo.", PokemonSpecies{
+        "MissingNo.", missingStats, {Type::Flying, Type::Normal}, moveNames(), {}});
+
+    loadSpeciesJson(speciesFile);
+}
+
+void GameData::loadMoves() {
     moves_.emplace("Flammeche", MoveData{
         "Flammeche", Type::Fire, 40, MoveCategory::Special, 100, 0, 25, false, false, {}});
     moves_.emplace("Griffe", MoveData{
@@ -118,12 +144,75 @@ GameData::GameData() {
         "Laser Glace", Type::Ice, 90, MoveCategory::Special, 100, 0, 10, false, false,
         {statusEffect(Target::Opponent, StatusCondition::Freeze, 10)}});
 
-    species_.emplace("Bulbizarre", PokemonSpecies{
-        "Bulbizarre", {45,49,49,65,65,45}, {Type::Grass, Type::Poison}});
-    species_.emplace("Salameche", PokemonSpecies{
-        "Salameche", {39,52,43,60,50,65}, {Type::Fire}});
-    species_.emplace("Carapuce", PokemonSpecies{
-        "Carapuce", {44,48,65,50,64,43}, {Type::Water}});
+}
+
+void GameData::loadSpeciesJson(const std::string& path) {
+    std::ifstream input(path);
+    if (!input) {
+        std::cerr << "[Data] Catalogue d'especes introuvable: " << path
+                  << ". MissingNo. sera utilise comme fallback.\n";
+        return;
+    }
+
+    try {
+        const JsonValue root = JsonValue::parse(input);
+        if (root.at("version").asInt() != 1) {
+            std::cerr << "[Data] Version de pokemon_species.json non supportee. "
+                      << "MissingNo. reste disponible.\n";
+            return;
+        }
+
+        for (const auto& entry : root.at("species").asArray()) {
+            try {
+                const std::string name = entry.at("name").asString();
+                if (name.empty()) throw std::runtime_error("nom vide");
+                if (name == "MissingNo.") throw std::runtime_error("MissingNo. est reserve au fallback interne");
+                if (species_.find(name) != species_.end()) throw std::runtime_error("espece dupliquee");
+
+                const auto& stats = entry.at("base_stats");
+                std::array<int, static_cast<std::size_t>(Stat::Count)> baseStats{};
+                baseStats[static_cast<std::size_t>(Stat::HP)] = stats.at("hp").asInt();
+                baseStats[static_cast<std::size_t>(Stat::Attack)] = stats.at("attack").asInt();
+                baseStats[static_cast<std::size_t>(Stat::Defense)] = stats.at("defense").asInt();
+                baseStats[static_cast<std::size_t>(Stat::SpecialAttack)] = stats.at("special_attack").asInt();
+                baseStats[static_cast<std::size_t>(Stat::SpecialDefense)] = stats.at("special_defense").asInt();
+                baseStats[static_cast<std::size_t>(Stat::Speed)] = stats.at("speed").asInt();
+                for (const int value : baseStats) if (value <= 0) throw std::runtime_error("stat de base invalide");
+
+                std::vector<Type> types;
+                for (const auto& value : entry.at("types").asArray()) types.push_back(typeFromDataId(value.asString()));
+                if (types.empty() || types.size() > 2) throw std::runtime_error("il faut un ou deux types");
+
+                std::vector<std::string> movePool;
+                std::set<std::string> seenMoves;
+                for (const auto& value : entry.at("move_pool").asArray()) {
+                    const std::string moveName = value.asString();
+                    if (!hasMove(moveName)) throw std::runtime_error("attaque inconnue: " + moveName);
+                    if (!seenMoves.insert(moveName).second) throw std::runtime_error("attaque dupliquee: " + moveName);
+                    movePool.push_back(moveName);
+                }
+                if (movePool.empty()) throw std::runtime_error("movepool vide");
+
+                std::vector<Ability> abilities;
+                std::set<int> seenAbilities;
+                for (const auto& value : entry.at("abilities").asArray()) {
+                    const Ability ability = abilityFromDataId(value.asString());
+                    if (ability == Ability::None) throw std::runtime_error("talent None interdit");
+                    if (!seenAbilities.insert(static_cast<int>(ability)).second) throw std::runtime_error("talent duplique");
+                    abilities.push_back(ability);
+                }
+                if (abilities.empty()) throw std::runtime_error("aucun talent declare");
+
+                species_.emplace(name, PokemonSpecies{name, baseStats, types, movePool, abilities});
+            } catch (const std::exception& error) {
+                std::cerr << "[Data] Espece JSON ignoree: " << error.what()
+                          << ". Toute reference vers elle utilisera MissingNo.\n";
+            }
+        }
+    } catch (const std::exception& error) {
+        std::cerr << "[Data] pokemon_species.json invalide: " << error.what()
+                  << ". MissingNo. sera utilise comme fallback.\n";
+    }
 }
 
 const MoveData& GameData::move(const std::string& name) const {
@@ -134,8 +223,32 @@ const MoveData& GameData::move(const std::string& name) const {
 
 const PokemonSpecies& GameData::species(const std::string& name) const {
     const auto it = species_.find(name);
-    if (it == species_.end()) throw std::out_of_range("Espece inconnue: " + name);
-    return it->second;
+    if (it != species_.end()) return it->second;
+    return species_.at("MissingNo.");
 }
+
+std::vector<std::string> GameData::moveNames() const {
+    std::vector<std::string> result;
+    result.reserve(moves_.size());
+    for (const auto& [name, unused] : moves_) {
+        (void)unused;
+        result.push_back(name);
+    }
+    return result;
+}
+
+std::vector<std::string> GameData::speciesNames() const {
+    std::vector<std::string> result;
+    result.reserve(species_.size());
+    for (const auto& [name, unused] : species_) {
+        (void)unused;
+        if (name == "MissingNo." && species_.size() > 1) continue;
+        result.push_back(name);
+    }
+    return result;
+}
+
+bool GameData::hasMove(const std::string& name) const { return moves_.find(name) != moves_.end(); }
+bool GameData::hasSpecies(const std::string& name) const { return species_.find(name) != species_.end(); }
 
 } // namespace pokemon

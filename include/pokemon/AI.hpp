@@ -65,4 +65,30 @@ public:
     BattleAction chooseAction(const Battle& battle, int player) override;
 };
 
+
+/**
+ * IA de v0.6 capable de comparer attaque et remplacement.
+ *
+ * Entrées:
+ *   battle (const Battle&): Etat courant du combat, équipes incluses.
+ *   player (int): Joueur contrôlé.
+ *
+ * Sortie:
+ *   TacticalAI: Contrôleur qui privilégie un KO, une attaque rentable ou un switch utile.
+ */
+class TacticalAI final : public BattleController {
+public:
+    /**
+     * Choisit une action offensive ou un remplacement selon une heuristique simple.
+     *
+     * Entrées:
+     *   battle (const Battle&): Combat à analyser sans le modifier.
+     *   player (int): Index du joueur contrôlé.
+     *
+     * Sortie:
+     *   BattleAction: Attaque ou switch considéré comme le plus intéressant.
+     */
+    BattleAction chooseAction(const Battle& battle, int player) override;
+};
+
 } // namespace pokemon

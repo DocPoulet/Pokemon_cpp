@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "species": [
+    {
+      "name": "Bulbizarre",
+      "base_stats": {"hp": 45, "attack": 49, "defense": 49, "special_attack": 65, "special_defense": 65, "speed": 45},
+      "types": ["Grass", "Poison"],
+      "move_pool": ["Fouet Lianes", "Mega-Sangsue", "Poudre Dodo", "Toxik", "Aiguisage"],
+      "abilities": ["Overgrow"]
+    },
+    {
+      "name": "Herbizarre",
+      "base_stats": {"hp": 60, "attack": 62, "defense": 63, "special_attack": 80, "special_defense": 80, "speed": 60},
+      "types": ["Grass", "Poison"],
+      "move_pool": ["Fouet Lianes", "Mega-Sangsue", "Poudre Dodo", "Toxik", "Aiguisage"],
+      "abilities": ["Overgrow"]
+    },
+    {
+      "name": "Florizarre",
+      "base_stats": {"hp": 80, "attack": 82, "defense": 83, "special_attack": 100, "special_defense": 100, "speed": 80},
+      "types": ["Grass", "Poison"],
+      "move_pool": ["Fouet Lianes", "Mega-Sangsue", "Poudre Dodo", "Toxik", "Aiguisage"],
+      "abilities": ["Overgrow"]
+    },
+    {
+      "name": "Salameche",
+      "base_stats": {"hp": 39, "attack": 52, "defense": 43, "special_attack": 60, "special_defense": 50, "speed": 65},
+      "types": ["Fire"],
+      "move_pool": ["Flammeche", "Griffe", "Vive-Attaque", "Feu Follet", "Aiguisage", "Zenith", "Belier", "Combo-Griffe"],
+      "abilities": ["Blaze"]
+    },
+    {
+      "name": "Reptincel",
+      "base_stats": {"hp": 58, "attack": 64, "defense": 58, "special_attack": 80, "special_defense": 65, "speed": 80},
+      "types": ["Fire"],
+      "move_pool": ["Flammeche", "Griffe", "Vive-Attaque", "Feu Follet", "Aiguisage", "Zenith", "Belier", "Combo-Griffe"],
+      "abilities": ["Blaze"]
+    },
+    {
+      "name": "Dracaufeu",
+      "base_stats": {"hp": 78, "attack": 84, "defense": 78, "special_attack": 109, "special_defense": 85, "speed": 100},
+      "types": ["Fire", "Flying"],
+      "move_pool": ["Flammeche", "Griffe", "Vive-Attaque", "Feu Follet", "Aiguisage", "Zenith", "Belier", "Combo-Griffe"],
+      "abilities": ["Blaze"]
+    },
+    {
+      "name": "Carapuce",
+      "base_stats": {"hp": 44, "attack": 48, "defense": 65, "special_attack": 50, "special_defense": 64, "speed": 43},
+      "types": ["Water"],
+      "move_pool": ["Pistolet a O", "Laser Glace", "Cage-Eclair", "Aiguisage", "Danse-Pluie", "Belier"],
+      "abilities": ["Torrent"]
+    },
+    {
+      "name": "Carabaffe",
+      "base_stats": {"hp": 59, "attack": 63, "defense": 80, "special_attack": 65, "special_defense": 80, "speed": 58},
+      "types": ["Water"],
+      "move_pool": ["Pistolet a O", "Laser Glace", "Cage-Eclair", "Aiguisage", "Danse-Pluie", "Belier"],
+      "abilities": ["Torrent"]
+    },
+    {
+      "name": "Tortank",
+      "base_stats": {"hp": 79, "attack": 83, "defense": 100, "special_attack": 85, "special_defense": 105, "speed": 78},
+      "types": ["Water"],
+      "move_pool": ["Pistolet a O", "Laser Glace", "Cage-Eclair", "Aiguisage", "Danse-Pluie", "Belier"],
+      "abilities": ["Torrent"]
+    },
+    {
+      "name": "Pikachu",
+      "base_stats": {"hp": 35, "attack": 55, "defense": 40, "special_attack": 50, "special_defense": 50, "speed": 90},
+      "types": ["Electric"],
+      "move_pool": ["Cage-Eclair", "Vive-Attaque", "Aiguisage", "Griffe", "Belier"],
+      "abilities": ["Static"]
+    },
+    {
+      "name": "Evoli",
+      "base_stats": {"hp": 55, "attack": 55, "defense": 50, "special_attack": 45, "special_defense": 65, "speed": 55},
+      "types": ["Normal"],
+      "move_pool": ["Griffe", "Vive-Attaque", "Belier", "Aiguisage"],
+      "abilities": ["Adaptability"]
+    }
+  ]
+}
