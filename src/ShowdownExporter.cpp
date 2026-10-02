@@ -3,9 +3,11 @@
 #include "pokemon/DataCodec.hpp"
 
 #include <array>
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <system_error>
 #include <vector>
 
 namespace pokemon {
@@ -85,7 +87,11 @@ std::string ShowdownExporter::toText(const Trainer& trainer) {
 }
 
 bool ShowdownExporter::saveFile(const Trainer& trainer, const std::string& path) {
-    std::ofstream output(path);
+    std::error_code error;
+    std::filesystem::create_directories("./team", error);
+    if (error) return false;
+
+    std::ofstream output("./team/" + path);
     if (!output) return false;
     write(trainer, output);
     return static_cast<bool>(output);
