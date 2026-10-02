@@ -1,3 +1,74 @@
+# v0.8.1 - Kanto Species Catalog
+
+- Ajout des **151 espèces de la première génération**, de Bulbasaur à Mew.
+- Stats de base, types et talents possibles synchronisés depuis Pokémon Showdown.
+- Movepools complets issus des learnsets Showdown, toutes générations référencées confondues.
+- Les movepools et talents restent des références vers les catalogues globaux, sans duplication des définitions.
+- Ajout de la traduction française des 151 noms dans `Localization`, sans changer les IDs moteur anglais.
+- Compatibilité d'import pour `Farfetch'd` ASCII vers l'ID canonique `Farfetch’d`.
+- Correction de l'import des talents Showdown à plusieurs mots (`Lightning Rod`, `Keen Eye`, etc.).
+- `sync_showdown_catalogs.py` synchronise désormais aussi `pokemon_species.json` pour Kanto.
+- Ajout des tests v0.8.1 de complétude, stats, learnsets, références globales et import Showdown.
+
+# v0.8.0 - Complete Showdown Catalogs
+
+- Ajout d'un snapshot de 951 attaques officielles Pokémon Showdown.
+- Ajout d'un snapshot de 317 talents officiels.
+- Ajout d'un snapshot de 580 objets officiels.
+- Conservation des marqueurs `Past`, `Future`, `LGPE`, `Gmax` et `Unobtainable`.
+- Séparation explicite entre entrée de catalogue et mécanique réellement simulée.
+- Conservation des effets déjà implémentés dans les versions précédentes.
+- Ajout de métadonnées de catalogue : numéro officiel, génération, statut non standard et description courte lorsque synchronisée.
+- Ajout de `tools/sync_showdown_catalogs.py` pour régénérer les catalogues depuis Pokémon Showdown.
+- Ajout de la cible CMake optionnelle `sync_catalogs`.
+- Normalisation legacy de `PrimordialSea` vers l'ID canonique `Primordial Sea` sans créer de doublon.
+- Ajout des tests v0.8 de complétude et de résolution des références globales.
+
+# v0.7.5 - Showdown-only team persistence
+
+- Suppression complète de l'ancien système propriétaire de sauvegarde d'équipe beta.
+- Suppression de ses fichiers source, de sa documentation et de ses tests dédiés.
+- Ajout de `ShowdownExporter` : le Team Builder sauvegarde directement au format Pokémon Showdown.
+- `ShowdownImporter` sait maintenant charger directement un fichier Showdown.
+- Le menu de chargement d'équipe utilise exclusivement les fichiers Showdown.
+- Les tests de persistance utilisent des round-trips Showdown et vérifient la conservation des références catalogue.
+- `battle_pokemon.json` reste un catalogue interne de presets et n'est pas un format de sauvegarde utilisateur.
+
+# v0.7.4 - Global catalogs and references
+
+- Ajout de `data/moves.json`, `data/abilities.json` et `data/items.json`.
+- Les définitions normales des attaques ne sont plus codées en dur dans `GameData.cpp`.
+- `PokemonSpecies` stocke des références vers les `MoveData` et `AbilityData` globaux.
+- `Pokemon` stocke des références vers les `AbilityData` et `ItemData` globaux ; les `MoveInstance` référencent déjà un `MoveData` global.
+- Ajout de `Catalog.hpp` avec `AbilityData` et `ItemData`.
+- `GameData` expose les catalogues d'attaques, talents et objets ainsi que leurs méthodes `has*`/listes.
+- Le Team Builder génère ses listes d'objets/talents directement depuis les catalogues.
+- Ajout de tests vérifiant l'identité des pointeurs entre catalogue, espèce et Pokémon de combat.
+
+# v0.7.3 - English canonical data / Showdown Dynamax metadata
+
+- Canonicalisation des noms internes des Pokémon et attaques en anglais.
+- Ajout d'une couche `Localization` pour afficher les noms français sans modifier les identifiants métier.
+- Ajout de `dynamaxLevel` (10 par défaut) et `gigantamax` (false par défaut) à `PokemonConfig` et `Pokemon`.
+- Import Showdown de `Dynamax Level:` et `Gigantamax:`.
+- Migration des JSON d'espèces et presets vers les identifiants anglais.
+- Compatibilité d'entrée avec plusieurs anciens noms français, normalisés immédiatement vers l'anglais.
+- Ajout de tests v0.7.3.
+
+# v0.7.2 - Pokemon Showdown import
+
+- Ajout de `ShowdownImporter` pour importer un Pokémon ou une équipe complète depuis un export texte Pokémon Showdown.
+- Les IV sont initialisés à 31 par défaut ; seules les valeurs de la ligne `IVs:` les remplacent.
+- Les EV sont initialisés à 0 par défaut.
+- Niveau Showdown par défaut : 100 lorsqu'aucune ligne `Level:` n'est présente.
+- Lecture du surnom, espèce, sexe, objet, talent, EV, IV, nature, Shiny, Tera Type et des quatre attaques.
+- Conservation de `gender`, `shiny` et `teraType` dans `PokemonConfig` puis dans `Pokemon`.
+- Ajout du Ballon (`Air Balloon`) comme objet reconnu, sans effet mécanique pour l'instant.
+- Ajout de Body Slam, Curse, Double-Edge et Energy Ball pour que l'exemple Bulbizarre soit directement jouable.
+- Ajout d'alias anglais vers les noms internes français des espèces et attaques déjà présentes.
+- Ajout d'une option de menu permettant de coller une équipe Showdown jusqu'à la ligne `END`.
+- Ajout des tests `pokemon_v072_tests`.
+
 # v0.7.1 - MissingNo fallback
 
 - Ajout de `MissingNo.` en dur comme espèce de secours toujours disponible.
@@ -20,22 +91,18 @@
 - Validation du talent : non nul et autorisé par l'espèce.
 - Ajout de `BattlePokemonData`, `JsonLite` et `DataCodec`.
 - Ajout des talents de données `Static` et `Adaptability` pour Pikachu et Évoli.
-- Les équipes sont désormais sauvegardées en `POKEMON_TEAM_V2` avec surnom + forme.
-- Lecture conservée des anciennes sauvegardes `POKEMON_TEAM_V1`.
 - Ajout des tests v0.7 de chargement JSON et de validation des presets.
 
 # v0.6.0 - Game
 
 - Ajout de `GameApp` et d'un menu principal.
 - Ajout du Team Builder via `PokemonConfig` et `TeamBuilder`.
-- Ajout des sauvegardes et chargements d'équipes avec `TeamIO` (`POKEMON_TEAM_V1`).
 - Ajout des modes Joueur vs IA, Joueur vs Joueur et IA vs IA.
 - Ajout de `TacticalAI`, capable d'envisager un remplacement.
 - Catalogue enrichi : évolutions des starters, Pikachu et Evoli.
 - `GameData` expose désormais les listes d'espèces/attaques et des méthodes `has*`.
 - Finalisation des météos ajoutées sur GitHub : Mer Primaire, Terre Finale et Souffle Delta.
 - Conservation des tests v0.5 et ajout des tests v0.6.
-- Documentation du format de sauvegarde.
 
 # v0.5.0 - Mechanics
 

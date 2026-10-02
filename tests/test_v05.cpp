@@ -15,17 +15,17 @@ using namespace pokemon;
 
 namespace {
 Battle makeBattle(GameData& data, Trainer& p1, Trainer& p2) {
-    p1.addPokemon(Pokemon(&data.species("Salameche"), 50));
-    p2.addPokemon(Pokemon(&data.species("Carapuce"), 50));
+    p1.addPokemon(Pokemon(&data.species("Charmander"), 50));
+    p2.addPokemon(Pokemon(&data.species("Squirtle"), 50));
     return Battle(p1, p2, 42);
 }
 
 void testIndependentMovePP() {
     GameData data;
-    Pokemon a(&data.species("Salameche"), 50);
-    Pokemon b(&data.species("Salameche"), 50);
-    a.setMove(0, &data.move("Flammeche"));
-    b.setMove(0, &data.move("Flammeche"));
+    Pokemon a(&data.species("Charmander"), 50);
+    Pokemon b(&data.species("Charmander"), 50);
+    a.setMove(0, &data.move("Ember"));
+    b.setMove(0, &data.move("Ember"));
     a.moves()[0]->consumePP();
     assert(a.moves()[0]->currentPP() == 24);
     assert(b.moves()[0]->currentPP() == 25);
@@ -35,10 +35,10 @@ void testPriorityBeforeSpeed() {
     GameData data;
     Trainer p1("Lent");
     Trainer p2("Rapide");
-    Pokemon slow(&data.species("Carapuce"), 50);
-    Pokemon fast(&data.species("Salameche"), 50);
-    slow.setMove(0, &data.move("Vive-Attaque"));
-    fast.setMove(0, &data.move("Griffe"));
+    Pokemon slow(&data.species("Squirtle"), 50);
+    Pokemon fast(&data.species("Charmander"), 50);
+    slow.setMove(0, &data.move("Quick Attack"));
+    fast.setMove(0, &data.move("Scratch"));
     p1.addPokemon(slow);
     p2.addPokemon(fast);
     Battle battle(p1, p2, 3);
@@ -58,8 +58,8 @@ void testBurnAndPoisonResidualDamage() {
     Trainer p1("P1");
     Trainer p2("P2");
     auto battle = makeBattle(data, p1, p2);
-    battle.active(0)->setMove(0, &data.move("Aiguisage"));
-    battle.active(1)->setMove(0, &data.move("Aiguisage"));
+    battle.active(0)->setMove(0, &data.move("Hone Claws"));
+    battle.active(1)->setMove(0, &data.move("Hone Claws"));
 
     assert(battle.active(0)->setStatus(StatusCondition::Burn));
     assert(battle.active(1)->setStatus(StatusCondition::Poison));
@@ -74,17 +74,17 @@ void testBurnReducesPhysicalDamageAndGutsOverridesIt() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon attacker(&data.species("Salameche"), 50);
-    Pokemon defender(&data.species("Carapuce"), 50);
+    Pokemon attacker(&data.species("Charmander"), 50);
+    Pokemon defender(&data.species("Squirtle"), 50);
     p1.addPokemon(attacker);
     p2.addPokemon(defender);
     Battle battle(p1, p2, 10);
-    const auto& move = data.move("Griffe");
+    const auto& move = data.move("Scratch");
 
     const double normal = DamageCalculator::rawDamage(*battle.active(0), *battle.active(1), move, battle, 0, 1);
     battle.active(0)->setStatus(StatusCondition::Burn);
     const double burned = DamageCalculator::rawDamage(*battle.active(0), *battle.active(1), move, battle, 0, 1);
-    battle.active(0)->setAbility(Ability::Guts);
+    battle.active(0)->setAbility(&data.ability("Guts"));
     const double guts = DamageCalculator::rawDamage(*battle.active(0), *battle.active(1), move, battle, 0, 1);
     assert(burned < normal);
     assert(guts > normal);
@@ -94,9 +94,9 @@ void testLevitateImmunity() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon attacker(&data.species("Salameche"), 50);
-    Pokemon defender(&data.species("Carapuce"), 50);
-    defender.setAbility(Ability::Levitate);
+    Pokemon attacker(&data.species("Charmander"), 50);
+    Pokemon defender(&data.species("Squirtle"), 50);
+    defender.setAbility(&data.ability("Levitate"));
     MoveData groundMove{"Test Sol", Type::Ground, 80, MoveCategory::Physical, 100, 0, 10};
     p1.addPokemon(attacker);
     p2.addPokemon(defender);
@@ -108,11 +108,11 @@ void testDrainAndRecoil() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon grass(&data.species("Bulbizarre"), 50);
-    Pokemon water(&data.species("Carapuce"), 50);
-    grass.setMove(0, &data.move("Mega-Sangsue"));
+    Pokemon grass(&data.species("Bulbasaur"), 50);
+    Pokemon water(&data.species("Squirtle"), 50);
+    grass.setMove(0, &data.move("Mega Drain"));
     grass.damage(40);
-    water.setMove(0, &data.move("Aiguisage"));
+    water.setMove(0, &data.move("Hone Claws"));
     p1.addPokemon(grass);
     p2.addPokemon(water);
     Battle battle(p1, p2, 6);
@@ -122,12 +122,12 @@ void testDrainAndRecoil() {
 
     Trainer r1("R1");
     Trainer r2("R2");
-    Pokemon recoilUser(&data.species("Salameche"), 50);
-    Pokemon target(&data.species("Carapuce"), 50);
+    Pokemon recoilUser(&data.species("Charmander"), 50);
+    Pokemon target(&data.species("Squirtle"), 50);
     MoveData recoilMove{"Recul Test", Type::Normal, 90, MoveCategory::Physical, -1, 0, 20};
     recoilMove.recoilPercent = 25;
     recoilUser.setMove(0, &recoilMove);
-    target.setMove(0, &data.move("Aiguisage"));
+    target.setMove(0, &data.move("Hone Claws"));
     r1.addPokemon(recoilUser);
     r2.addPokemon(target);
     Battle recoilBattle(r1, r2, 6);
@@ -140,13 +140,13 @@ void testMultiHitConsumesOnePP() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon attacker(&data.species("Salameche"), 50);
-    Pokemon defender(&data.species("Carapuce"), 50);
+    Pokemon attacker(&data.species("Charmander"), 50);
+    Pokemon defender(&data.species("Squirtle"), 50);
     MoveData multiMove{"Multi Test", Type::Normal, 18, MoveCategory::Physical, -1, 0, 15};
     multiMove.minHits = 2;
     multiMove.maxHits = 5;
     attacker.setMove(0, &multiMove);
-    defender.setMove(0, &data.move("Aiguisage"));
+    defender.setMove(0, &data.move("Hone Claws"));
     p1.addPokemon(attacker);
     p2.addPokemon(defender);
     Battle battle(p1, p2, 4);
@@ -164,8 +164,8 @@ void testStatusEffectAndImmunity() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon attacker(&data.species("Carapuce"), 50);
-    Pokemon defender(&data.species("Bulbizarre"), 50);
+    Pokemon attacker(&data.species("Squirtle"), 50);
+    Pokemon defender(&data.species("Bulbasaur"), 50);
     MoveData burnMove{"Brulure Test", Type::Neutral, 0, MoveCategory::Status, -1, 0, 10};
     MoveEffect burn;
     burn.kind = EffectKind::ApplyStatus;
@@ -173,7 +173,7 @@ void testStatusEffectAndImmunity() {
     burn.status = StatusCondition::Burn;
     burnMove.effects.push_back(burn);
     attacker.setMove(0, &burnMove);
-    defender.setMove(0, &data.move("Aiguisage"));
+    defender.setMove(0, &data.move("Hone Claws"));
     p1.addPokemon(attacker);
     p2.addPokemon(defender);
     Battle battle(p1, p2, 11);
@@ -182,10 +182,10 @@ void testStatusEffectAndImmunity() {
 
     Trainer f1("F1");
     Trainer f2("F2");
-    Pokemon source(&data.species("Carapuce"), 50);
-    Pokemon fire(&data.species("Salameche"), 50);
+    Pokemon source(&data.species("Squirtle"), 50);
+    Pokemon fire(&data.species("Charmander"), 50);
     source.setMove(0, &burnMove);
-    fire.setMove(0, &data.move("Aiguisage"));
+    fire.setMove(0, &data.move("Hone Claws"));
     f1.addPokemon(source);
     f2.addPokemon(fire);
     Battle immunityBattle(f1, f2, 11);
@@ -197,10 +197,10 @@ void testSleepBlocksOneTurn() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon sleeper(&data.species("Salameche"), 50);
-    Pokemon other(&data.species("Carapuce"), 50);
-    sleeper.setMove(0, &data.move("Griffe"));
-    other.setMove(0, &data.move("Aiguisage"));
+    Pokemon sleeper(&data.species("Charmander"), 50);
+    Pokemon other(&data.species("Squirtle"), 50);
+    sleeper.setMove(0, &data.move("Scratch"));
+    other.setMove(0, &data.move("Hone Claws"));
     sleeper.setStatus(StatusCondition::Sleep, 1);
     p1.addPokemon(sleeper);
     p2.addPokemon(other);
@@ -215,10 +215,10 @@ void testParalysisSlowsPokemon() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon water(&data.species("Carapuce"), 50);
-    Pokemon fire(&data.species("Salameche"), 50);
-    water.setMove(0, &data.move("Griffe"));
-    fire.setMove(0, &data.move("Griffe"));
+    Pokemon water(&data.species("Squirtle"), 50);
+    Pokemon fire(&data.species("Charmander"), 50);
+    water.setMove(0, &data.move("Scratch"));
+    fire.setMove(0, &data.move("Scratch"));
     fire.setStatus(StatusCondition::Paralysis);
     p1.addPokemon(water);
     p2.addPokemon(fire);
@@ -237,16 +237,16 @@ void testLifeOrbBoostAndRecoil() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon attacker(&data.species("Salameche"), 50);
-    Pokemon defender(&data.species("Carapuce"), 50);
+    Pokemon attacker(&data.species("Charmander"), 50);
+    Pokemon defender(&data.species("Squirtle"), 50);
     MoveData move{"Orbe Test", Type::Normal, 60, MoveCategory::Physical, -1, 0, 10};
     attacker.setMove(0, &move);
-    defender.setMove(0, &data.move("Aiguisage"));
+    defender.setMove(0, &data.move("Hone Claws"));
     p1.addPokemon(attacker);
     p2.addPokemon(defender);
     Battle battle(p1, p2, 13);
     const double normal = DamageCalculator::rawDamage(*battle.active(0), *battle.active(1), move, battle, 0, 1);
-    battle.active(0)->setHeldItem(HeldItem::LifeOrb);
+    battle.active(0)->setHeldItem(&data.item("Life Orb"));
     const double boosted = DamageCalculator::rawDamage(*battle.active(0), *battle.active(1), move, battle, 0, 1);
     assert(boosted > normal);
     const int hp = battle.active(0)->currentHP();
@@ -258,12 +258,12 @@ void testHeldItemsAndAbilities() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon left(&data.species("Carapuce"), 50);
-    Pokemon other(&data.species("Bulbizarre"), 50);
-    left.setHeldItem(HeldItem::Leftovers);
+    Pokemon left(&data.species("Squirtle"), 50);
+    Pokemon other(&data.species("Bulbasaur"), 50);
+    left.setHeldItem(&data.item("Leftovers"));
     left.damage(30);
-    left.setMove(0, &data.move("Aiguisage"));
-    other.setMove(0, &data.move("Aiguisage"));
+    left.setMove(0, &data.move("Hone Claws"));
+    other.setMove(0, &data.move("Hone Claws"));
     p1.addPokemon(left);
     p2.addPokemon(other);
     Battle battle(p1, p2, 12);
@@ -271,19 +271,19 @@ void testHeldItemsAndAbilities() {
     battle.resolveTurn({ActionType::Move, 0}, {ActionType::Move, 0});
     assert(battle.active(0)->currentHP() > hp);
 
-    Pokemon blaze(&data.species("Salameche"), 50);
-    Pokemon target(&data.species("Bulbizarre"), 50);
+    Pokemon blaze(&data.species("Charmander"), 50);
+    Pokemon target(&data.species("Bulbasaur"), 50);
     Trainer a("A");
     Trainer b("B");
     a.addPokemon(blaze);
     b.addPokemon(target);
     Battle abilityBattle(a, b, 5);
     const double normal = DamageCalculator::rawDamage(
-        *abilityBattle.active(0), *abilityBattle.active(1), data.move("Flammeche"), abilityBattle, 0, 1);
-    abilityBattle.active(0)->setAbility(Ability::Blaze);
+        *abilityBattle.active(0), *abilityBattle.active(1), data.move("Ember"), abilityBattle, 0, 1);
+    abilityBattle.active(0)->setAbility(&data.ability("Blaze"));
     abilityBattle.active(0)->setHP(abilityBattle.active(0)->maxHP() / 3);
     const double boosted = DamageCalculator::rawDamage(
-        *abilityBattle.active(0), *abilityBattle.active(1), data.move("Flammeche"), abilityBattle, 0, 1);
+        *abilityBattle.active(0), *abilityBattle.active(1), data.move("Ember"), abilityBattle, 0, 1);
     assert(boosted > normal);
 }
 }

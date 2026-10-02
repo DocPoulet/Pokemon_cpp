@@ -1,4 +1,5 @@
 #include "pokemon/ConsoleUI.hpp"
+#include "pokemon/Localization.hpp"
 
 #include <iostream>
 #include <limits>
@@ -22,7 +23,7 @@ void ConsoleUI::printTeam(const Trainer& trainer) const {
     output_ << "Equipe de " << trainer.name() << ":\n";
     for (std::size_t i = 0; i < trainer.team().size(); ++i) {
         const auto& pokemon = trainer.team()[i];
-        output_ << (i + 1) << ". " << pokemon.name()
+        output_ << (i + 1) << ". " << battleDisplayName(pokemon)
                 << " - " << pokemon.currentHP() << "/" << pokemon.maxHP() << " PV";
         if (pokemon.fainted()) output_ << " [KO]";
         else if (pokemon.status() != StatusCondition::None) {
@@ -43,12 +44,12 @@ BattleAction ConsoleUI::chooseMove(Battle& battle, int playerIndex) {
     if (!pokemon) return {ActionType::Move, 0};
 
     if (!pokemon->hasUsableMove()) {
-        output_ << pokemon->name() << " n'a plus de PP : Lutte sera utilisee.\n";
+        output_ << battleDisplayName(*pokemon) << " n'a plus de PP : Lutte sera utilisee.\n";
         return {ActionType::Move, 0};
     }
 
     while (true) {
-        output_ << "Attaques de " << pokemon->name() << ":\n";
+        output_ << "Attaques de " << battleDisplayName(*pokemon) << ":\n";
         for (std::size_t i = 0; i < pokemon->moves().size(); ++i) {
             output_ << (i + 1) << ". ";
             const auto& instance = pokemon->moves()[i];
@@ -56,7 +57,7 @@ BattleAction ConsoleUI::chooseMove(Battle& battle, int playerIndex) {
                 output_ << "[vide]\n";
                 continue;
             }
-            output_ << instance->data()->name << " - PP "
+            output_ << frenchMoveName(instance->data()->name) << " - PP "
                     << instance->currentPP() << "/" << instance->maxPP() << '\n';
         }
         output_ << "> ";
@@ -98,9 +99,9 @@ BattleAction ConsoleUI::chooseHumanAction(Battle& battle, int playerIndex) {
         const Pokemon* opponent = battle.active(1 - playerIndex);
         output_ << "\n==========================\n";
         if (player && opponent) {
-            output_ << player->name() << " " << player->currentHP() << "/" << player->maxHP() << " PV";
+            output_ << battleDisplayName(*player) << " " << player->currentHP() << "/" << player->maxHP() << " PV";
             if (player->status() != StatusCondition::None) output_ << " [" << toString(player->status()) << "]";
-            output_ << "  //  " << opponent->name() << " " << opponent->currentHP() << "/"
+            output_ << "  //  " << battleDisplayName(*opponent) << " " << opponent->currentHP() << "/"
                     << opponent->maxHP() << " PV";
             if (opponent->status() != StatusCondition::None) output_ << " [" << toString(opponent->status()) << "]";
             output_ << '\n';

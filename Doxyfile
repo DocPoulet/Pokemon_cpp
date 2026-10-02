@@ -1,5 +1,5 @@
 PROJECT_NAME           = "Pokemon_cpp"
-PROJECT_NUMBER         = "0.7.1"
+PROJECT_NUMBER         = "0.8.1"
 PROJECT_BRIEF          = "Moteur de combat Pokemon C++ documente"
 OUTPUT_DIRECTORY       = docs/generated
 INPUT                  = include src docs README.md

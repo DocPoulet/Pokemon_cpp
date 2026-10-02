@@ -1,6 +1,7 @@
 #include "pokemon/Battle.hpp"
 
 #include "pokemon/DamageCalculator.hpp"
+#include "pokemon/Localization.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -44,7 +45,7 @@ bool isPrimalWeather(Weather weather) {
 
 Weather abilityWeather(const Pokemon* pokemon) {
     if (!pokemon || pokemon->fainted()) return Weather::None;
-    switch (pokemon->ability()) {
+    switch ((pokemon->ability() ? pokemon->ability()->mechanic : Ability::None)) {
         case Ability::PrimordialSea: return Weather::HeavyRain;
         case Ability::DesolateLand: return Weather::ExtremelyHarshSunlight;
         case Ability::DeltaStream: return Weather::StrongWinds;
@@ -118,7 +119,7 @@ bool Battle::switchPokemon(int player, std::size_t index, std::vector<BattleEven
     }
     if (events) {
         events->push_back({EventType::Switched,
-            trainer(player).name() + " envoie " + team[index].name() + " !", player, 0});
+            trainer(player).name() + " envoie " + battleDisplayName(team[index]) + " !", player, 0});
     }
     return true;
 }
@@ -188,7 +189,7 @@ bool Battle::rollPercent(int percent) {
 
 const MoveData& Battle::struggleMove() const {
     static const MoveData struggle{
-        "Lutte", Type::Neutral, 50, MoveCategory::Physical, -1, 0, 1,
+        "Struggle", Type::Neutral, 50, MoveCategory::Physical, -1, 0, 1,
         false, true, {}
     };
     return struggle;
@@ -231,7 +232,7 @@ void Battle::applyMoveEffects(int attackerPlayer, const MoveData& move,
             case EffectKind::StatChange:
                 changeStage(targetPlayer, effect.stat, effect.stages);
                 events.push_back({EventType::StageChanged,
-                    targetPokemon.name() + " : " + std::string(toString(effect.stat)) +
+                    battleDisplayName(targetPokemon) + " : " + std::string(toString(effect.stat)) +
                     (effect.stages > 0 ? " augmente." : " diminue."),
                     targetPlayer, effect.stages});
                 break;
@@ -239,7 +240,7 @@ void Battle::applyMoveEffects(int attackerPlayer, const MoveData& move,
             case EffectKind::AccuracyChange:
                 changeAccuracyStage(targetPlayer, effect.accuracyStat, effect.stages);
                 events.push_back({EventType::StageChanged,
-                    targetPokemon.name() + (effect.stages > 0
+                    battleDisplayName(targetPokemon) + (effect.stages > 0
                         ? " gagne en precision/esquive." : " perd en precision/esquive."),
                     targetPlayer, effect.stages});
                 break;
@@ -258,7 +259,7 @@ void Battle::applyMoveEffects(int attackerPlayer, const MoveData& move,
                 const auto randomStat = static_cast<Stat>(statIndex);
                 changeStage(targetPlayer, randomStat, effect.stages);
                 events.push_back({EventType::StageChanged,
-                    targetPokemon.name() + " : " + std::string(toString(randomStat)) +
+                    battleDisplayName(targetPokemon) + " : " + std::string(toString(randomStat)) +
                     " augmente fortement.", targetPlayer, effect.stages});
                 break;
             }
@@ -267,19 +268,19 @@ void Battle::applyMoveEffects(int attackerPlayer, const MoveData& move,
                 if (targetPokemon.fainted() || effect.status == StatusCondition::None) break;
                 if (targetPokemon.status() != StatusCondition::None) {
                     events.push_back({EventType::StatusChanged,
-                        targetPokemon.name() + " a deja un probleme de statut.", targetPlayer, 0});
+                        battleDisplayName(targetPokemon) + " a deja un probleme de statut.", targetPlayer, 0});
                     break;
                 }
                 if (immuneToStatus(targetPokemon, effect.status)) {
                     events.push_back({EventType::StatusChanged,
-                        targetPokemon.name() + " est immunise contre " +
+                        battleDisplayName(targetPokemon) + " est immunise contre " +
                             std::string(toString(effect.status)) + ".", targetPlayer, 0});
                     break;
                 }
                 const int turns = effect.status == StatusCondition::Sleep ? randomInt(1, 3) : 0;
                 if (targetPokemon.setStatus(effect.status, turns)) {
                     events.push_back({EventType::StatusChanged,
-                        targetPokemon.name() + " subit " + std::string(toString(effect.status)) + ".",
+                        battleDisplayName(targetPokemon) + " subit " + std::string(toString(effect.status)) + ".",
                         targetPlayer, turns});
                 }
                 break;
@@ -300,7 +301,7 @@ bool Battle::canAct(int player, std::vector<BattleEvent>& events) {
         case StatusCondition::Paralysis:
             if (rollPercent(25)) {
                 events.push_back({EventType::StatusChanged,
-                    pokemon->name() + " est paralyse et ne peut pas agir !", player, 0});
+                    battleDisplayName(*pokemon) + " est paralyse et ne peut pas agir !", player, 0});
                 return false;
             }
             return true;
@@ -308,23 +309,23 @@ bool Battle::canAct(int player, std::vector<BattleEvent>& events) {
             if (pokemon->statusTurns() <= 0) {
                 pokemon->cureStatus();
                 events.push_back({EventType::StatusChanged,
-                    pokemon->name() + " se reveille !", player, 0});
+                    battleDisplayName(*pokemon) + " se reveille !", player, 0});
                 return true;
             }
             pokemon->setStatusTurns(pokemon->statusTurns() - 1);
             events.push_back({EventType::StatusChanged,
-                pokemon->name() + " dort profondement.", player, pokemon->statusTurns()});
+                battleDisplayName(*pokemon) + " dort profondement.", player, pokemon->statusTurns()});
             if (pokemon->statusTurns() == 0) pokemon->cureStatus();
             return false;
         case StatusCondition::Freeze:
             if (rollPercent(20)) {
                 pokemon->cureStatus();
                 events.push_back({EventType::StatusChanged,
-                    pokemon->name() + " degele !", player, 0});
+                    battleDisplayName(*pokemon) + " degele !", player, 0});
                 return true;
             }
             events.push_back({EventType::StatusChanged,
-                pokemon->name() + " est gele et ne peut pas agir !", player, 0});
+                battleDisplayName(*pokemon) + " est gele et ne peut pas agir !", player, 0});
             return false;
     }
     return true;
@@ -365,7 +366,7 @@ void Battle::resolveMove(int attackerPlayer, std::size_t slot,
         if (slot >= attacker->moves().size() || !attacker->moves()[slot] ||
             !attacker->moves()[slot]->usable()) {
             events.push_back({EventType::Text,
-                attacker->name() + " ne peut pas utiliser cette attaque.", attackerPlayer, 0});
+                battleDisplayName(*attacker) + " ne peut pas utiliser cette attaque.", attackerPlayer, 0});
             return;
         }
         instance = &*attacker->moves()[slot];
@@ -373,7 +374,7 @@ void Battle::resolveMove(int attackerPlayer, std::size_t slot,
     }
 
     events.push_back({EventType::MoveUsed,
-        attacker->name() + " utilise " + move->name + " !", attackerPlayer, 0});
+        battleDisplayName(*attacker) + " utilise " + std::string(frenchMoveName(move->name)) + " !", attackerPlayer, 0});
     if (instance) instance->consumePP();
 
     const int minHits = std::max(1, move->minHits);
@@ -401,7 +402,7 @@ void Battle::resolveMove(int attackerPlayer, std::size_t slot,
         moveHit = true;
         if (result.effectiveness == 0.0 && move->category != MoveCategory::Status) {
             events.push_back({EventType::Text,
-                defender->name() + " est immunise.", defenderPlayer, 0});
+                battleDisplayName(*defender) + " est immunise.", defenderPlayer, 0});
             return;
         }
         if (result.critical) {
@@ -414,7 +415,7 @@ void Battle::resolveMove(int attackerPlayer, std::size_t slot,
             totalDamage += actualDamage;
             ++landedHits;
             events.push_back({EventType::Damage,
-                defender->name() + " perd " + std::to_string(actualDamage) + " PV.",
+                battleDisplayName(*defender) + " perd " + std::to_string(actualDamage) + " PV.",
                 defenderPlayer, actualDamage});
         } else if (move->category == MoveCategory::Status) {
             ++landedHits;
@@ -440,7 +441,7 @@ void Battle::resolveMove(int attackerPlayer, std::size_t slot,
         const int healed = attacker->currentHP() - before;
         if (healed > 0) {
             events.push_back({EventType::Heal,
-                attacker->name() + " absorbe " + std::to_string(healed) + " PV.",
+                battleDisplayName(*attacker) + " absorbe " + std::to_string(healed) + " PV.",
                 attackerPlayer, healed});
         }
     }
@@ -451,30 +452,30 @@ void Battle::resolveMove(int attackerPlayer, std::size_t slot,
         const int recoil = std::max(1, totalDamage * recoilPercent / 100);
         attacker->damage(recoil);
         events.push_back({EventType::Damage,
-            attacker->name() + " subit " + std::to_string(recoil) + " PV de contrecoup.",
+            battleDisplayName(*attacker) + " subit " + std::to_string(recoil) + " PV de contrecoup.",
             attackerPlayer, recoil});
     }
     if (move->struggle && !attacker->fainted()) {
         const int recoil = std::max(1, attacker->maxHP() / 4);
         attacker->damage(recoil);
         events.push_back({EventType::Damage,
-            attacker->name() + " est blesse par le contrecoup de Lutte (" +
+            battleDisplayName(*attacker) + " est blesse par le contrecoup de Lutte (" +
                 std::to_string(recoil) + " PV).", attackerPlayer, recoil});
     }
-    if (attacker->heldItem() == HeldItem::LifeOrb &&
+    if (attacker->heldItem() && attacker->heldItem()->mechanic == HeldItem::LifeOrb &&
         move->category != MoveCategory::Status && totalDamage > 0 && !attacker->fainted()) {
         const int recoil = std::max(1, attacker->maxHP() / 10);
         attacker->damage(recoil);
         events.push_back({EventType::Damage,
-            attacker->name() + " perd " + std::to_string(recoil) +
+            battleDisplayName(*attacker) + " perd " + std::to_string(recoil) +
                 " PV a cause de l'Orbe Vie.", attackerPlayer, recoil});
     }
 
     if (defender->fainted()) {
-        events.push_back({EventType::Fainted, defender->name() + " est KO !", defenderPlayer, 0});
+        events.push_back({EventType::Fainted, battleDisplayName(*defender) + " est KO !", defenderPlayer, 0});
     }
     if (attacker->fainted()) {
-        events.push_back({EventType::Fainted, attacker->name() + " est KO !", attackerPlayer, 0});
+        events.push_back({EventType::Fainted, battleDisplayName(*attacker) + " est KO !", attackerPlayer, 0});
     }
 }
 
@@ -489,10 +490,10 @@ void Battle::applyEndTurn(std::vector<BattleEvent>& events) {
             const auto status = pokemon->status();
             pokemon->damage(residual);
             events.push_back({EventType::Damage,
-                pokemon->name() + " souffre de " + std::string(toString(status)) +
+                battleDisplayName(*pokemon) + " souffre de " + std::string(toString(status)) +
                     " (" + std::to_string(residual) + " PV).", player, residual});
             if (pokemon->fainted()) {
-                events.push_back({EventType::Fainted, pokemon->name() + " est KO !", player, 0});
+                events.push_back({EventType::Fainted, battleDisplayName(*pokemon) + " est KO !", player, 0});
             }
         }
     }
@@ -507,10 +508,10 @@ void Battle::applyEndTurn(std::vector<BattleEvent>& events) {
                 const int damage = std::max(1, pokemon->maxHP() / 16);
                 pokemon->damage(damage);
                 events.push_back({EventType::Damage,
-                    pokemon->name() + " est blesse par la tempete de sable (" +
+                    battleDisplayName(*pokemon) + " est blesse par la tempete de sable (" +
                         std::to_string(damage) + " PV).", player, damage});
                 if (pokemon->fainted()) {
-                    events.push_back({EventType::Fainted, pokemon->name() + " est KO !", player, 0});
+                    events.push_back({EventType::Fainted, battleDisplayName(*pokemon) + " est KO !", player, 0});
                 }
             }
         }
@@ -525,21 +526,21 @@ void Battle::applyEndTurn(std::vector<BattleEvent>& events) {
             const int healed = pokemon->currentHP() - before;
             if (healed > 0) {
                 events.push_back({EventType::Heal,
-                    pokemon->name() + " recupere " + std::to_string(healed) +
-                        " PV grace au Champ Herbu.", player, healed});
+                    battleDisplayName(*pokemon) + " recupere " + std::to_string(healed) +
+                        " PV grace au Grassy Terrain.", player, healed});
             }
         }
     }
 
     for (int player = 0; player < 2; ++player) {
         Pokemon* pokemon = active(player);
-        if (!pokemon || pokemon->fainted() || pokemon->heldItem() != HeldItem::Leftovers) continue;
+        if (!pokemon || pokemon->fainted() || (!pokemon->heldItem() || pokemon->heldItem()->mechanic != HeldItem::Leftovers)) continue;
         const int before = pokemon->currentHP();
         pokemon->heal(std::max(1, pokemon->maxHP() / 16));
         const int healed = pokemon->currentHP() - before;
         if (healed > 0) {
             events.push_back({EventType::Heal,
-                pokemon->name() + " recupere " + std::to_string(healed) +
+                battleDisplayName(*pokemon) + " recupere " + std::to_string(healed) +
                     " PV avec les Restes.", player, healed});
         }
     }

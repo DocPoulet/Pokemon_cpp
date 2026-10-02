@@ -23,11 +23,11 @@ using namespace pokemon;
 namespace {
 void testIndependentMovePP() {
     GameData data;
-    Pokemon a(&data.species("Salameche"), 50);
-    Pokemon b(&data.species("Salameche"), 50);
+    Pokemon a(&data.species("Charmander"), 50);
+    Pokemon b(&data.species("Charmander"), 50);
 
-    a.setMove(0, &data.move("Flammeche"));
-    b.setMove(0, &data.move("Flammeche"));
+    a.setMove(0, &data.move("Ember"));
+    b.setMove(0, &data.move("Ember"));
 
     a.moves()[0]->consumePP();
     assert(a.moves()[0]->currentPP() == 24);
@@ -38,22 +38,22 @@ void testSwitchAndStagesReset() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    p1.addPokemon(Pokemon(&data.species("Salameche"), 50));
-    p1.addPokemon(Pokemon(&data.species("Carapuce"), 50));
-    p2.addPokemon(Pokemon(&data.species("Bulbizarre"), 50));
+    p1.addPokemon(Pokemon(&data.species("Charmander"), 50));
+    p1.addPokemon(Pokemon(&data.species("Squirtle"), 50));
+    p2.addPokemon(Pokemon(&data.species("Bulbasaur"), 50));
 
     Battle battle(p1, p2, 42);
     battle.changeStage(0, Stat::Attack, 4);
     assert(battle.stage(0, Stat::Attack) == 4);
     assert(battle.switchPokemon(0, 1));
     assert(battle.activeIndex(0) == 1);
-    assert(battle.active(0)->name() == "Carapuce");
+    assert(battle.active(0)->name() == "Squirtle");
     assert(battle.stage(0, Stat::Attack) == 0);
 }
 
 void testIvEvBounds() {
     GameData data;
-    Pokemon pokemon(&data.species("Salameche"), 50);
+    Pokemon pokemon(&data.species("Charmander"), 50);
     pokemon.setIV(Stat::Attack, 99);
     pokemon.setIV(Stat::Defense, -4);
     assert(pokemon.iv(Stat::Attack) == 31);
@@ -70,12 +70,12 @@ void testTypeEffectiveness() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    p1.addPokemon(Pokemon(&data.species("Salameche"), 50));
-    p2.addPokemon(Pokemon(&data.species("Bulbizarre"), 50));
+    p1.addPokemon(Pokemon(&data.species("Charmander"), 50));
+    p2.addPokemon(Pokemon(&data.species("Bulbasaur"), 50));
     Battle battle(p1, p2, 42);
 
     assert(DamageCalculator::effectiveness(
-        Type::Fire, data.species("Bulbizarre"), battle.weather()) == 2.0);
+        Type::Fire, data.species("Bulbasaur"), battle.weather()) == 2.0);
 }
 
 void testBattleEventsAndDamage() {
@@ -83,10 +83,10 @@ void testBattleEventsAndDamage() {
     Trainer p1("P1");
     Trainer p2("P2");
 
-    Pokemon fire(&data.species("Salameche"), 50);
-    Pokemon grass(&data.species("Bulbizarre"), 50);
-    fire.setMove(0, &data.move("Flammeche"));
-    grass.setMove(0, &data.move("Fouet Lianes"));
+    Pokemon fire(&data.species("Charmander"), 50);
+    Pokemon grass(&data.species("Bulbasaur"), 50);
+    fire.setMove(0, &data.move("Ember"));
+    grass.setMove(0, &data.move("Vine Whip"));
     p1.addPokemon(fire);
     p2.addPokemon(grass);
 
@@ -104,10 +104,10 @@ void testWeatherEffect() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon fire(&data.species("Salameche"), 50);
-    Pokemon water(&data.species("Carapuce"), 50);
-    fire.setMove(0, &data.move("Zenith"));
-    water.setMove(0, &data.move("Pistolet a O"));
+    Pokemon fire(&data.species("Charmander"), 50);
+    Pokemon water(&data.species("Squirtle"), 50);
+    fire.setMove(0, &data.move("Sunny Day"));
+    water.setMove(0, &data.move("Water Gun"));
     p1.addPokemon(fire);
     p2.addPokemon(water);
 
@@ -121,11 +121,11 @@ void testGreedyAI() {
     GameData data;
     Trainer p1("P1");
     Trainer p2("P2");
-    Pokemon grass(&data.species("Bulbizarre"), 50);
-    Pokemon fire(&data.species("Salameche"), 50);
-    grass.setMove(0, &data.move("Fouet Lianes"));
-    fire.setMove(0, &data.move("Griffe"));
-    fire.setMove(1, &data.move("Flammeche"));
+    Pokemon grass(&data.species("Bulbasaur"), 50);
+    Pokemon fire(&data.species("Charmander"), 50);
+    grass.setMove(0, &data.move("Vine Whip"));
+    fire.setMove(0, &data.move("Scratch"));
+    fire.setMove(1, &data.move("Ember"));
     p1.addPokemon(grass);
     p2.addPokemon(fire);
 

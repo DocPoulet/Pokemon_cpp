@@ -29,7 +29,7 @@ public:
      * Sortie:
      *   Nature: Nature initialisée avec les trois valeurs fournies.
      */
-    Nature(std::string name = "Hardi",
+    Nature(std::string name = "Hardy",
            Stat increased = Stat::Attack,
            Stat decreased = Stat::Attack);
 

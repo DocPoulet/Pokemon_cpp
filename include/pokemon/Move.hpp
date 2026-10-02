@@ -90,6 +90,13 @@ struct MoveData {
     int drainPercent = 0;
     int minHits = 1;
     int maxHits = 1;
+
+    // Métadonnées du catalogue Showdown. Elles n'affectent pas directement le calcul des dégâts.
+    int generation = 0;
+    int nationalNumber = 0;
+    std::string nonStandard;
+    std::string shortDescription;
+    bool catalogMechanicsComplete = false;
 };
 
 /**

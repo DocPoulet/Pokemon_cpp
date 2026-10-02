@@ -29,7 +29,7 @@ Version actuelle.
 Ajouté :
 
 - Team Builder ;
-- sauvegarde et chargement d'équipes ;
+- import/export d'équipes au format Pokémon Showdown ;
 - modes Joueur vs IA, Joueur vs Joueur et IA vs IA ;
 - catalogue enrichi ;
 - TacticalAI avec décisions de switch ;
@@ -39,4 +39,25 @@ Ajouté :
 Release publique stabilisée, catalogue plus large, documentation et distribution propres.
 
 ## v0.7 — Data-driven Pokemon
+
+### v0.7.2 — Import Showdown
+Import/export de sets et équipes Pokémon Showdown, IV=31 par défaut et conservation des métadonnées futures.
+
 Espèces globales et presets prêts au combat migrés vers JSON, avec movepools, talents, surnoms et champ de forme préparé.
+
+## v0.8 — Complete Catalogs
+Version actuelle
+
+- 951 attaques officielles Showdown ;
+- 317 talents ;
+- 580 objets ;
+- synchronisation reproductible des catalogues ;
+- distinction catalogue / mécanique implémentée.
+- 151 espèces de Kanto ;
+- stats/types/talents depuis Showdown ;
+- learnsets complets reliés au catalogue global ;
+- localisation française des noms ;
+- synchronisation reproductible des espèces.
+
+## v0.9 — Content & Mechanics
+Prévu : enrichissement des espèces/learnsets et implémentation progressive des effets complexes du catalogue.

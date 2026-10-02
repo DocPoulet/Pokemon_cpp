@@ -1,0 +1,4646 @@
+{
+  "version": 2,
+  "source": "Pokemon Showdown snapshot (official entries; CAP/custom excluded)",
+  "items": [
+    {
+      "id": "Ability Shield",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 1881,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Abomasite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 674,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Absolite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 677,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Absolite Z",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2638,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Absorb Bulb",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 545,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Adamant Crystal",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1777,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Adamant Orb",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 135,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Adrenaline Orb",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 846,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Aerodactylite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 672,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Aggronite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 667,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Aguav Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 162,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Air Balloon",
+      "mechanic": "AirBalloon",
+      "generation": 5,
+      "number": 541,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Alakazite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 679,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Aloraichium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 803,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Altarianite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 755,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ampharosite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 658,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Apicot Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 205,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Armor Fossil",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 104,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Aspear Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 153,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Assault Vest",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 640,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Audinite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 757,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Auspicious Armor",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2344,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Babiri Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 199,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Banettite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 668,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Barbaracite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2581,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Baxcalibrite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2648,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Beast Ball",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 851,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Beedrillite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 770,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Belue Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 183,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 155,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Berry Juice",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 43,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Berry Sweet",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1111,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Big Nugget",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 581,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Big Root",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 296,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Binding Band",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 544,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Bitter Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 156,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Black Belt",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 241,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Black Glasses",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 240,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Black Sludge",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 281,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Blastoisinite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 661,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Blazikenite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 664,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Blue Orb",
+      "mechanic": "BlueOrb",
+      "generation": 6,
+      "number": 535,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Bluk Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 165,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Blunder Policy",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1121,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Booster Energy",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 1880,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Bottle Cap",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 795,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Bright Powder",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 213,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Bug Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 558,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Bug Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 909,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Buginium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 787,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Burn Drive",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 118,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Burnt Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 153,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Cameruptite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 767,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Cell Battery",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 546,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Chandelurite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2574,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Charcoal",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 249,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Charizardite X",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 660,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Charizardite Y",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 678,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Charti Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 195,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cheri Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 149,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cherish Ball",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 16,
+      "non_standard": "Unobtainable",
+      "short_description": ""
+    },
+    {
+      "id": "Chesnaughtite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2575,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Chesto Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 150,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Chilan Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 200,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Chill Drive",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 119,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Chimechite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2637,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Chipped Pot",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1254,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Choice Band",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 220,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Choice Scarf",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 287,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Choice Specs",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 297,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Chople Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 189,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Claw Fossil",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 100,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Clear Amulet",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 1882,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Clefablite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2559,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Clover Sweet",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1112,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Coba Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 192,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Colbur Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 198,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cornerstone Mask",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2406,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cornn Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 175,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Cover Fossil",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 572,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Covert Cloak",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 1885,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Crabominite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2644,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Cracked Pot",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1253,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Custap Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 210,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Damp Rock",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 285,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dark Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 562,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Dark Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 919,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Darkinium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 791,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Darkranite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2568,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Dawn Stone",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 109,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Decidium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 798,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Deep Sea Scale",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 227,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Deep Sea Tooth",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 226,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Delphoxite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2576,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Destiny Knot",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 280,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Diancite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 764,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Dive Ball",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 7,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dome Fossil",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 102,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Douse Drive",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 116,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Draco Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 311,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dragalgite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2582,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Dragon Fang",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 250,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dragon Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 561,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Dragon Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 918,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Dragon Scale",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 235,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dragoninite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2562,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Dragonium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 790,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Drampanite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2585,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Dread Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 312,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dream Ball",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 576,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dubious Disc",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 324,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Durin Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 182,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Dusk Ball",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 13,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dusk Stone",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 108,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Earth Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 305,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Eelektrossite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2573,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Eevium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 805,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Eject Button",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 547,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Eject Pack",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1119,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Electirizer",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 322,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Electric Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 550,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Electric Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 915,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Electric Seed",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 881,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Electrium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 779,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Emboarite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2569,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Enigma Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 208,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Eviolite",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 538,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Excadrite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2570,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Expert Belt",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 268,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Fairium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 793,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fairy Feather",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2401,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Fairy Gem",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 715,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fairy Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 920,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Falinksite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2587,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Fast Ball",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 492,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Feraligite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2564,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Fighting Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 553,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fighting Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 904,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fightinium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 782,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Figy Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 159,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Fire Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 548,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fire Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 912,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fire Stone",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 82,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Firium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 777,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fist Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 303,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Flame Orb",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 273,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Flame Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 298,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Float Stone",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 539,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Floettite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2579,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Flower Sweet",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1113,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Flying Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 556,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Flying Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 905,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Flyinium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 785,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Focus Band",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 230,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Focus Sash",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 275,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Fossilized Bird",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1105,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fossilized Dino",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1108,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fossilized Drake",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1107,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Fossilized Fish",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1106,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Friend Ball",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 497,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Froslassite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2566,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Full Incense",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 316,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Galarica Cuff",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1582,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Galarica Wreath",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1592,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Galladite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 756,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ganlon Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 202,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Garchompite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 683,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Garchompite Z",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2640,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Gardevoirite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 657,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Gengarite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 656,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ghost Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 560,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ghost Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 910,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ghostium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 789,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Glalitite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 763,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Glimmoranite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2650,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Gold Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 158,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Gold Bottle Cap",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 796,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Golisopite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2645,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Golurkite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2642,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Grass Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 551,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Grass Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 914,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Grassium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 780,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Grassy Seed",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 884,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Great Ball",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 3,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Greninjite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2577,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Grepa Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 173,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Grip Claw",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 286,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Griseous Core",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1779,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Griseous Orb",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 112,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ground Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 555,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ground Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 907,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Groundium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 784,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Gyaradosite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 676,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Haban Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 197,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Hard Stone",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 238,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Hawluchanite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2583,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Heal Ball",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 14,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Hearthflame Mask",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2408,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Heat Rock",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 284,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Heatranite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2567,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Heavy Ball",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 495,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Heavy-Duty Boots",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1120,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Helix Fossil",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 101,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Heracronite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 680,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Hondew Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 172,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Houndoominite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 666,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Iapapa Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 163,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ice Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 152,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ice Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 552,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ice Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 917,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ice Stone",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 849,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Icicle Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 302,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Icium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 781,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Icy Rock",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 282,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Incinium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 799,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Insect Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 308,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Iron Ball",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 278,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Iron Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 313,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Jaboca Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 211,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Jaw Fossil",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 710,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Kangaskhanite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 675,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Kasib Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 196,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Kebia Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 190,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Kee Berry",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 687,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Kelpsy Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 170,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "King's Rock",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 221,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Kommonium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 926,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Lagging Tail",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 279,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Lansat Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 206,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Latiasite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 684,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Latiosite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 685,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Lax Incense",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 255,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Leaf Stone",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 85,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Leek",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 259,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Leftovers",
+      "mechanic": "Leftovers",
+      "generation": 2,
+      "number": 234,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Leppa Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 154,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Level Ball",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 493,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Liechi Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 201,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Life Orb",
+      "mechanic": "LifeOrb",
+      "generation": 4,
+      "number": 270,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Light Ball",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 236,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Light Clay",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 269,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Loaded Dice",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 1886,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Lopunnite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 768,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Love Ball",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 496,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Love Sweet",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1110,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Lucarionite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 673,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Lucarionite Z",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2641,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Lucky Punch",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 256,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Lum Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 157,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Luminous Moss",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 648,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Lunalium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 922,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Lure Ball",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 494,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Lustrous Globe",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1778,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Lustrous Orb",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 136,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Luxury Ball",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 11,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Lycanium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 925,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Macho Brace",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 215,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Magearnite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2646,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Magmarizer",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 323,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Magnet",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 242,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mago Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 161,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Magost Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 176,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Mail",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 137,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Malamarite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2580,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Malicious Armor",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 1861,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Manectite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 682,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Maranga Berry",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 688,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Marshadium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 802,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Master Ball",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 1,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Masterpiece Teacup",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2404,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mawilite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 681,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Meadow Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 301,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Medichamite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 665,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Meganiumite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2563,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Mental Herb",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 219,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Meowsticite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2643,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Metagrossite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 758,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Metal Alloy",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2482,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Metal Coat",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 233,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Metal Powder",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 257,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Metronome",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 277,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mewnium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 806,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Mewtwonite X",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 662,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Mewtwonite Y",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 663,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Micle Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 209,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mimikium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 924,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Mind Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 307,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mint Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 150,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Miracle Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 157,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Miracle Seed",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 239,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mirror Herb",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 1883,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Misty Seed",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 883,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Moon Ball",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 498,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Moon Stone",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 81,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Muscle Band",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 266,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mystery Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 154,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Mystic Water",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 243,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Nanab Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 166,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Nest Ball",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 8,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Net Ball",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 6,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Never-Melt Ice",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 246,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Nomel Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 178,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Normal Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 564,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Normalium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 776,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Occa Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 184,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Odd Incense",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 314,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Old Amber",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 103,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Oran Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 155,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Oval Stone",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 110,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pamtre Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 180,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Park Ball",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 500,
+      "non_standard": "Unobtainable",
+      "short_description": ""
+    },
+    {
+      "id": "Passho Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 185,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Payapa Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 193,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pecha Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 151,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Persim Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 156,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Petaya Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 204,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pidgeotite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 762,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Pikanium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 794,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Pikashunium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 836,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Pinap Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 168,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Pink Bow",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 251,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Pinsirite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 671,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Pixie Plate",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 644,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Plume Fossil",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 573,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Poison Barb",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 245,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Poison Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 554,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Poison Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 906,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Poisonium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 783,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Poke Ball",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 4,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Polkadot Bow",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 251,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Pomeg Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 169,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power Anklet",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 293,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power Band",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 292,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power Belt",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 290,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power Bracer",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 289,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power Herb",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 271,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power Lens",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 291,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power Weight",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 294,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Premier Ball",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 12,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pretty Feather",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 571,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Primarium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 800,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Prism Scale",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 537,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Protective Pads",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 880,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Protector",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 321,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "PRZ Cure Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 149,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "PSN Cure Berry",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 151,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Psychic Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 557,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Psychic Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 916,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Psychic Seed",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 882,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Psychium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 786,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Punching Glove",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 1884,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pyroarite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2578,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Qualot Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 171,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Quick Ball",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 15,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Quick Claw",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 217,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Quick Powder",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 274,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Rabuta Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 177,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Raichunite X",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2635,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Raichunite Y",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2636,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Rare Bone",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 106,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rawst Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 152,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Razor Claw",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 326,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Razor Fang",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 327,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Razz Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 164,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Reaper Cloth",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 325,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Red Card",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 542,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Red Orb",
+      "mechanic": "RedOrb",
+      "generation": 6,
+      "number": 534,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Repeat Ball",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 9,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ribbon Sweet",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1115,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rindo Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 187,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ring Target",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 543,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rock Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 559,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Rock Incense",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 315,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Rock Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 908,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Rockium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 788,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Rocky Helmet",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 540,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Room Service",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1122,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Root Fossil",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 99,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Rose Incense",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 318,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Roseli Berry",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 686,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rowap Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 212,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rusted Shield",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1104,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rusted Sword",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1103,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sablenite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 754,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Sachet",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 647,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Safari Ball",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 5,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Safety Goggles",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 650,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sail Fossil",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 711,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Salac Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 203,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Salamencite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 769,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Sceptilite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 753,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Scizorite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 670,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Scolipite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2571,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Scope Lens",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 232,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Scovillainite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2647,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Scraftinite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2572,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Sea Incense",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 254,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Sharp Beak",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 244,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sharpedonite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 759,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Shed Shell",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 295,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Shell Bell",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 253,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Shiny Stone",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 107,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Shock Drive",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 117,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Shuca Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 191,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Silk Scarf",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 251,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Silver Powder",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 222,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sitrus Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 158,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Skarmorite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2565,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Skull Fossil",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 105,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Sky Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 306,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Slowbronite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 760,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Smooth Rock",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 283,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Snorlium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 804,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Snowball",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 649,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Soft Sand",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 237,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Solganium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 921,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Soul Dew",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 225,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Spell Tag",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 247,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Spelon Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 179,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Splash Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 299,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Spooky Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 310,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sport Ball",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 499,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Star Sweet",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1114,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Staraptite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2639,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Starf Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 207,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Starminite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2561,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Steel Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 563,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Steel Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 911,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Steelium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 792,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Steelixite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 761,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Stick",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 259,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Sticky Barb",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 288,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Stone Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 309,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Strange Ball",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1785,
+      "non_standard": "Unobtainable",
+      "short_description": ""
+    },
+    {
+      "id": "Strawberry Sweet",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1109,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sun Stone",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 80,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Swampertite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 752,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Sweet Apple",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1116,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Syrupy Apple",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2402,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tamato Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 174,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tanga Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 194,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tapunium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 801,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Tart Apple",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1117,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tatsugirinite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2649,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Terrain Extender",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 879,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Thick Club",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 258,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Throat Spray",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1118,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Thunder Stone",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 83,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Timer Ball",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 10,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Toxic Orb",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 272,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Toxic Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 304,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "TR00",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1130,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR01",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1131,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR02",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1132,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR03",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1133,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR04",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1134,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR05",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1135,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR06",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1136,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR07",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1137,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR08",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1138,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR09",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1139,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR10",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1140,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR11",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1141,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR12",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1142,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR13",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1143,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR14",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1144,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR15",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1145,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR16",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1146,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR17",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1147,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR18",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1148,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR19",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1149,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR20",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1150,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR21",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1151,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR22",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1152,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR23",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1153,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR24",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1154,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR25",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1155,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR26",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1156,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR27",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1157,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR28",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1158,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR29",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1159,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR30",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1160,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR31",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1161,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR32",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1162,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR33",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1163,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR34",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1164,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR35",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1165,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR36",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1166,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR37",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1167,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR38",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1168,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR39",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1169,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR40",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1170,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR41",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1171,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR42",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1172,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR43",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1173,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR44",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1174,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR45",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1175,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR46",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1176,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR47",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1177,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR48",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1178,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR49",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1179,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR50",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1180,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR51",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1181,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR52",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1182,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR53",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1183,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR54",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1184,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR55",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1185,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR56",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1186,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR57",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1187,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR58",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1188,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR59",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1189,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR60",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1190,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR61",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1191,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR62",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1192,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR63",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1193,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR64",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1194,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR65",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1195,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR66",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1196,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR67",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1197,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR68",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1198,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR69",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1199,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR70",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1200,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR71",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1201,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR72",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1202,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR73",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1203,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR74",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1204,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR75",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1205,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR76",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1206,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR77",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1207,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR78",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1208,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR79",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1209,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR80",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1210,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR81",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1211,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR82",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1212,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR83",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1213,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR84",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1214,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR85",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1215,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR86",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1216,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR87",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1217,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR88",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1218,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR89",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1219,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR90",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1220,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR91",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1221,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR92",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1222,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR93",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1223,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR94",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1224,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR95",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1225,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR96",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1226,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR97",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1227,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR98",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1228,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "TR99",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1229,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Twisted Spoon",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 248,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tyranitarite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 669,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Ultra Ball",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 2,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ultranecrozium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 923,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Unremarkable Teacup",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2403,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Up-Grade",
+      "mechanic": "None",
+      "generation": 2,
+      "number": 252,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Utility Umbrella",
+      "mechanic": "None",
+      "generation": 8,
+      "number": 1123,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Venusaurite",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 659,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Victreebelite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2560,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Wacan Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 186,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Water Gem",
+      "mechanic": "None",
+      "generation": 5,
+      "number": 549,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Water Memory",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 913,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Water Stone",
+      "mechanic": "None",
+      "generation": 1,
+      "number": 84,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Waterium Z",
+      "mechanic": "None",
+      "generation": 7,
+      "number": 778,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Watmel Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 181,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Wave Incense",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 317,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Weakness Policy",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 639,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wellspring Mask",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2407,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wepear Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 167,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "Whipped Dream",
+      "mechanic": "None",
+      "generation": 6,
+      "number": 646,
+      "non_standard": "Past",
+      "short_description": ""
+    },
+    {
+      "id": "White Herb",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 214,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wide Lens",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 265,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wiki Berry",
+      "mechanic": "None",
+      "generation": 3,
+      "number": 160,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wise Glasses",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 267,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Yache Berry",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 188,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Zap Plate",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 300,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Zeraorite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2586,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Zoom Lens",
+      "mechanic": "None",
+      "generation": 4,
+      "number": 276,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Zygardite",
+      "mechanic": "None",
+      "generation": 9,
+      "number": 2584,
+      "non_standard": "Future",
+      "short_description": ""
+    }
+  ]
+}

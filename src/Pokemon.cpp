@@ -24,6 +24,16 @@ const std::string& Pokemon::nickname() const { return nickname_; }
 void Pokemon::setNickname(std::string nickname) { nickname_ = std::move(nickname); }
 const std::string& Pokemon::form() const { return form_; }
 void Pokemon::setForm(std::string form) { form_ = form.empty() ? "Base" : std::move(form); }
+const std::string& Pokemon::gender() const { return gender_; }
+void Pokemon::setGender(std::string gender) { gender_ = std::move(gender); }
+bool Pokemon::shiny() const { return shiny_; }
+void Pokemon::setShiny(bool shiny) { shiny_ = shiny; }
+const std::optional<Type>& Pokemon::teraType() const { return teraType_; }
+void Pokemon::setTeraType(std::optional<Type> type) { teraType_ = type; }
+int Pokemon::dynamaxLevel() const { return dynamaxLevel_; }
+void Pokemon::setDynamaxLevel(int level) { dynamaxLevel_ = std::clamp(level, 0, 10); }
+bool Pokemon::gigantamax() const { return gigantamax_; }
+void Pokemon::setGigantamax(bool enabled) { gigantamax_ = enabled; }
 int Pokemon::level() const { return level_; }
 int Pokemon::currentHP() const { return currentHP_; }
 int Pokemon::maxHP() const { return stat(Stat::HP); }
@@ -50,7 +60,7 @@ int Pokemon::stat(Stat statValue) const {
     const int ev = evs_[i];
 
     if (statValue == Stat::HP) {
-        if (species().name() == "Munja") return 1;
+        if (species().name() == "Shedinja") return 1;
         return (((2 * base + iv + ev / 4) * level_) / 100) + level_ + 10;
     }
 
@@ -146,12 +156,12 @@ void Pokemon::setStatusTurns(int turns) {
     statusTurns_ = std::max(0, turns);
 }
 
-HeldItem Pokemon::heldItem() const { return heldItem_; }
+const ItemData* Pokemon::heldItem() const { return heldItem_; }
 
-void Pokemon::setHeldItem(HeldItem item) { heldItem_ = item; }
+void Pokemon::setHeldItem(const ItemData* item) { heldItem_ = item; }
 
-Ability Pokemon::ability() const { return ability_; }
+const AbilityData* Pokemon::ability() const { return ability_; }
 
-void Pokemon::setAbility(Ability abilityValue) { ability_ = abilityValue; }
+void Pokemon::setAbility(const AbilityData* abilityValue) { ability_ = abilityValue; }
 
 } // namespace pokemon

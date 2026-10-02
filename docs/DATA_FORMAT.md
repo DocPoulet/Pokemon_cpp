@@ -1,103 +1,87 @@
-# Données JSON — v0.7
+# Données JSON — v0.7.4
 
-La v0.7 sépare désormais les données globales des espèces et les Pokémon déjà configurés pour le combat.
+La v0.7.4 utilise un modèle **catalogue global + références**. Une attaque, un talent ou un objet n'est défini qu'une seule fois. Les autres fichiers stockent uniquement son identifiant canonique anglais.
+
+## `data/moves.json`
+
+Contient toutes les définitions d'attaques : `id`, type, catégorie, puissance, précision, PP, priorité, recul, drain, multi-coups et effets secondaires.
+
+Exemple :
+
+```json
+{
+  "id": "Energy Ball",
+  "type": "Grass",
+  "power": 90,
+  "category": "Special",
+  "accuracy": 100,
+  "critical_bonus": 0,
+  "pp": 10,
+  "priority": 0,
+  "recoil_percent": 0,
+  "drain_percent": 0,
+  "min_hits": 1,
+  "max_hits": 1,
+  "effects": [
+    {"kind":"StatChange","target":"Opponent","stat":"SpecialDefense","stages":-1,"chance":10}
+  ]
+}
+```
+
+## `data/abilities.json`
+
+Contient les talents globaux. `id` est l'identifiant métier ; `mechanic` indique au moteur quel comportement déjà implémenté appliquer.
+
+```json
+{"id":"Overgrow","mechanic":"Overgrow"}
+```
+
+## `data/items.json`
+
+Même principe pour les objets tenus.
+
+```json
+{"id":"Life Orb","mechanic":"LifeOrb"}
+```
 
 ## `data/pokemon_species.json`
 
-Ce fichier décrit une espèce, pas un Pokémon individuel.
-
-Chaque entrée contient :
-
-- `name` : nom canonique de l'espèce ;
-- `base_stats` : HP, Attack, Defense, SpecialAttack, SpecialDefense, Speed ;
-- `types` : un ou deux types ;
-- `move_pool` : attaques que l'espèce est autorisée à sélectionner ;
-- `abilities` : talents possibles de l'espèce.
-
-Exemple :
+Une espèce stocke ses stats/types et **des références par ID** vers les catalogues :
 
 ```json
 {
-  "name": "Salameche",
-  "base_stats": {
-    "hp": 39,
-    "attack": 52,
-    "defense": 43,
-    "special_attack": 60,
-    "special_defense": 50,
-    "speed": 65
-  },
-  "types": ["Fire"],
-  "move_pool": ["Flammeche", "Griffe", "Vive-Attaque"],
-  "abilities": ["Blaze"]
+  "name": "Bulbasaur",
+  "base_stats": {"hp":45,"attack":49,"defense":49,"special_attack":65,"special_defense":65,"speed":45},
+  "types": ["Grass", "Poison"],
+  "move_pool": ["Vine Whip", "Energy Ball", "Body Slam"],
+  "abilities": ["Overgrow"]
 }
 ```
 
-`GameData` vérifie au chargement que les attaques référencées existent, qu'il n'y a pas de doublons et qu'au moins un talent non nul est déclaré.
+Au chargement, `GameData` transforme ces IDs en pointeurs vers les objets globaux. `PokemonSpecies` ne possède donc aucune copie de `MoveData` ou `AbilityData`.
 
 ## `data/battle_pokemon.json`
 
-Ce fichier contient des Pokémon individuels prêts au combat et réutilisables dans plusieurs équipes.
-
-Chaque preset contient :
-
-- `id` : identifiant unique du preset ;
-- `species` : espèce globale ;
-- `nickname` : surnom optionnel. Une chaîne vide utilise le nom de l'espèce ;
-- `form` : identifiant de forme. En v0.7, `Base` est utilisé et ce champ n'a encore aucun effet mécanique ;
-- `level` : niveau entre 1 et 100 ;
-- `nature` : nom + statistique augmentée + statistique diminuée ;
-- `ivs` : six IV entre 0 et 31 ;
-- `evs` : six EV, avec un maximum de 252 par statistique et 510 au total ;
-- `moves` : entre une et quatre attaques, sans doublon et obligatoirement dans le movepool ;
-- `ability` : talent obligatoire et autorisé par l'espèce ;
-- `held_item` : objet tenu, `None` étant autorisé.
-
-Exemple :
+Un Pokémon prêt au combat stocke seulement les choix faits dans les listes autorisées :
 
 ```json
 {
-  "id": "quick_salameche",
-  "species": "Salameche",
-  "nickname": "",
-  "form": "Base",
-  "level": 50,
-  "nature": {
-    "name": "Timide",
-    "increased": "Speed",
-    "decreased": "Attack"
-  },
-  "ivs": {
-    "hp": 31,
-    "attack": 31,
-    "defense": 31,
-    "special_attack": 31,
-    "special_defense": 31,
-    "speed": 31
-  },
-  "evs": {
-    "hp": 0,
-    "attack": 0,
-    "defense": 0,
-    "special_attack": 252,
-    "special_defense": 4,
-    "speed": 252
-  },
-  "moves": ["Flammeche", "Vive-Attaque", "Feu Follet", "Aiguisage"],
-  "ability": "Blaze",
-  "held_item": "LifeOrb"
+  "species": "Bulbasaur",
+  "moves": ["Energy Ball", "Body Slam"],
+  "ability": "Overgrow",
+  "held_item": "Air Balloon"
 }
 ```
 
-## Champ `form`
+`TeamBuilder` vérifie que :
 
-`form` est volontairement préparé avant l'implémentation des formes alternatives.
+- chaque move existe dans `moves.json` et appartient au movepool de l'espèce ;
+- le talent existe dans `abilities.json` et appartient aux talents autorisés ;
+- l'objet existe dans `items.json` ou vaut `None` ;
+- les attaques choisies sont uniques.
 
-En v0.7 :
+Une fois validé, le `Pokemon` contient des références vers les mêmes objets globaux que son espèce et les autres Pokémon.
 
-- la valeur est chargée ;
-- elle est stockée dans `Pokemon` ;
-- elle est sauvegardée/rechargée dans les équipes ;
-- elle n'altère pas les statistiques, types, attaques, talents ou transformations.
+## Fallbacks
 
-Une future version pourra associer cet identifiant à des formes régionales, Méga-Évolutions, Primo-Résurgences, Dynamax/Gigamax ou autres transformations sans changer le format des presets.
+Si un catalogue global est absent ou illisible, `GameData` installe un catalogue minimal de secours afin que `MissingNo.` puisse toujours être construit. Les erreurs sont affichées sur `stderr` mais ne bloquent pas le programme.

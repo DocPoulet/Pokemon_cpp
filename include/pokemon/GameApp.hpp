@@ -19,7 +19,7 @@ namespace pokemon {
  *   BattlePokemonData: presets JSON de Pokémon prêts au combat.
  *
  * Sortie:
- *   GameApp: application capable de construire des équipes, charger des sauvegardes et lancer un combat.
+ *   GameApp: application capable de construire des équipes, importer/exporter des équipes Showdown et lancer un combat.
  */
 class GameApp {
 public:
@@ -36,6 +36,7 @@ private:
     std::string readWord();
     Trainer makeQuickTeam(const std::string& name, int variant) const;
     Trainer buildTeamInteractive(const std::string& name);
+    Trainer importShowdownTeam(const std::string& name);
     void runBattle(GameMode mode, Trainer player1, Trainer player2);
 };
 

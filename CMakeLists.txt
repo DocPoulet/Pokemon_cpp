@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Pokemon_cpp VERSION 0.7.1 LANGUAGES CXX)
+project(Pokemon_cpp VERSION 0.8.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -10,9 +10,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_library(pokemon_engine
     src/JsonLite.cpp
     src/DataCodec.cpp
+    src/Localization.cpp
+    src/ShowdownImporter.cpp
+    src/ShowdownExporter.cpp
     src/BattlePokemonData.cpp
     src/Types.cpp
-    src/TeamIO.cpp
     src/TeamBuilder.cpp
     src/GameMode.cpp
     src/Mechanics.cpp
@@ -65,6 +67,18 @@ add_executable(pokemon_tests_v07 tests/test_v07.cpp)
 target_link_libraries(pokemon_tests_v07 PRIVATE pokemon_engine)
 add_test(NAME pokemon_v07_tests COMMAND pokemon_tests_v07)
 
+add_executable(pokemon_tests_v072 tests/test_v072.cpp)
+target_link_libraries(pokemon_tests_v072 PRIVATE pokemon_engine)
+add_test(NAME pokemon_v072_tests COMMAND pokemon_tests_v072)
+
+add_executable(pokemon_tests_v073 tests/test_v073.cpp)
+target_link_libraries(pokemon_tests_v073 PRIVATE pokemon_engine)
+add_test(NAME pokemon_v073_tests COMMAND pokemon_tests_v073)
+
+add_executable(pokemon_tests_v074 tests/test_v074.cpp)
+target_link_libraries(pokemon_tests_v074 PRIVATE pokemon_engine)
+add_test(NAME pokemon_v074_tests COMMAND pokemon_tests_v074)
+
 # Documentation HTML optionnelle. L'absence de Doxygen ne bloque jamais le build.
 find_package(Doxygen QUIET)
 if(DOXYGEN_FOUND)
@@ -75,3 +89,26 @@ if(DOXYGEN_FOUND)
         VERBATIM
     )
 endif()
+
+add_executable(pokemon_tests_v075 tests/test_v075.cpp)
+target_link_libraries(pokemon_tests_v075 PRIVATE pokemon_engine)
+add_test(NAME pokemon_v075_tests COMMAND pokemon_tests_v075)
+
+add_executable(pokemon_tests_v08 tests/test_v08.cpp)
+target_link_libraries(pokemon_tests_v08 PRIVATE pokemon_engine)
+add_test(NAME pokemon_v08_tests COMMAND pokemon_tests_v08)
+
+# Synchronisation optionnelle des catalogues depuis Pokemon Showdown.
+find_package(Python3 COMPONENTS Interpreter QUIET)
+if(Python3_Interpreter_FOUND)
+    add_custom_target(sync_catalogs
+        COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/sync_showdown_catalogs.py --output ${CMAKE_CURRENT_SOURCE_DIR}/data
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Synchronisation des catalogues Pokemon Showdown"
+        VERBATIM
+    )
+endif()
+
+add_executable(pokemon_tests_v081 tests/test_v081.cpp)
+target_link_libraries(pokemon_tests_v081 PRIVATE pokemon_engine)
+add_test(NAME pokemon_v081_tests COMMAND pokemon_tests_v081)

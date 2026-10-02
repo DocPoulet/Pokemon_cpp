@@ -1,7 +1,8 @@
 #include "pokemon/BattlePokemonData.hpp"
 #include "pokemon/GameData.hpp"
 #include "pokemon/TeamBuilder.hpp"
-#include "pokemon/TeamIO.hpp"
+#include "pokemon/ShowdownExporter.hpp"
+#include "pokemon/ShowdownImporter.hpp"
 
 #include <cassert>
 #include <iostream>
@@ -13,12 +14,12 @@ using namespace pokemon;
 namespace {
 void testSpeciesLoadedFromJson() {
     GameData data;
-    const auto& salameche = data.species("Salameche");
+    const auto& salameche = data.species("Charmander");
     assert(salameche.baseStat(Stat::Speed) == 65);
-    assert(salameche.canLearnMove("Flammeche"));
-    assert(!salameche.canLearnMove("Pistolet a O"));
-    assert(salameche.canHaveAbility(Ability::Blaze));
-    assert(!salameche.canHaveAbility(Ability::Torrent));
+    assert(salameche.canLearnMove("Ember"));
+    assert(!salameche.canLearnMove("Water Gun"));
+    assert(salameche.canHaveAbility(&data.ability("Blaze")));
+    assert(!salameche.canHaveAbility(&data.ability("Torrent")));
 }
 
 void testBattlePokemonPresets() {
@@ -26,20 +27,20 @@ void testBattlePokemonPresets() {
     BattlePokemonData presets(data);
     assert(presets.has("quick_salameche"));
     Pokemon pokemon = presets.build("quick_bulbizarre");
-    assert(pokemon.species().name() == "Bulbizarre");
+    assert(pokemon.species().name() == "Bulbasaur");
     assert(pokemon.name() == "Bulbi");
     assert(pokemon.nickname() == "Bulbi");
     assert(pokemon.form() == "Base");
-    assert(pokemon.ability() == Ability::Overgrow);
+    assert(pokemon.ability() && pokemon.ability()->id == "Overgrow");
 }
 
 void testDuplicateMovesRejected() {
     GameData data;
     TeamBuilder builder(data);
     PokemonConfig config;
-    config.species = "Salameche";
-    config.moves = {"Flammeche", "Flammeche", "", ""};
-    config.ability = Ability::Blaze;
+    config.species = "Charmander";
+    config.moves = {"Ember", "Ember", "", ""};
+    config.ability = "Blaze";
     assert(!builder.validate(config).empty());
 }
 
@@ -47,9 +48,9 @@ void testMovePoolRejected() {
     GameData data;
     TeamBuilder builder(data);
     PokemonConfig config;
-    config.species = "Salameche";
-    config.moves = {"Pistolet a O", "", "", ""};
-    config.ability = Ability::Blaze;
+    config.species = "Charmander";
+    config.moves = {"Water Gun", "", "", ""};
+    config.ability = "Blaze";
     assert(!builder.validate(config).empty());
 }
 
@@ -57,13 +58,13 @@ void testNullAndWrongAbilityRejected() {
     GameData data;
     TeamBuilder builder(data);
     PokemonConfig config;
-    config.species = "Carapuce";
-    config.moves = {"Pistolet a O", "", "", ""};
-    config.ability = Ability::None;
+    config.species = "Squirtle";
+    config.moves = {"Water Gun", "", "", ""};
+    config.ability.clear();
     assert(!builder.validate(config).empty());
-    config.ability = Ability::Blaze;
+    config.ability = "Blaze";
     assert(!builder.validate(config).empty());
-    config.ability = Ability::Torrent;
+    config.ability = "Torrent";
     assert(builder.validate(config).empty());
 }
 
@@ -71,20 +72,19 @@ void testNicknameFormAndTeamRoundTrip() {
     GameData data;
     TeamBuilder builder(data);
     PokemonConfig config;
-    config.species = "Salameche";
+    config.species = "Charmander";
     config.nickname = "Zippo";
     config.form = "Base";
     config.level = 42;
     config.ivs.fill(31);
-    config.moves = {"Flammeche", "Vive-Attaque", "", ""};
-    config.ability = Ability::Blaze;
-    config.heldItem = HeldItem::LifeOrb;
+    config.moves = {"Ember", "Quick Attack", "", ""};
+    config.ability = "Blaze";
+    config.heldItem = "Life Orb";
 
     Trainer trainer("Test");
     builder.addPokemon(trainer, config);
-    std::stringstream saved;
-    TeamIO::save(trainer, saved);
-    Trainer loaded = TeamIO::load(saved, data);
+    const std::string saved = ShowdownExporter::toText(trainer);
+    Trainer loaded = ShowdownImporter::buildTeam(saved, "Test", data);
     assert(loaded.team().size() == 1);
     assert(loaded.team()[0].nickname() == "Zippo");
     assert(loaded.team()[0].name() == "Zippo");
@@ -96,7 +96,7 @@ void testEmptyNicknameFallsBackToSpecies() {
     BattlePokemonData presets(data);
     Pokemon pokemon = presets.build("quick_salameche");
     assert(pokemon.nickname().empty());
-    assert(pokemon.name() == "Salameche");
+    assert(pokemon.name() == "Charmander");
 }
 
 void testMissingNoFallback() {
@@ -118,7 +118,7 @@ void testMissingNoFallback() {
     assert(pokemon.species().types().size() == 2);
     assert(pokemon.species().types()[0] == Type::Flying);
     assert(pokemon.species().types()[1] == Type::Normal);
-    assert(pokemon.ability() == Ability::None);
+    assert(pokemon.ability() == nullptr);
 
     int moveCount = 0;
     std::set<std::string> names;

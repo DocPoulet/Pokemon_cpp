@@ -1,0 +1,2542 @@
+{
+  "version": 2,
+  "source": "Pokemon Showdown snapshot (official entries; CAP/custom excluded)",
+  "abilities": [
+    {
+      "id": "Adaptability",
+      "mechanic": "Adaptability",
+      "generation": 0,
+      "number": 91,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Aerilate",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 184,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Aftermath",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 106,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Air Lock",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 76,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Analytic",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 148,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Anger Point",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 83,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Anger Shell",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 271,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Anticipation",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 107,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Arena Trap",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 71,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Armor Tail",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 296,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Aroma Veil",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 165,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "As One (Glastrier)",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 266,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "As One (Spectrier)",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 267,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Aura Break",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 188,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Aura Guard",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 319,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Bad Dreams",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 123,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ball Fetch",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 237,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Battery",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 217,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Battle Armor",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 4,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Battle Bond",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 210,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Beads of Ruin",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 284,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Beast Boost",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 224,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Berserk",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 201,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Big Pecks",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 145,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Blaze",
+      "mechanic": "Blaze",
+      "generation": 0,
+      "number": 66,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Bulletproof",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 171,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cheek Pouch",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 167,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Chilling Neigh",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 264,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Chlorophyll",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 34,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Clear Body",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 29,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cloud Nine",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 13,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Color Change",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 16,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Comatose",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 213,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Commander",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 279,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Competitive",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 172,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Compound Eyes",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 14,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Contrary",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 126,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Corrosion",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 212,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Costar",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 294,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cotton Down",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 238,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cud Chew",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 291,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Curious Medicine",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 261,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cursed Body",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 130,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Cute Charm",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 56,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Damp",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 6,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dancer",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 216,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dark Aura",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 186,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dauntless Shield",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 235,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dazzling",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 219,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Defeatist",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 129,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Defiant",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 128,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Delta Stream",
+      "mechanic": "DeltaStream",
+      "generation": 0,
+      "number": 191,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Desolate Land",
+      "mechanic": "DesolateLand",
+      "generation": 0,
+      "number": 190,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Disguise",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 209,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Download",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 88,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dragon's Maw",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 263,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dragonize",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 312,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Drizzle",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 2,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Drought",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 70,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Dry Skin",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 87,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Early Bird",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 48,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Earth Eater",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 297,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Eelevate",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 313,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Effect Spore",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 27,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Electric Surge",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 226,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Electromorphosis",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 280,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Embody Aspect (Cornerstone)",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 304,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Embody Aspect (Hearthflame)",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 303,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Embody Aspect (Teal)",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 301,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Embody Aspect (Wellspring)",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 302,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Emergency Exit",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 194,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Fairy Aura",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 187,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Filter",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 111,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Fire Mane",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 316,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Flame Body",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 49,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Flare Boost",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 138,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Flash Fire",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 18,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Flower Gift",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 122,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Flower Veil",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 166,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Fluffy",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 218,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Forecast",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 59,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Forewarn",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 108,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Friend Guard",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 132,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Frisk",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 119,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Full Metal Body",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 230,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Fur Coat",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 169,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Gale Wings",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 177,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Galvanize",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 206,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Gluttony",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 82,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Good as Gold",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 283,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Gooey",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 183,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Gorilla Tactics",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 255,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Grass Pelt",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 179,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Grassy Surge",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 229,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Grim Neigh",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 265,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Guard Dog",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 275,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Gulp Missile",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 241,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Guts",
+      "mechanic": "Guts",
+      "generation": 0,
+      "number": 62,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Hadron Engine",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 289,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Harvest",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 139,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Healer",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 131,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Heatproof",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 85,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Heavy Metal",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 134,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Honey Gather",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 118,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Hospitality",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 299,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Huge Power",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 37,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Hunger Switch",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 258,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Hustle",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 55,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Hydration",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 93,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Hyper Cutter",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 52,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ice Body",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 115,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ice Face",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 248,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ice Scales",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 246,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Illuminate",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 35,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Illusion",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 149,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Immunity",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 17,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Imposter",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 150,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Infiltrator",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 151,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Innards Out",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 215,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Inner Focus",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 39,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Insomnia",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 15,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Intimidate",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 22,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Intrepid Sword",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 234,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Iron Barbs",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 160,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Iron Fist",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 89,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Justified",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 154,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Keen Eye",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 51,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Klutz",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 103,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Leaf Guard",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 102,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Levitate",
+      "mechanic": "Levitate",
+      "generation": 0,
+      "number": 26,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Libero",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 236,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Light Metal",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 135,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Lightning Rod",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 31,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Limber",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 7,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Lingering Aroma",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 268,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Liquid Ooze",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 64,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Liquid Voice",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 204,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Long Reach",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 203,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Magic Bounce",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 156,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Magic Guard",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 98,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Magician",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 170,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Magma Armor",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 40,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Magnet Pull",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 42,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Marvel Scale",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 63,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mega Launcher",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 178,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mega Sol",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 315,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Merciless",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 196,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mimicry",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 250,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mind's Eye",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 300,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Minus",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 58,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mirror Armor",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 240,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Misty Surge",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 228,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mold Breaker",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 104,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Moody",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 141,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Motor Drive",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 78,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Moxie",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 153,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Multiscale",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 136,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Multitype",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 121,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mummy",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 152,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Mycelium Might",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 298,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Natural Cure",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 30,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Neuroforce",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 233,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Neutralizing Gas",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 256,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "No Guard",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 99,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Normalize",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 96,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Oblivious",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 12,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Opportunist",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 290,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Orichalcum Pulse",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 288,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Overcoat",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 142,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Overgrow",
+      "mechanic": "Overgrow",
+      "generation": 0,
+      "number": 65,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Own Tempo",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 20,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Parental Bond",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 185,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pastel Veil",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 257,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Perish Body",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 253,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pickpocket",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 124,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pickup",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 53,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Piercing Drill",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 311,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Pixilate",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 182,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Plus",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 57,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Poison Heal",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 90,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Poison Point",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 38,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Poison Puppeteer",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 310,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Poison Touch",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 143,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power Construct",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 211,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power of Alchemy",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 223,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Power Spot",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 249,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Prankster",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 158,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pressure",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 46,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Primordial Sea",
+      "mechanic": "PrimordialSea",
+      "generation": 0,
+      "number": 189,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Prism Armor",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 232,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Propeller Tail",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 239,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Protean",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 168,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Protosynthesis",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 281,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Psychic Surge",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 227,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Punk Rock",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 244,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Pure Power",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 74,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Purifying Salt",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 272,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Quark Drive",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 282,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Queenly Majesty",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 214,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Quick Draw",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 259,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Quick Feet",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 95,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rain Dish",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 44,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rattled",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 155,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Receiver",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 222,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Reckless",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 120,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Refrigerate",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 174,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Regenerator",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 144,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Ripen",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 247,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rivalry",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 79,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "RKS System",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 225,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rock Head",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 69,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rocky Payload",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 276,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Rough Skin",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 24,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Run Away",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 50,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sand Force",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 159,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sand Rush",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 146,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sand Spit",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 245,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sand Stream",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 45,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sand Veil",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 8,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sap Sipper",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 157,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Schooling",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 208,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Scrappy",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 113,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Screen Cleaner",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 251,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Seed Sower",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 269,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Serene Grace",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 32,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Shadow Shield",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 231,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Shadow Tag",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 23,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sharpness",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 292,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Shed Skin",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 61,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sheer Force",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 125,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Shell Armor",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 75,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Shield Dust",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 19,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Shields Down",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 197,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Simple",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 86,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Skill Link",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 92,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Slow Start",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 112,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Slush Rush",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 202,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sniper",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 97,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Snow Cloak",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 81,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Snow Warning",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 117,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Solar Power",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 94,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Solid Rock",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 116,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Soul-Heart",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 220,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Soundproof",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 43,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Speed Boost",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 3,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Spicy Spray",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 318,
+      "non_standard": "Future",
+      "short_description": ""
+    },
+    {
+      "id": "Stakeout",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 198,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Stall",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 100,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Stalwart",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 242,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Stamina",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 192,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Stance Change",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 176,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Static",
+      "mechanic": "Static",
+      "generation": 0,
+      "number": 9,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Steadfast",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 80,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Steam Engine",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 243,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Steelworker",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 200,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Steely Spirit",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 252,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Stench",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 1,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sticky Hold",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 60,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Storm Drain",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 114,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Strong Jaw",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 173,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sturdy",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 5,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Suction Cups",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 21,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Super Luck",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 105,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Supersweet Syrup",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 306,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Supreme Overlord",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 293,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Surge Surfer",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 207,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Swarm",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 68,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sweet Veil",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 175,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Swift Swim",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 33,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Sword of Ruin",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 285,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Symbiosis",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 180,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Synchronize",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 28,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tablets of Ruin",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 284,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tangled Feet",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 77,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tangling Hair",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 221,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Technician",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 101,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Telepathy",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 140,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tera Shell",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 308,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tera Shift",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 307,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Teraform Zero",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 309,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Teravolt",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 164,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Thermal Exchange",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 270,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Thick Fat",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 47,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tinted Lens",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 110,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Torrent",
+      "mechanic": "Torrent",
+      "generation": 0,
+      "number": 67,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Tough Claws",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 181,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Toxic Boost",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 137,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Toxic Chain",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 305,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Toxic Debris",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 295,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Trace",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 36,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Transistor",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 262,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Triage",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 205,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Truant",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 54,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Turboblaze",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 163,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Unaware",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 109,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Unburden",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 84,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Unnerve",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 127,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Unseen Fist",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 260,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Vessel of Ruin",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 284,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Victory Star",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 162,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Vital Spirit",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 72,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Volt Absorb",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 10,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wandering Spirit",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 254,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Water Absorb",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 11,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Water Bubble",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 199,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Water Compaction",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 195,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Water Veil",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 41,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Weak Armor",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 133,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Well-Baked Body",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 273,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "White Smoke",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 73,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wimp Out",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 193,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wind Power",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 277,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wind Rider",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 274,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wonder Guard",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 25,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Wonder Skin",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 147,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Zen Mode",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 161,
+      "non_standard": "",
+      "short_description": ""
+    },
+    {
+      "id": "Zero to Hero",
+      "mechanic": "None",
+      "generation": 0,
+      "number": 278,
+      "non_standard": "",
+      "short_description": ""
+    }
+  ]
+}

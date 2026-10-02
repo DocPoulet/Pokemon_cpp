@@ -21,6 +21,7 @@ std::string_view toString(HeldItem item) {
         case HeldItem::LifeOrb: return "Orbe Vie";
         case HeldItem::RedOrb: return "Orbe Rouge";
         case HeldItem::BlueOrb: return "Orbe Bleue";
+        case HeldItem::AirBalloon: return "Ballon";
     }
     return "Inconnu";
 }

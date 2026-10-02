@@ -4,7 +4,8 @@
 #include "pokemon/GameData.hpp"
 #include "pokemon/GameMode.hpp"
 #include "pokemon/TeamBuilder.hpp"
-#include "pokemon/TeamIO.hpp"
+#include "pokemon/ShowdownExporter.hpp"
+#include "pokemon/ShowdownImporter.hpp"
 
 #include <cassert>
 #include <iostream>
@@ -18,24 +19,24 @@ PokemonConfig baseConfig(const std::string& species) {
     config.species = species;
     config.level = 50;
     config.ivs.fill(31);
-    config.moves = {"Griffe", "Vive-Attaque", "Aiguisage", ""};
-    config.ability = Ability::Blaze;
+    config.moves = {"Scratch", "Quick Attack", "Hone Claws", ""};
+    config.ability = "Blaze";
     return config;
 }
 
 void testExpandedCatalog() {
     GameData data;
-    assert(data.hasSpecies("Dracaufeu"));
+    assert(data.hasSpecies("Charizard"));
     assert(data.hasSpecies("Pikachu"));
     assert(data.speciesNames().size() >= 11);
-    assert(data.hasMove("Laser Glace"));
+    assert(data.hasMove("Ice Beam"));
     assert(!data.moveNames().empty());
 }
 
 void testTeamBuilderValidation() {
     GameData data;
     TeamBuilder builder(data);
-    auto config = baseConfig("Salameche");
+    auto config = baseConfig("Charmander");
     assert(builder.validate(config).empty());
 
     config.evs.fill(252);
@@ -45,55 +46,54 @@ void testTeamBuilderValidation() {
     assert(!builder.validate(config).empty());
 }
 
-void testTeamIORoundTrip() {
+void testShowdownRoundTrip() {
     GameData data;
     TeamBuilder builder(data);
     Trainer original("DocPoulet");
 
-    auto config = baseConfig("Salameche");
+    auto config = baseConfig("Charmander");
     config.level = 73;
-    config.nature = Nature("Timide", Stat::Speed, Stat::Attack);
+    config.nature = Nature("Timid", Stat::Speed, Stat::Attack);
     config.evs[static_cast<std::size_t>(Stat::Speed)] = 252;
     config.evs[static_cast<std::size_t>(Stat::SpecialAttack)] = 252;
-    config.heldItem = HeldItem::LifeOrb;
-    config.ability = Ability::Blaze;
+    config.heldItem = "Life Orb";
+    config.ability = "Blaze";
     builder.addPokemon(original, config);
 
-    std::stringstream buffer;
-    TeamIO::save(original, buffer);
-    Trainer loaded = TeamIO::load(buffer, data);
+    const std::string saved = ShowdownExporter::toText(original);
+    Trainer loaded = ShowdownImporter::buildTeam(saved, "DocPoulet", data);
 
     assert(loaded.name() == "DocPoulet");
     assert(loaded.team().size() == 1);
     const Pokemon& pokemon = loaded.team()[0];
-    assert(pokemon.name() == "Salameche");
+    assert(pokemon.name() == "Charmander");
     assert(pokemon.level() == 73);
-    assert(pokemon.heldItem() == HeldItem::LifeOrb);
-    assert(pokemon.ability() == Ability::Blaze);
+    assert(pokemon.heldItem() && pokemon.heldItem()->id == "Life Orb");
+    assert(pokemon.ability() && pokemon.ability()->id == "Blaze");
     assert(pokemon.ev(Stat::Speed) == 252);
-    assert(pokemon.moves()[0] && pokemon.moves()[0]->data()->name == "Griffe");
+    assert(pokemon.moves()[0] && pokemon.moves()[0]->data()->name == "Scratch");
 }
 
 void testPrimalWeather() {
     GameData data;
     Trainer p1("Feu");
     Trainer p2("Pluie");
-    Pokemon fire(&data.species("Salameche"), 50);
-    Pokemon rain(&data.species("Carapuce"), 50);
-    rain.setAbility(Ability::PrimordialSea);
+    Pokemon fire(&data.species("Charmander"), 50);
+    Pokemon rain(&data.species("Squirtle"), 50);
+    rain.setAbility(&data.ability("PrimordialSea"));
     p1.addPokemon(fire);
     p2.addPokemon(rain);
     Battle battle(p1, p2, 42);
 
     assert(battle.weather() == Weather::HeavyRain);
     const double damage = DamageCalculator::rawDamage(
-        *battle.active(0), *battle.active(1), data.move("Flammeche"), battle, 0, 1);
+        *battle.active(0), *battle.active(1), data.move("Ember"), battle, 0, 1);
     assert(damage == 0.0);
 
     const double normal = DamageCalculator::effectiveness(
-        Type::Rock, data.species("Dracaufeu"), Weather::None);
+        Type::Rock, data.species("Charizard"), Weather::None);
     const double winds = DamageCalculator::effectiveness(
-        Type::Rock, data.species("Dracaufeu"), Weather::StrongWinds);
+        Type::Rock, data.species("Charizard"), Weather::StrongWinds);
     assert(normal == 4.0);
     assert(winds == 2.0);
 }
@@ -103,12 +103,12 @@ void testTacticalAISwitch() {
     Trainer aiTrainer("IA");
     Trainer foe("Adversaire");
 
-    Pokemon fire(&data.species("Salameche"), 50);
-    fire.setMove(0, &data.move("Flammeche"));
-    Pokemon grass(&data.species("Bulbizarre"), 50);
-    grass.setMove(0, &data.move("Mega-Sangsue"));
-    Pokemon water(&data.species("Carapuce"), 50);
-    water.setMove(0, &data.move("Pistolet a O"));
+    Pokemon fire(&data.species("Charmander"), 50);
+    fire.setMove(0, &data.move("Ember"));
+    Pokemon grass(&data.species("Bulbasaur"), 50);
+    grass.setMove(0, &data.move("Mega Drain"));
+    Pokemon water(&data.species("Squirtle"), 50);
+    water.setMove(0, &data.move("Water Gun"));
 
     aiTrainer.addPokemon(fire);
     aiTrainer.addPokemon(grass);
@@ -132,7 +132,7 @@ void testGameModeLabels() {
 int main() {
     testExpandedCatalog();
     testTeamBuilderValidation();
-    testTeamIORoundTrip();
+    testShowdownRoundTrip();
     testPrimalWeather();
     testTacticalAISwitch();
     testGameModeLabels();

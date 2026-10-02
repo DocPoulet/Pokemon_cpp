@@ -1,5 +1,6 @@
 #pragma once
 
+#include "pokemon/Catalog.hpp"
 #include "pokemon/Move.hpp"
 #include "pokemon/PokemonSpecies.hpp"
 
@@ -10,52 +11,48 @@
 namespace pokemon {
 
 /**
- * Centralise les données globales connues du jeu.
+ * Centralise les catalogues globaux du jeu.
  *
  * Entrées:
- *   Les définitions d'attaques restent intégrées au moteur en v0.7.
- *   Les espèces sont chargées depuis data/pokemon_species.json.
+ *   moves.json: Définitions uniques de toutes les attaques.
+ *   abilities.json: Définitions uniques de tous les talents.
+ *   items.json: Définitions uniques de tous les objets tenus.
+ *   pokemon_species.json: Espèces qui ne stockent que des références vers ces catalogues.
  *
  * Sortie:
- *   GameData: catalogue permettant de retrouver attaques et espèces par leur nom.
+ *   GameData: Source unique des définitions partagées par le moteur.
  */
 class GameData {
 public:
-    /**
-     * Charge le catalogue standard du projet.
-     *
-     * Entrées:
-     *   Aucune.
-     *
-     * Sortie:
-     *   GameData: attaques intégrées et espèces chargées depuis le fichier JSON standard.
-     */
     GameData();
-
-    /**
-     * Charge le catalogue avec un fichier d'espèces explicite.
-     *
-     * Entrées:
-     *   speciesFile (const std::string&): Chemin vers un pokemon_species.json compatible.
-     *
-     * Sortie:
-     *   GameData: catalogue construit avec les données du fichier fourni.
-     */
     explicit GameData(const std::string& speciesFile);
 
-    const MoveData& move(const std::string& name) const;
-    const PokemonSpecies& species(const std::string& name) const;
+    const MoveData& move(const std::string& id) const;
+    const AbilityData& ability(const std::string& id) const;
+    const ItemData& item(const std::string& id) const;
+    const PokemonSpecies& species(const std::string& id) const;
+
     std::vector<std::string> moveNames() const;
+    std::vector<std::string> abilityNames() const;
+    std::vector<std::string> itemNames() const;
     std::vector<std::string> speciesNames() const;
-    bool hasMove(const std::string& name) const;
-    bool hasSpecies(const std::string& name) const;
+
+    bool hasMove(const std::string& id) const;
+    bool hasAbility(const std::string& id) const;
+    bool hasItem(const std::string& id) const;
+    bool hasSpecies(const std::string& id) const;
 
 private:
     std::map<std::string, MoveData> moves_;
+    std::map<std::string, AbilityData> abilities_;
+    std::map<std::string, ItemData> items_;
     std::map<std::string, PokemonSpecies> species_;
 
-    void loadMoves();
+    void loadMovesJson(const std::string& path);
+    void loadAbilitiesJson(const std::string& path);
+    void loadItemsJson(const std::string& path);
     void loadSpeciesJson(const std::string& path);
+    void installFallbackCatalogs();
 };
 
 } // namespace pokemon

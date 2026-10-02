@@ -40,9 +40,9 @@ bool lowHealth(const Pokemon& pokemon) {
 
 bool abilityBoostsMove(const Pokemon& pokemon, Type moveType) {
     if (!lowHealth(pokemon)) return false;
-    return (pokemon.ability() == Ability::Blaze && moveType == Type::Fire) ||
-           (pokemon.ability() == Ability::Torrent && moveType == Type::Water) ||
-           (pokemon.ability() == Ability::Overgrow && moveType == Type::Grass);
+    return ((pokemon.ability() ? pokemon.ability()->mechanic : Ability::None) == Ability::Blaze && moveType == Type::Fire) ||
+           ((pokemon.ability() ? pokemon.ability()->mechanic : Ability::None) == Ability::Torrent && moveType == Type::Water) ||
+           ((pokemon.ability() ? pokemon.ability()->mechanic : Ability::None) == Ability::Overgrow && moveType == Type::Grass);
 }
 }
 
@@ -76,7 +76,7 @@ double DamageCalculator::rawDamage(const Pokemon& attacker,
     if (move.category == MoveCategory::Status || move.power <= 0) return 0.0;
     if (battle.weather() == Weather::HeavyRain && move.type == Type::Fire) return 0.0;
     if (battle.weather() == Weather::ExtremelyHarshSunlight && move.type == Type::Water) return 0.0;
-    if (defender.ability() == Ability::Levitate && move.type == Type::Ground) return 0.0;
+    if ((defender.ability() ? defender.ability()->mechanic : Ability::None) == Ability::Levitate && move.type == Type::Ground) return 0.0;
 
     const double eff = effectiveness(move.type, defender.species(), battle.weather());
     if (eff == 0.0) return 0.0;
@@ -92,7 +92,7 @@ double DamageCalculator::rawDamage(const Pokemon& attacker,
         defender.stat(defenseStat) * battle.statMultiplier(defenderPlayer, defenseStat));
 
     if (move.category == MoveCategory::Physical) {
-        if (attacker.ability() == Ability::Guts && attacker.status() != StatusCondition::None) {
+        if ((attacker.ability() ? attacker.ability()->mechanic : Ability::None) == Ability::Guts && attacker.status() != StatusCondition::None) {
             attack *= 1.5;
         } else if (attacker.status() == StatusCondition::Burn) {
             attack *= 0.5;
@@ -114,7 +114,7 @@ double DamageCalculator::rawDamage(const Pokemon& attacker,
 
     const double stab = hasType(attacker, move.type) ? 1.5 : 1.0;
     const double ability = abilityBoostsMove(attacker, move.type) ? 1.5 : 1.0;
-    const double item = attacker.heldItem() == HeldItem::LifeOrb ? 1.3 : 1.0;
+    const double item = attacker.heldItem() && attacker.heldItem()->mechanic == HeldItem::LifeOrb ? 1.3 : 1.0;
 
     return (((((attacker.level() * 0.4) + 2.0) * move.power * attack) / defense) / 50.0 + 2.0)
         * weather * stab * eff * ability * item;
@@ -132,7 +132,7 @@ DamageResult DamageCalculator::calculate(Pokemon& attacker,
         (battle.weather() == Weather::ExtremelyHarshSunlight && move.type == Type::Water)) {
         result.effectiveness = 0.0;
     }
-    if (defender.ability() == Ability::Levitate && move.type == Type::Ground) {
+    if ((defender.ability() ? defender.ability()->mechanic : Ability::None) == Ability::Levitate && move.type == Type::Ground) {
         result.effectiveness = 0.0;
     }
 

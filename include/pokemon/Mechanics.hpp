@@ -36,7 +36,8 @@ enum class HeldItem {
     Leftovers,  ///< Restes : soigne 1/16 des PV max en fin de tour.
     LifeOrb,    ///< Orbe Vie : augmente les dégâts de 30 % et inflige un recul après une attaque offensive.
     RedOrb,     ///< Orbe Rouge : objet réservé aux mécaniques de Primo-Groudon.
-    BlueOrb     ///< Orbe Bleue : objet réservé aux mécaniques de Primo-Kyogre.
+    BlueOrb,    ///< Orbe Bleue : objet réservé aux mécaniques de Primo-Kyogre.
+    AirBalloon  ///< Ballon : reconnu dans les imports Showdown ; effet mécanique non implémenté.
 };
 
 /**

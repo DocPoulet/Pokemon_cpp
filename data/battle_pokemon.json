@@ -3,42 +3,117 @@
   "pokemon": [
     {
       "id": "quick_salameche",
-      "species": "Salameche",
+      "species": "Charmander",
       "nickname": "",
       "form": "Base",
       "level": 50,
-      "nature": {"name": "Timide", "increased": "Speed", "decreased": "Attack"},
-      "ivs": {"hp": 31, "attack": 31, "defense": 31, "special_attack": 31, "special_defense": 31, "speed": 31},
-      "evs": {"hp": 0, "attack": 0, "defense": 0, "special_attack": 252, "special_defense": 4, "speed": 252},
-      "moves": ["Flammeche", "Vive-Attaque", "Feu Follet", "Aiguisage"],
+      "nature": {
+        "name": "Timid",
+        "increased": "Speed",
+        "decreased": "Attack"
+      },
+      "ivs": {
+        "hp": 31,
+        "attack": 31,
+        "defense": 31,
+        "special_attack": 31,
+        "special_defense": 31,
+        "speed": 31
+      },
+      "evs": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "special_attack": 252,
+        "special_defense": 4,
+        "speed": 252
+      },
+      "moves": [
+        "Ember",
+        "Quick Attack",
+        "Will-O-Wisp",
+        "Hone Claws"
+      ],
       "ability": "Blaze",
-      "held_item": "LifeOrb"
+      "held_item": "Life Orb",
+      "dynamax_level": 10,
+      "gigantamax": false
     },
     {
       "id": "quick_carapuce",
-      "species": "Carapuce",
+      "species": "Squirtle",
       "nickname": "",
       "form": "Base",
       "level": 50,
-      "nature": {"name": "Assure", "increased": "Defense", "decreased": "Attack"},
-      "ivs": {"hp": 31, "attack": 31, "defense": 31, "special_attack": 31, "special_defense": 31, "speed": 31},
-      "evs": {"hp": 252, "attack": 0, "defense": 252, "special_attack": 0, "special_defense": 4, "speed": 0},
-      "moves": ["Pistolet a O", "Laser Glace", "Cage-Eclair", "Aiguisage"],
+      "nature": {
+        "name": "Bold",
+        "increased": "Defense",
+        "decreased": "Attack"
+      },
+      "ivs": {
+        "hp": 31,
+        "attack": 31,
+        "defense": 31,
+        "special_attack": 31,
+        "special_defense": 31,
+        "speed": 31
+      },
+      "evs": {
+        "hp": 252,
+        "attack": 0,
+        "defense": 252,
+        "special_attack": 0,
+        "special_defense": 4,
+        "speed": 0
+      },
+      "moves": [
+        "Water Gun",
+        "Ice Beam",
+        "Rain Dance",
+        "Protect"
+      ],
       "ability": "Torrent",
-      "held_item": "Leftovers"
+      "held_item": "Leftovers",
+      "dynamax_level": 10,
+      "gigantamax": false
     },
     {
       "id": "quick_bulbizarre",
-      "species": "Bulbizarre",
+      "species": "Bulbasaur",
       "nickname": "Bulbi",
       "form": "Base",
       "level": 50,
-      "nature": {"name": "Modeste", "increased": "SpecialAttack", "decreased": "Attack"},
-      "ivs": {"hp": 31, "attack": 31, "defense": 31, "special_attack": 31, "special_defense": 31, "speed": 31},
-      "evs": {"hp": 252, "attack": 0, "defense": 0, "special_attack": 252, "special_defense": 4, "speed": 0},
-      "moves": ["Mega-Sangsue", "Poudre Dodo", "Toxik", "Fouet Lianes"],
+      "nature": {
+        "name": "Modest",
+        "increased": "SpecialAttack",
+        "decreased": "Attack"
+      },
+      "ivs": {
+        "hp": 31,
+        "attack": 31,
+        "defense": 31,
+        "special_attack": 31,
+        "special_defense": 31,
+        "speed": 31
+      },
+      "evs": {
+        "hp": 252,
+        "attack": 0,
+        "defense": 0,
+        "special_attack": 252,
+        "special_defense": 4,
+        "speed": 0
+      },
+      "moves": [
+        "Mega Drain",
+        "Sleep Powder",
+        "Toxic",
+        "Vine Whip"
+      ],
       "ability": "Overgrow",
-      "held_item": "Leftovers"
+      "held_item": "Leftovers",
+      "dynamax_level": 10,
+      "gigantamax": false
     },
     {
       "id": "quick_pikachu",
@@ -46,12 +121,37 @@
       "nickname": "",
       "form": "Base",
       "level": 50,
-      "nature": {"name": "Timide", "increased": "Speed", "decreased": "Attack"},
-      "ivs": {"hp": 31, "attack": 31, "defense": 31, "special_attack": 31, "special_defense": 31, "speed": 31},
-      "evs": {"hp": 0, "attack": 252, "defense": 0, "special_attack": 0, "special_defense": 4, "speed": 252},
-      "moves": ["Cage-Eclair", "Vive-Attaque", "Aiguisage", "Griffe"],
+      "nature": {
+        "name": "Timid",
+        "increased": "Speed",
+        "decreased": "Attack"
+      },
+      "ivs": {
+        "hp": 31,
+        "attack": 31,
+        "defense": 31,
+        "special_attack": 31,
+        "special_defense": 31,
+        "speed": 31
+      },
+      "evs": {
+        "hp": 0,
+        "attack": 252,
+        "defense": 0,
+        "special_attack": 0,
+        "special_defense": 4,
+        "speed": 252
+      },
+      "moves": [
+        "Thunder Wave",
+        "Quick Attack",
+        "Thunderbolt",
+        "Grass Knot"
+      ],
       "ability": "Static",
-      "held_item": "None"
+      "held_item": "None",
+      "dynamax_level": 10,
+      "gigantamax": false
     }
   ]
 }

@@ -4,7 +4,9 @@
 #include "pokemon/Battle.hpp"
 #include "pokemon/ConsoleUI.hpp"
 #include "pokemon/TeamBuilder.hpp"
-#include "pokemon/TeamIO.hpp"
+#include "pokemon/ShowdownExporter.hpp"
+#include "pokemon/ShowdownImporter.hpp"
+#include "pokemon/Localization.hpp"
 
 #include <algorithm>
 #include <iostream>
@@ -55,7 +57,7 @@ Trainer GameApp::buildTeamInteractive(const std::string& name) {
 
     for (int n = 0; n < count; ++n) {
         output_ << "\nPokemon " << (n + 1) << ":\n";
-        for (std::size_t i = 0; i < speciesNames.size(); ++i) output_ << (i + 1) << ". " << speciesNames[i] << '\n';
+        for (std::size_t i = 0; i < speciesNames.size(); ++i) output_ << (i + 1) << ". " << frenchSpeciesName(speciesNames[i]) << '\n';
         output_ << "Espece: ";
         int speciesChoice = readInt();
         while (speciesChoice < 1 || speciesChoice > static_cast<int>(speciesNames.size())) {
@@ -81,37 +83,49 @@ Trainer GameApp::buildTeamInteractive(const std::string& name) {
         output_ << "Choisissez entre 1 et 4 attaques du movepool. 0 termine la selection.\n";
         for (std::size_t slot = 0; slot < 4; ++slot) {
             for (std::size_t i = 0; i < movePool.size(); ++i) {
-                output_ << (i + 1) << ". " << movePool[i] << ((i + 1) % 4 == 0 ? "\n" : " | ");
+                output_ << (i + 1) << ". " << frenchMoveName(movePool[i]->name) << ((i + 1) % 4 == 0 ? "\n" : " | ");
             }
             output_ << "\nSlot " << (slot + 1) << ": ";
             int choice = readInt();
             if (choice == 0 && slot > 0) break;
             while (choice < 1 || choice > static_cast<int>(movePool.size()) ||
-                   selected.count(movePool[static_cast<std::size_t>(choice - 1)]) != 0) {
+                   selected.count(movePool[static_cast<std::size_t>(choice - 1)]->name) != 0) {
                 output_ << "Choix invalide ou attaque deja choisie: ";
                 choice = readInt();
             }
-            config.moves[slot] = movePool[static_cast<std::size_t>(choice - 1)];
+            config.moves[slot] = movePool[static_cast<std::size_t>(choice - 1)]->name;
             selected.insert(config.moves[slot]);
         }
 
-        output_ << "Objet: 0 Aucun, 1 Restes, 2 Orbe Vie, 3 Orbe Rouge, 4 Orbe Bleue: ";
-        config.heldItem = static_cast<HeldItem>(std::clamp(readInt(), 0, 4));
+        const auto itemNames = data_.itemNames();
+        output_ << "Objets disponibles:\n0. Aucun\n";
+        for (std::size_t i = 0; i < itemNames.size(); ++i) {
+            output_ << (i + 1) << ". " << frenchItemName(itemNames[i]) << '\n';
+        }
+        output_ << "Objet: ";
+        int itemChoice = readInt();
+        while (itemChoice < 0 || itemChoice > static_cast<int>(itemNames.size())) {
+            output_ << "Choix invalide: ";
+            itemChoice = readInt();
+        }
+        if (itemChoice > 0) config.heldItem = itemNames[static_cast<std::size_t>(itemChoice - 1)];
 
         const auto& abilities = species.abilities();
         if (abilities.empty()) {
             output_ << "Aucun talent disponible pour cette espece de secours.\n";
-            config.ability = Ability::None;
+            config.ability.clear();
         } else {
             output_ << "Talents possibles:\n";
-            for (std::size_t i = 0; i < abilities.size(); ++i) output_ << (i + 1) << ". " << toString(abilities[i]) << '\n';
+            for (std::size_t i = 0; i < abilities.size(); ++i) {
+                output_ << (i + 1) << ". " << frenchAbilityName(abilities[i]->id) << '\n';
+            }
             output_ << "Talent: ";
             int abilityChoice = readInt();
             while (abilityChoice < 1 || abilityChoice > static_cast<int>(abilities.size())) {
                 output_ << "Choix invalide: ";
                 abilityChoice = readInt();
             }
-            config.ability = abilities[static_cast<std::size_t>(abilityChoice - 1)];
+            config.ability = abilities[static_cast<std::size_t>(abilityChoice - 1)]->id;
         }
 
         try {
@@ -122,6 +136,25 @@ Trainer GameApp::buildTeamInteractive(const std::string& name) {
         }
     }
     return trainer;
+}
+
+
+Trainer GameApp::importShowdownTeam(const std::string& name) {
+    output_ << "Collez l'export Showdown complet. Terminez par une ligne contenant uniquement END.\n";
+    input_.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::string text;
+    std::string line;
+    while (std::getline(input_, line)) {
+        if (line == "END") break;
+        text += line;
+        text += '\n';
+    }
+
+    std::vector<std::string> warnings;
+    Trainer team = ShowdownImporter::buildTeam(text, name, data_, &warnings);
+    for (const auto& warning : warnings) output_ << "[Showdown] " << warning << '\n';
+    output_ << team.team().size() << " Pokemon importe(s).\n";
+    return team;
 }
 
 void GameApp::runBattle(GameMode mode, Trainer player1, Trainer player2) {
@@ -144,12 +177,13 @@ void GameApp::runBattle(GameMode mode, Trainer player1, Trainer player2) {
 
 int GameApp::run() {
     while (true) {
-        output_ << "\n=== Pokemon_cpp v0.7 ===\n"
+        output_ << "\n=== Pokemon_cpp v0.8.1 ===\n"
                 << "1. Combat rapide Joueur vs IA\n"
                 << "2. Team Builder puis Joueur vs IA\n"
-                << "3. Charger une equipe puis Joueur vs IA\n"
+                << "3. Charger une equipe Showdown puis Joueur vs IA\n"
                 << "4. Combat rapide Joueur vs Joueur\n"
                 << "5. Demonstration IA vs IA\n"
+                << "6. Importer une equipe Pokemon Showdown\n"
                 << "0. Quitter\n> ";
         const int choice = readInt();
         if (choice == 0) return 0;
@@ -160,16 +194,19 @@ int GameApp::run() {
             Trainer team = buildTeamInteractive("Joueur");
             output_ << "Sauvegarder cette equipe ? (1 oui / 0 non): ";
             if (readInt() == 1) {
-                output_ << "Nom du fichier (ex: mon_equipe.team): ";
+                output_ << "Nom du fichier Showdown (ex: mon_equipe.txt): ";
                 const std::string path = readWord();
-                output_ << (TeamIO::saveFile(team, path) ? "Equipe sauvegardee.\n" : "Echec de sauvegarde.\n");
+                output_ << (ShowdownExporter::saveFile(team, path) ? "Equipe sauvegardee.\n" : "Echec de sauvegarde.\n");
             }
             runBattle(GameMode::PlayerVsAI, team, makeQuickTeam("IA", 1));
         } else if (choice == 3) {
-            output_ << "Fichier d'equipe: ";
+            output_ << "Fichier Showdown: ";
             const std::string path = readWord();
             try {
-                runBattle(GameMode::PlayerVsAI, TeamIO::loadFile(path, data_), makeQuickTeam("IA", 1));
+                std::vector<std::string> warnings;
+                Trainer team = ShowdownImporter::loadFile(path, "Joueur", data_, &warnings);
+                for (const auto& warning : warnings) output_ << "[Showdown] " << warning << '\n';
+                runBattle(GameMode::PlayerVsAI, team, makeQuickTeam("IA", 1));
             } catch (const std::exception& error) {
                 output_ << "Chargement impossible: " << error.what() << '\n';
             }
@@ -177,6 +214,19 @@ int GameApp::run() {
             runBattle(GameMode::PlayerVsPlayer, makeQuickTeam("Joueur 1", 0), makeQuickTeam("Joueur 2", 1));
         } else if (choice == 5) {
             runBattle(GameMode::AIvsAI, makeQuickTeam("IA Rouge", 0), makeQuickTeam("IA Bleue", 1));
+        } else if (choice == 6) {
+            Trainer team = importShowdownTeam("Showdown");
+            if (team.team().empty()) {
+                output_ << "Aucun Pokemon valide a importer.\n";
+                continue;
+            }
+            output_ << "Sauvegarder cette equipe ? (1 oui / 0 non): ";
+            if (readInt() == 1) {
+                output_ << "Nom du fichier Showdown (ex: showdown.txt): ";
+                const std::string path = readWord();
+                output_ << (ShowdownExporter::saveFile(team, path) ? "Equipe sauvegardee.\n" : "Echec de sauvegarde.\n");
+            }
+            runBattle(GameMode::PlayerVsAI, team, makeQuickTeam("IA", 1));
         } else {
             output_ << "Choix invalide.\n";
         }

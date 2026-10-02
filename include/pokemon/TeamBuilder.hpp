@@ -6,6 +6,7 @@
 #include "pokemon/Trainer.hpp"
 
 #include <array>
+#include <optional>
 #include <string>
 
 namespace pokemon {
@@ -30,13 +31,18 @@ struct PokemonConfig {
     std::string species;
     std::string nickname;
     std::string form = "Base";
+    std::string gender; ///< "M", "F" ou vide si non précisé.
+    bool shiny = false; ///< Marqueur chromatique, informatif tant que la mécanique visuelle n’est pas utilisée.
+    std::optional<Type> teraType; ///< Type Téracristal préparé pour une future mécanique Tera.
+    int dynamaxLevel = 10; ///< Niveau Dynamax Showdown, conservé sans effet mécanique en v0.7.3.
+    bool gigantamax = false; ///< Marqueur Gigamax Showdown, conservé sans effet mécanique en v0.7.3.
     int level = 50;
     Nature nature{};
     std::array<int, static_cast<std::size_t>(Stat::Count)> ivs{};
     std::array<int, static_cast<std::size_t>(Stat::Count)> evs{};
     std::array<std::string, 4> moves{};
-    HeldItem heldItem = HeldItem::None;
-    Ability ability = Ability::None;
+    std::string heldItem; ///< ID canonique de l'objet tenu ; vide signifie aucun objet.
+    std::string ability; ///< ID canonique du talent choisi ; obligatoire sauf pour MissingNo.
 };
 
 /**

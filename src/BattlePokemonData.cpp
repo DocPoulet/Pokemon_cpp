@@ -60,6 +60,13 @@ void BattlePokemonData::load(const std::string& path) {
                 config.species = entry.at("species").asString();
                 config.nickname = entry.contains("nickname") ? entry.at("nickname").asString() : "";
                 config.form = entry.contains("form") ? entry.at("form").asString() : "Base";
+                config.gender = entry.contains("gender") ? entry.at("gender").asString() : "";
+                config.shiny = entry.contains("shiny") ? entry.at("shiny").asBoolean() : false;
+                if (entry.contains("tera_type") && !entry.at("tera_type").isNull()) {
+                    config.teraType = typeFromDataId(entry.at("tera_type").asString());
+                }
+                config.dynamaxLevel = entry.contains("dynamax_level") ? entry.at("dynamax_level").asInt() : 10;
+                config.gigantamax = entry.contains("gigantamax") ? entry.at("gigantamax").asBoolean() : false;
                 config.level = entry.at("level").asInt();
                 config.ivs = readStats(entry.at("ivs"));
                 config.evs = readStats(entry.at("evs"));
@@ -76,8 +83,9 @@ void BattlePokemonData::load(const std::string& path) {
                 }
                 for (std::size_t i = 0; i < moves.size(); ++i) config.moves[i] = moves[i].asString();
 
-                config.ability = abilityFromDataId(entry.at("ability").asString());
-                config.heldItem = heldItemFromDataId(entry.at("held_item").asString());
+                config.ability = entry.at("ability").asString();
+                config.heldItem = entry.at("held_item").asString();
+                if (config.heldItem == "None") config.heldItem.clear();
 
                 const std::string error = builder.validate(config);
                 if (!error.empty()) {

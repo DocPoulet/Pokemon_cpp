@@ -67,6 +67,7 @@ std::string_view dataId(HeldItem value) {
         case HeldItem::LifeOrb: return "LifeOrb";
         case HeldItem::RedOrb: return "RedOrb";
         case HeldItem::BlueOrb: return "BlueOrb";
+        case HeldItem::AirBalloon: return "AirBalloon";
     }
     return "Unknown";
 }
@@ -125,6 +126,7 @@ HeldItem heldItemFromDataId(std::string_view id) {
     if (id == "LifeOrb") return HeldItem::LifeOrb;
     if (id == "RedOrb") return HeldItem::RedOrb;
     if (id == "BlueOrb") return HeldItem::BlueOrb;
+    if (id == "AirBalloon") return HeldItem::AirBalloon;
     throw std::invalid_argument("Objet JSON inconnu: " + std::string(id));
 }
 

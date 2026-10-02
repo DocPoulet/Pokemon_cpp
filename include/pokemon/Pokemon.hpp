@@ -1,5 +1,6 @@
 #pragma once
 
+#include "pokemon/Catalog.hpp"
 #include "pokemon/Mechanics.hpp"
 #include "pokemon/Move.hpp"
 #include "pokemon/Nature.hpp"
@@ -121,6 +122,37 @@ public:
      * Sortie:
      *   int: Niveau stocké dans l'instance.
      */
+
+    /** Retourne le sexe importé ("M", "F" ou vide). Entrées: aucune. Sortie: chaîne stockée. */
+    const std::string& gender() const;
+
+    /** Modifie le sexe informatif. Entrée: "M", "F" ou vide. Sortie: aucune. */
+    void setGender(std::string gender);
+
+    /** Indique si le Pokémon est chromatique. Entrées: aucune. Sortie: bool. */
+    bool shiny() const;
+
+    /** Modifie le marqueur chromatique. Entrée: bool. Sortie: aucune. */
+    void setShiny(bool shiny);
+
+    /** Retourne le type Téracristal préparé pour une future mécanique. Sortie: type optionnel. */
+    const std::optional<Type>& teraType() const;
+
+    /** Modifie le type Téracristal informatif. Entrée: type optionnel. Sortie: aucune. */
+    void setTeraType(std::optional<Type> type);
+
+    /** Retourne le niveau Dynamax importé. Entrées: aucune. Sortie: entier entre 0 et 10. */
+    int dynamaxLevel() const;
+
+    /** Modifie le niveau Dynamax informatif. Entrée: entier entre 0 et 10. Sortie: aucune. */
+    void setDynamaxLevel(int level);
+
+    /** Indique si le preset demande la forme Gigamax. Entrées: aucune. Sortie: bool. */
+    bool gigantamax() const;
+
+    /** Modifie le marqueur Gigamax informatif. Entrée: bool. Sortie: aucune. */
+    void setGigantamax(bool enabled);
+
     int level() const;
 
     /**
@@ -417,53 +449,42 @@ public:
     void setStatusTurns(int turns);
 
     /**
-     * Retourne l'objet tenu par le Pokémon.
+     * Retourne la définition globale de l'objet tenu.
      *
      * Entrées:
      *   Aucune.
      *
      * Sortie:
-     *   HeldItem: Objet actuellement équipé.
+     *   const ItemData*: Référence globale vers l'objet, ou nullptr si aucun objet.
      */
-    HeldItem heldItem() const;
+    const ItemData* heldItem() const;
+
+    /** Équipe un objet global. Entrée: pointeur de catalogue ou nullptr. Sortie: aucune. */
+    void setHeldItem(const ItemData* item);
 
     /**
-     * Équipe ou retire un objet tenu.
+     * Retourne la définition globale du talent actif.
      *
      * Entrées:
-     *   item (HeldItem): Nouvel objet.
+     *   Aucune.
      *
      * Sortie:
-     *   Aucune.
+     *   const AbilityData*: Référence globale vers le talent, ou nullptr pour MissingNo.
      */
-    void setHeldItem(HeldItem item);
+    const AbilityData* ability() const;
 
-    /**
-     * Retourne le talent du Pokémon.
-     *
-     * Entrées:
-     *   Aucune.
-     *
-     * Sortie:
-     *   Ability: Talent actuellement actif.
-     */
-    Ability ability() const;
-
-    /**
-     * Modifie le talent du Pokémon.
-     *
-     * Entrées:
-     *   ability (Ability): Nouveau talent.
-     *
-     * Sortie:
-     *   Aucune.
-     */
-    void setAbility(Ability ability);
+    /** Active un talent global. Entrée: pointeur de catalogue ou nullptr. Sortie: aucune. */
+    void setAbility(const AbilityData* ability);
 
 private:
     const PokemonSpecies* species_ = nullptr;
     std::string nickname_; ///< Surnom optionnel ; vide signifie utiliser le nom de l'espèce.
-    std::string form_ = "Base"; ///< Forme persistée mais sans effet mécanique en v0.7. ///< Espèce de référence.
+    std::string form_ = "Base"; ///< Forme persistée mais sans effet mécanique.
+    std::string gender_; ///< Sexe importé depuis Showdown : M, F ou vide.
+    bool shiny_ = false; ///< Marqueur chromatique sans effet mécanique.
+    std::optional<Type> teraType_; ///< Type Téracristal conservé pour une future mécanique.
+    int dynamaxLevel_ = 10; ///< Niveau Dynamax conservé pour une future mécanique.
+    bool gigantamax_ = false; ///< Marqueur Gigamax conservé pour une future mécanique.
     int level_ = 1; ///< Niveau actuel.
     int currentHP_ = 0; ///< PV actuellement disponibles.
     std::array<int, static_cast<std::size_t>(Stat::Count)> ivs_{}; ///< IV par statistique.
@@ -472,8 +493,8 @@ private:
     std::array<std::optional<MoveInstance>, 4> moves_{}; ///< Quatre attaques équipées au maximum.
     StatusCondition status_ = StatusCondition::None; ///< Statut persistant actuel.
     int statusTurns_ = 0; ///< Compteur utilisé par les statuts temporaires comme le sommeil.
-    HeldItem heldItem_ = HeldItem::None; ///< Objet tenu par le Pokémon.
-    Ability ability_ = Ability::None; ///< Talent passif du Pokémon.
+    const ItemData* heldItem_ = nullptr; ///< Référence vers l'objet global du catalogue.
+    const AbilityData* ability_ = nullptr; ///< Référence vers le talent global du catalogue.
 };
 
 } // namespace pokemon
